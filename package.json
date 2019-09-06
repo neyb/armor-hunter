@@ -4,10 +4,10 @@
   "author": "neyb",
   "license": "ISC",
   "description": "stuff for mhw",
-  "homepage":"https://yourusername.github.io/repository-name",
+  "homepage": "https://yourusername.github.io/repository-name",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "build": "parcel build src/index.html --out-dir build --public-url ./",
     "start": "BROWSER=none parcel -p 3000 src/index.html --out-dir build",
     "predeploy": "npm run build",
@@ -18,7 +18,12 @@
     "url": "git@perso.github.com:neyb/armor-hunter.git"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^9.1.4",
     "gh-pages": "^2.1.1",
+    "jest": "^24.9.0",
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
