@@ -9,7 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/index.html --out-dir build --public-url ./",
-    "start": "BROWSER=none parcel -p 3000 src/index.html --out-dir build"
+    "start": "BROWSER=none parcel -p 3000 src/index.html --out-dir build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
