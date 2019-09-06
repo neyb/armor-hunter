@@ -1,0 +1,28 @@
+{
+  "name": "armor-hunter",
+  "version": "0.0.0",
+  "author": "neyb",
+  "license": "ISC",
+  "description": "stuff for mhw",
+  "homepage":"https://yourusername.github.io/repository-name",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/index.html --out-dir build --public-url ./",
+    "start": "BROWSER=none parcel -p 3000 src/index.html --out-dir build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@perso.github.com:neyb/armor-hunter.git"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1",
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4"
+  }
+}
