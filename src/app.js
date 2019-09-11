@@ -3,7 +3,7 @@ import "/custom.css";
 import ReactDOM from "react-dom";
 import Hello from "/Hello";
 
-const App = () => <div><Hello name="world"/></div>
+const App = () => <div><Hello name="world"/></div>;
 
 ReactDOM.render(<App/>, document.getElementById("root"));
 
