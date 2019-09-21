@@ -4,6 +4,14 @@ export interface SearchRequest {
     leveledSkills: LeveledSkill[]
 }
 
+export interface SearchContext{
+    availableParts: Part[]
+}
+
+export interface Part{
+    skills:LeveledSkill[]
+}
+
 interface LeveledSkill {
     level: number
     skill: Skill

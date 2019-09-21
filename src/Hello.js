@@ -1,5 +1,9 @@
 import React from "react";
+import {startSearch} from "/logic/search/index.ts"
 
 export default function Hello({name}) {
-  return <div>hello {name}</div>
+  return <div onClick={e => {
+    startSearch().promise
+      .then(console.log)
+  }}>hello {name}</div>
 }

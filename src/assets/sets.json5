@@ -1,0 +1,1559 @@
+{
+  Leather: {
+    rarity: 1,
+    head: {slots: [], skills: {"Hunger Resistance": 1}},
+    chest: {slots: [], skills: {}},
+    arms: {slots: [], skills: {}},
+    waist: {slots: [], skills: {}},
+    legs: {slots: [], skills: {}},
+    defenses: {physical: {base: 2, max: 38, augmented: 68}, fire: 2, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  Chainmail: {
+    rarity: 1,
+    head: {slots: [], skills: {"Master Gatherer": 1}},
+    chest: {slots: [], skills: {}},
+    arms: {slots: [], skills: {}},
+    waist: {slots: [], skills: {}},
+    legs: {slots: [], skills: {}},
+    defenses: {physical: {base: 2, max: 38, augmented: 68}, fire: 0, water: 2, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Hunter's": {
+    rarity: 1,
+    head: {slots: [], skills: {"Scoutfly Range Up": 1}},
+    chest: {slots: [], skills: {"Slinger Capacity": 1}},
+    arms: {slots: [], skills: {Stealth: 1}},
+    waist: {slots: [], skills: {Scenthound: 1}},
+    legs: {slots: [], skills: {"BBQ Master": 1}},
+    defenses: {physical: {base: 6, max: 42, augmented: 72}, fire: 2, water: 2, thunder: 0, ice: 0, dragon: 0}
+  },
+  Bone: {
+    rarity: 1,
+    head: {slots: [], skills: {"Health Boost": 1}},
+    chest: {slots: [], skills: {"Attack Boost": 1}},
+    arms: {slots: [], skills: {Slugger: 1}},
+    waist: {slots: [], skills: {"Horn Maestro": 1}},
+    legs: {slots: [], skills: {Entomologist: 1}},
+    defenses: {physical: {base: 6, max: 42, augmented: 72}, fire: 2, water: 0, thunder: 2, ice: 0, dragon: 2}
+  },
+  Vespoid: {
+    rarity: 1,
+    head: {slots: [], skills: {"Quick Sheath": 1}},
+    chest: {slots: [], skills: {Windproof: 1}},
+    arms: {slots: [], skills: {"Paralysis Attack": 1}},
+    waist: {slots: [], skills: {"Paralysis Resistance": 1}},
+    legs: {slots: [], skills: {"Honey Hunter": 1}},
+    defenses: {physical: {base: 8, max: 44, augmented: 74}, fire: -2, water: 1, thunder: 1, ice: 1, dragon: 2}
+  },
+  Kestodon: {
+    rarity: 1,
+    head: null,
+    chest: null,
+    arms: {slots: [], skills: {"Affinity Sliding": 1}},
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 12, max: 48, augmented: 78}, fire: 4, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  Gajau: {
+    rarity: 1,
+    head: null,
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: {slots: [], skills: {"Aquatic Expert": 1}},
+    defenses: {physical: {base: 12, max: 48, augmented: 78}, fire: 0, water: 5, thunder: 0, ice: 0, dragon: 0}
+  },
+  Jagras: {
+    rarity: 1,
+    head: {slots: [], skills: {"Speed Eating": 1}},
+    chest: {slots: [], skills: {Intimidator: 1}},
+    arms: {slots: [], skills: {"Palico Rally": 1}},
+    waist: {slots: [], skills: {Fortify: 1}},
+    legs: {slots: [], skills: {"Speed Crawler": 1}},
+    defenses: {physical: {base: 8, max: 44, augmented: 74}, fire: -2, water: 2, thunder: -1, ice: -1, dragon: 1}
+  },
+  Kulu: {
+    rarity: 1,
+    head: {slots: [], skills: {"Fire Resistance": 1}},
+    chest: {slots: [], skills: {"Stamina Surge": 1}},
+    arms: {slots: [], skills: {"Pro Transporter": 1}},
+    waist: {slots: [], skills: {"Item Prolonger": 1}},
+    legs: {slots: [], skills: {"Critical Eye": 1}},
+    defenses: {physical: {base: 10, max: 46, augmented: 76}, fire: 0, water: -3, thunder: 0, ice: 1, dragon: 0}
+  },
+  Alloy: {
+    rarity: 2,
+    head: {slots: [], skills: {Windproof: 1}},
+    chest: {slots: [], skills: {"Water Resistance": 1}},
+    arms: {slots: [], skills: {"Defense Boost": 1}},
+    waist: {slots: [], skills: {"Poison Resistance": 1}},
+    legs: {slots: [], skills: {"Speed Sharpening": 1}},
+    defenses: {physical: {base: 8, max: 40, augmented: 66}, fire: -2, water: 1, thunder: -2, ice: -2, dragon: 1}
+  },
+  Pukei: {
+    rarity: 2,
+    head: {slots: [], skills: {"Sporepuff Expert": 1}},
+    chest: {slots: [], skills: {"Item Prolonger": 1}},
+    arms: {slots: [], skills: {"Poison Resistance": 1}},
+    waist: {slots: [], skills: {"Poison Attack": 1}},
+    legs: {slots: [], skills: {Botanist: 1}},
+    defenses: {physical: {base: 12, max: 44, augmented: 70}, fire: 0, water: 3, thunder: -3, ice: 0, dragon: 1}
+  },
+  Barroth: {
+    rarity: 2,
+    head: {slots: [], skills: {Guard: 1}},
+    chest: {slots: [], skills: {"Stamina Thief": 1}},
+    arms: {slots: [], skills: {"Marathon Runner": 1}},
+    waist: {slots: [], skills: {"Muck Resistance": 1}},
+    legs: {slots: [], skills: {"Stun Resistance": 1}},
+    defenses: {physical: {base: 14, max: 46, augmented: 72}, fire: -3, water: -1, thunder: 3, ice: -1, dragon: 0}
+  },
+  Jyura: {
+    rarity: 2,
+    head: {slots: [], skills: {"Aquatic Expert": 1}},
+    chest: {slots: [], skills: {"Muck Resistance": 1}},
+    arms: {slots: [], skills: {"Water Attack": 1}},
+    waist: {slots: [], skills: {"Ice Resistance": 1}},
+    legs: {slots: [], skills: {Focus: 1}},
+    defenses: {physical: {base: 14, max: 46, augmented: 72}, fire: -1, water: 2, thunder: -3, ice: 0, dragon: 0}
+  },
+  Kadachi: {
+    rarity: 2,
+    head: {slots: [], skills: {Constitution: 1}},
+    chest: {slots: [], skills: {"Jump Master": 1}},
+    arms: {slots: [], skills: {"Evade Extender": 1}},
+    waist: {slots: [], skills: {"Thunder Attack": 1}},
+    legs: {slots: [], skills: {"Thunder Resistance": 1}},
+    defenses: {physical: {base: 16, max: 48, augmented: 74}, fire: 0, water: -3, thunder: 3, ice: 0, dragon: 0}
+  },
+  "High Metal": {
+    rarity: 3,
+    head: {slots: [], skills: {"Ice Resistance": 1}},
+    chest: {slots: [], skills: {Earplugs: 1}},
+    arms: {slots: [], skills: {"Defense Boost": 1}},
+    waist: {slots: [], skills: {"Capacity Boost": 1}},
+    legs: {slots: [], skills: {"Heavy Artillery": 1}},
+    defenses: {physical: {base: 18, max: 46, augmented: 70}, fire: 0, water: -1, thunder: -2, ice: 3, dragon: 0}
+  },
+  "King Beetle": {
+    rarity: 3,
+    head: {slots: [], skills: {"Evade Window": 1}},
+    chest: {slots: [], skills: {"Quick Sheath": 1}},
+    arms: {slots: [], skills: {"Leap of Faith": 1}},
+    waist: {slots: [], skills: {"Honey Hunter": 1}},
+    legs: {slots: [], skills: {"Forager's Luck": 1}},
+    defenses: {physical: {base: 22, max: 50, augmented: 74}, fire: -1, water: -1, thunder: 2, ice: 0, dragon: 2}
+  },
+  Butterfly: {
+    rarity: 3,
+    head: {slots: [], skills: {"Stun Resistance": 1}},
+    chest: {slots: [], skills: {"Health Boost": 1}},
+    arms: {slots: [], skills: {"Critical Eye": 1}},
+    waist: {slots: [], skills: {"Defense Boost": 1}},
+    legs: {slots: [], skills: {"Marathon Runner": 1}},
+    defenses: {physical: {base: 22, max: 50, augmented: 74}, fire: -1, water: -1, thunder: 2, ice: 0, dragon: 2}
+  },
+  Shamos: {
+    rarity: 3,
+    head: {slots: [], skills: {Detector: 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 22, max: 50, augmented: 74}, fire: 2, water: 2, thunder: 0, ice: -3, dragon: 0}
+  },
+  Hornetaur: {
+    rarity: 3,
+    head: {slots: [], skills: {Dungmaster: 1}},
+    chest: {slots: [], skills: {"Effluvial Expert": 1}},
+    arms: {slots: [], skills: {"Free Meal": 1}},
+    waist: {slots: [], skills: {"Carving Pro": 1}},
+    legs: {slots: [], skills: {Handicraft: 1}},
+    defenses: {physical: {base: 18, max: 46, augmented: 70}, fire: -1, water: -1, thunder: 0, ice: 0, dragon: 2}
+  },
+  Anja: {
+    rarity: 3,
+    head: {slots: [], skills: {"Fire Attack": 1}},
+    chest: {slots: [], skills: {"Marathon Runner": 1}},
+    arms: {slots: [], skills: {"Special Ammo Boost": 1}},
+    waist: {slots: [], skills: {"Fire Resistance": 1}},
+    legs: {slots: [], skills: {Artillery: 1}},
+    defenses: {physical: {base: 20, max: 48, augmented: 72}, fire: 3, water: -3, thunder: -1, ice: -1, dragon: 0}
+  },
+  Rathian: {
+    rarity: 3,
+    head: {slots: [], skills: {"Health Boost": 1}},
+    chest: {slots: [], skills: {Botanist: 1}},
+    arms: {slots: [], skills: {"Poison Attack": 1}},
+    waist: {slots: [], skills: {"Poison Resistance": 1}},
+    legs: {slots: [], skills: {"Recovery Up": 1}},
+    defenses: {physical: {base: 22, max: 50, augmented: 74}, fire: 2, water: 0, thunder: -2, ice: 0, dragon: -3}
+  },
+  Tzitzi: {
+    rarity: 3,
+    head: {slots: [], skills: {Blindsider: 1}},
+    chest: {slots: [], skills: {Constitution: 1}},
+    arms: {slots: [], skills: {"Stun Resistance": 1}},
+    waist: {slots: [], skills: {"Wide-Range": 1}},
+    legs: {slots: [], skills: {"Sleep Resistance": 1}},
+    defenses: {physical: {base: 18, max: 46, augmented: 70}, fire: 0, water: 0, thunder: -3, ice: -2, dragon: 0}
+  },
+  Lumu: {
+    rarity: 3,
+    head: {slots: [], skills: {"Stamina Surge": 1}},
+    chest: {slots: [], skills: {"Master Mounter": 1}},
+    arms: {slots: [], skills: {Artillery: 1}},
+    waist: {slots: [], skills: {"Divine Blessing": 1}},
+    legs: {slots: [], skills: {Windproof: 1}},
+    defenses: {physical: {base: 20, max: 48, augmented: 72}, fire: -3, water: 2, thunder: 0, ice: 1, dragon: 0}
+  },
+  Girros: {
+    rarity: 3,
+    head: {slots: [], skills: {"Horn Maestro": 1}},
+    chest: {slots: [], skills: {"Paralysis Resistance": 1}},
+    arms: {slots: [], skills: {"Palico Rally": 1}},
+    waist: {slots: [], skills: {"Effluvial Expert": 1}},
+    legs: {slots: [], skills: {"Paralysis Attack": 1}},
+    defenses: {physical: {base: 20, max: 48, augmented: 72}, fire: 0, water: -3, thunder: 2, ice: 0, dragon: 1}
+  },
+  Baan: {
+    rarity: 3,
+    head: {slots: [], skills: {Slugger: 1}},
+    chest: {slots: [], skills: {"Sleep Resistance": 1}},
+    arms: {slots: [], skills: {"Sleep Attack": 1}},
+    waist: {slots: [], skills: {Guard: 1}},
+    legs: {slots: [], skills: {"Bleeding Resistance": 1}},
+    defenses: {physical: {base: 24, max: 52, augmented: 76}, fire: 0, water: 2, thunder: 0, ice: -1, dragon: -2}
+  },
+  Ingot: {
+    rarity: 4,
+    head: {slots: [], skills: {"Thunder Attack": 1}},
+    chest: {slots: [], skills: {"Thunder Resistance": 1}},
+    arms: {slots: [], skills: {"Health Boost": 1}},
+    waist: {slots: [], skills: {Windproof: 1}},
+    legs: {slots: [], skills: {"Defense Boost": 1}},
+    defenses: {physical: {base: 28, max: 52, augmented: 72}, fire: -2, water: 0, thunder: 3, ice: -1, dragon: 0}
+  },
+  "Death Stench": {
+    rarity: 4,
+    head: {slots: [], skills: {Resuscitate: 1}},
+    chest: {slots: [], skills: {Fortify: 1}},
+    arms: {slots: [], skills: {Focus: 1}},
+    waist: {slots: [], skills: {"Dragon Attack": 1}},
+    legs: {slots: [], skills: {Handicraft: 1}},
+    defenses: {physical: {base: 32, max: 56, augmented: 76}, fire: 3, water: 2, thunder: -2, ice: 3, dragon: -4}
+  },
+  Brigade: {
+    rarity: 4,
+    head: {slots: [], skills: {"Recovery Speed": 1}},
+    chest: {slots: [], skills: {"Divine Blessing": 1}},
+    arms: {slots: [], skills: {"Heavy Artillery": 1}},
+    waist: {slots: [], skills: {Geologist: 1}},
+    legs: {slots: [], skills: {Scholar: 1}},
+    defenses: {physical: {base: 28, max: 52, augmented: 72}, fire: 1, water: 0, thunder: 2, ice: 0, dragon: 2}
+  },
+  Legiana: {
+    rarity: 4,
+    head: {slots: [], skills: {"Divine Blessing": 1}},
+    chest: {slots: [], skills: {"Evade Window": 1}},
+    arms: {slots: [], skills: {Airborne: 1}},
+    waist: {slots: [], skills: {"Ice Attack": 1}},
+    legs: {slots: [], skills: {"Ice Resistance": 1}},
+    defenses: {physical: {base: 30, max: 54, augmented: 74}, fire: -1, water: 2, thunder: -3, ice: 3, dragon: 0}
+  },
+  Odogaron: {
+    rarity: 4,
+    head: {slots: [], skills: {"Bleeding Resistance": 1}},
+    chest: {slots: [], skills: {"Speed Sharpening": 1}},
+    arms: {slots: [], skills: {Constitution: 1}},
+    waist: {slots: [], skills: {"Critical Eye": 1}},
+    legs: {slots: [], skills: {"Quick Sheath": 1}},
+    defenses: {physical: {base: 30, max: 54, augmented: 74}, fire: 2, water: 2, thunder: -2, ice: -3, dragon: 0}
+  },
+  Rathalos: {
+    rarity: 4,
+    head: {slots: [], skills: {"Attack Boost": 1}},
+    chest: {slots: [], skills: {"Weakness Exploit": 1}},
+    arms: {slots: [], skills: {"Fire Resistance": 1}},
+    waist: {slots: [], skills: {"Fire Attack": 1}},
+    legs: {slots: [], skills: {"Jump Master": 1}},
+    defenses: {physical: {base: 30, max: 54, augmented: 74}, fire: 3, water: 1, thunder: -2, ice: 1, dragon: -3}
+  },
+  Diablos: {
+    rarity: 4,
+    head: {slots: [], skills: {"Critical Draw": 1}},
+    chest: {slots: [], skills: {Slugger: 1}},
+    arms: {slots: [], skills: {Heroics: 1}},
+    waist: {slots: [], skills: {"Marathon Runner": 1}},
+    legs: {slots: [], skills: {"Tremor Resistance": 1}},
+    defenses: {physical: {base: 32, max: 56, augmented: 76}, fire: 3, water: -2, thunder: 0, ice: -3, dragon: 2}
+  },
+  Kirin: {
+    rarity: 4,
+    head: {slots: [], skills: {"Marathon Runner": 1}},
+    chest: {slots: [], skills: {"Divine Blessing": 1}},
+    arms: {slots: [], skills: {"Blight Resistance": 1}},
+    waist: {slots: [], skills: {"Thunder Attack": 1}},
+    legs: {slots: [], skills: {"Thunder Resistance": 1}},
+    defenses: {physical: {base: 34, max: 58, augmented: 78}, fire: -3, water: -2, thunder: 4, ice: -2, dragon: 2}
+  },
+  Blossom: {
+    rarity: 3,
+    head: {slots: [], skills: {"Honey Hunter": 1}},
+    chest: {slots: [], skills: {"Quick Sheath": 1}},
+    arms: {slots: [], skills: {"Paralysis Resistance": 1}},
+    waist: {slots: [], skills: {"Scoutfly Range Up": 1}},
+    legs: {slots: [], skills: {"Recovery Speed": 1}},
+    defenses: {physical: {base: 18, max: 46, augmented: 70}, fire: 1, water: 1, thunder: 4, ice: 1, dragon: 1}
+  },
+  "Leather α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Hunger Resistance": 2}},
+    chest: {slots: [], skills: {"Fire Resistance": 1}},
+    arms: {slots: [], skills: {"Recovery Speed": 1}},
+    waist: {slots: [], skills: {"Stamina Surge": 1}},
+    legs: {slots: [], skills: {Cliffhanger: 1}},
+    defenses: {physical: {base: 32, max: 54, augmented: 70}, fire: 2, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Leather β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Hunger Resistance": 1}},
+    chest: {slots: [1], skills: {}},
+    arms: {slots: [1], skills: {}},
+    waist: {slots: [1], skills: {}},
+    legs: {slots: [1], skills: {}},
+    defenses: {physical: {base: 32, max: 54, augmented: 70}, fire: 2, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Chainmail α": {
+    rarity: 5,
+    head: {slots: [], skills: {Guard: 1, "Master Gatherer": 1}},
+    chest: {slots: [], skills: {"Water Resistance": 1}},
+    arms: {slots: [], skills: {"Recovery Speed": 1}},
+    waist: {slots: [], skills: {"Quick Sheath": 1}},
+    legs: {slots: [], skills: {"Recovery Up": 1}},
+    defenses: {physical: {base: 32, max: 54, augmented: 70}, fire: 0, water: 2, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Chainmail β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Master Gatherer": 1}},
+    chest: {slots: [1], skills: {}},
+    arms: {slots: [1], skills: {}},
+    waist: {slots: [1], skills: {}},
+    legs: {slots: [1], skills: {}},
+    defenses: {physical: {base: 32, max: 54, augmented: 70}, fire: 0, water: 2, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Hunter's α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Scoutfly Range Up": 1, Scholar: 1}},
+    chest: {slots: [], skills: {"Slinger Capacity": 2}},
+    arms: {slots: [], skills: {Stealth: 2}},
+    waist: {slots: [], skills: {"Master Gatherer": 1, Stealth: 1}},
+    legs: {slots: [], skills: {"Slinger Capacity": 1, Scenthound: 1}},
+    defenses: {physical: {base: 36, max: 58, augmented: 74}, fire: 2, water: 2, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Hunter's β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Scoutfly Range Up": 1}},
+    chest: {slots: [1], skills: {"Slinger Capacity": 1}},
+    arms: {slots: [1], skills: {Stealth: 1}},
+    waist: {slots: [1], skills: {"Master Gatherer": 1}},
+    legs: {slots: [1], skills: {Scenthound: 1}},
+    defenses: {physical: {base: 36, max: 58, augmented: 74}, fire: 2, water: 2, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Bone α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Health Boost": 1, Entomologist: 1}},
+    chest: {slots: [], skills: {"Attack Boost": 2}},
+    arms: {slots: [], skills: {"Attack Boost": 1, Slugger: 1}},
+    waist: {slots: [], skills: {"Horn Maestro": 1, "Master Fisher": 1}},
+    legs: {slots: [], skills: {Entomologist: 2}},
+    defenses: {physical: {base: 36, max: 58, augmented: 74}, fire: 2, water: 0, thunder: 2, ice: 0, dragon: 2}
+  },
+  "Bone β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Health Boost": 1}},
+    chest: {slots: [1], skills: {"Attack Boost": 1}},
+    arms: {slots: [1], skills: {Slugger: 1}},
+    waist: {slots: [1], skills: {"Horn Maestro": 1}},
+    legs: {slots: [1], skills: {Entomologist: 1}},
+    defenses: {physical: {base: 36, max: 58, augmented: 74}, fire: 2, water: 0, thunder: 2, ice: 0, dragon: 2}
+  },
+  "Alloy α": {
+    rarity: 5,
+    head: {slots: [], skills: {Windproof: 1, "Defense Boost": 1}},
+    chest: {slots: [], skills: {"Water Resistance": 2}},
+    arms: {slots: [], skills: {"Defense Boost": 1, "Speed Sharpening": 1}},
+    waist: {slots: [], skills: {"Poison Resistance": 1, "Water Resistance": 1}},
+    legs: {slots: [], skills: {"Speed Sharpening": 2}},
+    defenses: {physical: {base: 36, max: 58, augmented: 74}, fire: -2, water: 0, thunder: -2, ice: -2, dragon: 0}
+  },
+  "Alloy β": {
+    rarity: 5,
+    head: {slots: [1], skills: {Windproof: 1}},
+    chest: {slots: [1], skills: {"Water Resistance": 1}},
+    arms: {slots: [1], skills: {"Defense Boost": 1}},
+    waist: {slots: [1], skills: {"Poison Resistance": 1}},
+    legs: {slots: [1], skills: {"Speed Sharpening": 1}},
+    defenses: {physical: {base: 36, max: 58, augmented: 74}, fire: -2, water: 0, thunder: -2, ice: -2, dragon: 0}
+  },
+  "King Beetle α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Evade Window": 2, Botanist: 1}},
+    chest: {slots: [], skills: {"Quick Sheath": 2, Botanist: 1}},
+    arms: {slots: [1], skills: {"Leap of Faith": 1, Botanist: 2}},
+    waist: {slots: [1], skills: {"Quick Sheath": 1, "Honey Hunter": 1}},
+    legs: {slots: [1], skills: {"Evade Window": 1, "Forager's Luck": 1}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: -1, water: -1, thunder: 2, ice: 0, dragon: 2}
+  },
+  "King Beetle β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Evade Window": 2}},
+    chest: {slots: [1], skills: {"Quick Sheath": 2}},
+    arms: {slots: [1, 1, 2], skills: {Botanist: 2}},
+    waist: {slots: [1, 1, 2], skills: {"Honey Hunter": 1}},
+    legs: {slots: [1, 1, 2], skills: {"Forager's Luck": 1}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: -1, water: -1, thunder: 2, ice: 0, dragon: 2}
+  },
+  "Butterfly α": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Stun Resistance": 2, "Defense Boost": 1}},
+    chest: {slots: [], skills: {"Stun Resistance": 1, "Health Boost": 2}},
+    arms: {slots: [], skills: {"Health Boost": 1, "Critical Eye": 2}},
+    waist: {slots: [1], skills: {"Defense Boost": 2, "Marathon Runner": 1}},
+    legs: {slots: [], skills: {"Critical Eye": 1, "Marathon Runner": 2}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: -1, water: -1, thunder: 2, ice: 0, dragon: 2}
+  },
+  "Butterfly β": {
+    rarity: 5,
+    head: {slots: [1, 1], skills: {"Stun Resistance": 2}},
+    chest: {slots: [1], skills: {"Health Boost": 2}},
+    arms: {slots: [1], skills: {"Critical Eye": 2}},
+    waist: {slots: [1, 1, 1], skills: {"Defense Boost": 2}},
+    legs: {slots: [1], skills: {"Marathon Runner": 2}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: -1, water: -1, thunder: 2, ice: 0, dragon: 2}
+  },
+  "Vespoid α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Paralysis Attack": 1, "Quick Sheath": 1}},
+    chest: {slots: [], skills: {Windproof: 2}},
+    arms: {slots: [], skills: {"Paralysis Attack": 2}},
+    waist: {slots: [], skills: {"Paralysis Resistance": 2}},
+    legs: {slots: [], skills: {"Paralysis Resistance": 1, "Honey Hunter": 1}},
+    defenses: {physical: {base: 38, max: 60, augmented: 76}, fire: -2, water: 1, thunder: 1, ice: 1, dragon: 2}
+  },
+  "Vespoid β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Quick Sheath": 1}},
+    chest: {slots: [1], skills: {Windproof: 1}},
+    arms: {slots: [1], skills: {"Paralysis Attack": 1}},
+    waist: {slots: [1], skills: {"Paralysis Resistance": 1}},
+    legs: {slots: [1], skills: {"Honey Hunter": 1}},
+    defenses: {physical: {base: 38, max: 60, augmented: 76}, fire: -2, water: 1, thunder: 1, ice: 1, dragon: 2}
+  },
+  "Hornetaur α": {
+    rarity: 5,
+    head: {slots: [], skills: {Dungmaster: 1, "Dragon Attack": 1}},
+    chest: {slots: [], skills: {"Effluvial Expert": 1, "Hunger Resistance": 1}},
+    arms: {slots: [], skills: {"Hunger Resistance": 1, "Free Meal": 1}},
+    waist: {slots: [], skills: {"Hunger Resistance": 1, "Carving Pro": 1}},
+    legs: {slots: [], skills: {"Dragon Attack": 1, Handicraft: 1}},
+    defenses: {physical: {base: 38, max: 60, augmented: 76}, fire: -1, water: -1, thunder: 0, ice: 0, dragon: 2}
+  },
+  "Hornetaur β": {
+    rarity: 5,
+    head: {slots: [1], skills: {Dungmaster: 1}},
+    chest: {slots: [1], skills: {"Effluvial Expert": 1}},
+    arms: {slots: [1], skills: {"Free Meal": 1}},
+    waist: {slots: [1], skills: {"Carving Pro": 1}},
+    legs: {slots: [1], skills: {Handicraft: 1}},
+    defenses: {physical: {base: 38, max: 60, augmented: 76}, fire: -1, water: -1, thunder: 0, ice: 0, dragon: 2}
+  },
+  "Mosswine Mask α": {
+    rarity: 5,
+    head: {slots: [], skills: {Mushroomancer: 2}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 2, water: 2, thunder: 2, ice: 2, dragon: 2}
+  },
+  "Kestodon α": {
+    rarity: 5,
+    head: null,
+    chest: null,
+    arms: {slots: [], skills: {Focus: 1, "Affinity Sliding": 1}},
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 4, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Kestodon β": {
+    rarity: 5,
+    head: null,
+    chest: null,
+    arms: {slots: [1], skills: {"Affinity Sliding": 1}},
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 4, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Gajau α": {
+    rarity: 5,
+    head: null,
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: {slots: [], skills: {"Water Attack": 1, "Aquatic Expert": 2}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: 5, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Gajau β": {
+    rarity: 5,
+    head: null,
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: {slots: [1], skills: {"Water Attack": 1, "Aquatic Expert": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: 5, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Shamos α": {
+    rarity: 5,
+    head: {slots: [], skills: {Geologist: 1, Detector: 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 2, water: 2, thunder: 0, ice: -3, dragon: 0}
+  },
+  "Shamos β": {
+    rarity: 5,
+    head: {slots: [1], skills: {Detector: 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 2, water: 2, thunder: 0, ice: -3, dragon: 0}
+  },
+  "Jagras α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Speed Eating": 2}},
+    chest: {slots: [], skills: {Intimidator: 2}},
+    arms: {slots: [], skills: {"Palico Rally": 1, Intimidator: 1}},
+    waist: {slots: [], skills: {Fortify: 1, "Speed Eating": 1}},
+    legs: {slots: [], skills: {"Free Meal": 1, "Speed Crawler": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: -2, water: 2, thunder: -1, ice: -1, dragon: 1}
+  },
+  "Jagras β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Speed Eating": 1}},
+    chest: {slots: [1], skills: {Intimidator: 1}},
+    arms: {slots: [1], skills: {"Palico Rally": 1}},
+    waist: {slots: [1], skills: {Fortify: 1}},
+    legs: {slots: [1], skills: {"Speed Crawler": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: -2, water: 2, thunder: -1, ice: -1, dragon: 1}
+  },
+  "Kulu α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Fire Resistance": 1, "Weakness Exploit": 1}},
+    chest: {slots: [], skills: {"Critical Eye": 1, "Stamina Surge": 1}},
+    arms: {slots: [], skills: {"Critical Eye": 1, "Pro Transporter": 1}},
+    waist: {slots: [], skills: {"Item Prolonger": 2}},
+    legs: {slots: [], skills: {"Critical Eye": 1, "Item Prolonger": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: -3, thunder: 0, ice: 1, dragon: 0}
+  },
+  "Kulu β": {
+    rarity: 5,
+    head: {slots: [1, 2], skills: {"Fire Resistance": 1}},
+    chest: {slots: [1], skills: {"Stamina Surge": 1}},
+    arms: {slots: [1, 1], skills: {"Pro Transporter": 1}},
+    waist: {slots: [1, 1], skills: {"Item Prolonger": 1}},
+    legs: {slots: [1], skills: {"Critical Eye": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: -3, thunder: 0, ice: 1, dragon: 0}
+  },
+  "Tzitzi α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Stun Resistance": 1, Blindsider: 1}},
+    chest: {slots: [], skills: {"Water Attack": 2, Constitution: 1}},
+    arms: {slots: [], skills: {"Stun Resistance": 2, "Wide-Range": 1}},
+    waist: {slots: [], skills: {"Water Attack": 1, "Wide-Range": 2}},
+    legs: {slots: [], skills: {"Sleep Resistance": 2}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: 0, thunder: -3, ice: -2, dragon: 0}
+  },
+  "Tzitzi β": {
+    rarity: 5,
+    head: {slots: [1], skills: {Blindsider: 1}},
+    chest: {slots: [1, 2], skills: {Constitution: 1}},
+    arms: {slots: [1], skills: {"Stun Resistance": 2}},
+    waist: {slots: [1, 1], skills: {"Wide-Range": 1}},
+    legs: {slots: [1], skills: {"Sleep Resistance": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: 0, thunder: -3, ice: -2, dragon: 0}
+  },
+  "Girros α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Paralysis Resistance": 1, "Horn Maestro": 1}},
+    chest: {slots: [], skills: {"Paralysis Resistance": 2}},
+    arms: {slots: [], skills: {"Palico Rally": 2}},
+    waist: {slots: [], skills: {"Effluvial Expert": 1, "Paralysis Attack": 1}},
+    legs: {slots: [], skills: {"Paralysis Attack": 2}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: -3, thunder: 2, ice: 0, dragon: 1}
+  },
+  "Girros β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Horn Maestro": 1}},
+    chest: {slots: [1], skills: {"Paralysis Resistance": 1}},
+    arms: {slots: [1], skills: {"Palico Rally": 1}},
+    waist: {slots: [1], skills: {"Effluvial Expert": 1}},
+    legs: {slots: [1], skills: {"Paralysis Attack": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 0, water: -3, thunder: 2, ice: 0, dragon: 1}
+  },
+  "Pukei α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Sporepuff Expert": 2}},
+    chest: {slots: [], skills: {"Item Prolonger": 1, Botanist: 1}},
+    arms: {slots: [], skills: {"Poison Resistance": 2, "Poison Attack": 1}},
+    waist: {slots: [], skills: {"Poison Attack": 2}},
+    legs: {slots: [], skills: {Botanist: 2, "Sporepuff Expert": 1}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: 0, water: 3, thunder: -3, ice: 0, dragon: 1}
+  },
+  "Pukei β": {
+    rarity: 5,
+    head: {slots: [1, 2], skills: {"Sporepuff Expert": 1}},
+    chest: {slots: [1], skills: {"Item Prolonger": 1}},
+    arms: {slots: [1, 2], skills: {"Poison Resistance": 1}},
+    waist: {slots: [1], skills: {"Poison Attack": 1}},
+    legs: {slots: [1, 1], skills: {Botanist: 1}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: 0, water: 3, thunder: -3, ice: 0, dragon: 1}
+  },
+  "Barroth α": {
+    rarity: 5,
+    head: {slots: [], skills: {Guard: 2}},
+    chest: {slots: [], skills: {"Stamina Thief": 2}},
+    arms: {slots: [], skills: {"Stamina Thief": 1, "Marathon Runner": 1}},
+    waist: {slots: [], skills: {"Muck Resistance": 1, Guard: 1}},
+    legs: {slots: [], skills: {"Stun Resistance": 2, "Marathon Runner": 1}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: -3, water: -1, thunder: 3, ice: -1, dragon: 0}
+  },
+  "Barroth β": {
+    rarity: 5,
+    head: {slots: [1], skills: {Guard: 1}},
+    chest: {slots: [1], skills: {"Stamina Thief": 1}},
+    arms: {slots: [1], skills: {"Marathon Runner": 1}},
+    waist: {slots: [1, 1], skills: {"Muck Resistance": 1}},
+    legs: {slots: [1, 2], skills: {"Stun Resistance": 1}},
+    defenses: {physical: {base: 42, max: 64, augmented: 80}, fire: -3, water: -1, thunder: 3, ice: -1, dragon: 0}
+  },
+  "Anja α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Fire Resistance": 1, "Fire Attack": 2}},
+    chest: {slots: [], skills: {"Special Ammo Boost": 1, "Marathon Runner": 1}},
+    arms: {slots: [], skills: {"Fire Attack": 1, "Special Ammo Boost": 1}},
+    waist: {slots: [], skills: {"Fire Resistance": 2, Artillery: 1}},
+    legs: {slots: [], skills: {Artillery: 2}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: 3, water: -3, thunder: -1, ice: -1, dragon: 0}
+  },
+  "Anja β": {
+    rarity: 5,
+    head: {slots: [1, 1], skills: {"Fire Attack": 2}},
+    chest: {slots: [1, 2], skills: {"Marathon Runner": 1}},
+    arms: {slots: [1], skills: {"Special Ammo Boost": 1}},
+    waist: {slots: [1, 1], skills: {"Fire Resistance": 2}},
+    legs: {slots: [1], skills: {Artillery: 1}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: 3, water: -3, thunder: -1, ice: -1, dragon: 0}
+  },
+  "Jyura α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Aquatic Expert": 2}},
+    chest: {slots: [], skills: {"Muck Resistance": 1, "Water Attack": 1}},
+    arms: {slots: [], skills: {"Water Attack": 2, "Aquatic Expert": 1}},
+    waist: {slots: [], skills: {"Ice Resistance": 2}},
+    legs: {slots: [], skills: {Focus: 2}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: -1, water: 2, thunder: -3, ice: 0, dragon: 0}
+  },
+  "Jyura β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Aquatic Expert": 1}},
+    chest: {slots: [1], skills: {"Muck Resistance": 1}},
+    arms: {slots: [1], skills: {"Water Attack": 2}},
+    waist: {slots: [1], skills: {"Ice Resistance": 1}},
+    legs: {slots: [1, 1], skills: {Focus: 1}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: -1, water: 2, thunder: -3, ice: 0, dragon: 0}
+  },
+  "Kadachi α": {
+    rarity: 5,
+    head: {slots: [], skills: {Constitution: 2}},
+    chest: {slots: [], skills: {"Evade Extender": 1, "Jump Master": 1}},
+    arms: {slots: [], skills: {"Evade Extender": 2}},
+    waist: {slots: [], skills: {"Thunder Resistance": 1, "Thunder Attack": 2}},
+    legs: {slots: [], skills: {"Thunder Resistance": 2, Constitution: 1}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: 0, water: -3, thunder: 3, ice: 0, dragon: 0}
+  },
+  "Kadachi β": {
+    rarity: 5,
+    head: {slots: [1, 1], skills: {Constitution: 1}},
+    chest: {slots: [1, 1], skills: {"Jump Master": 1}},
+    arms: {slots: [1, 1], skills: {"Evade Extender": 1}},
+    waist: {slots: [1, 2], skills: {"Thunder Attack": 1}},
+    legs: {slots: [1, 2], skills: {"Thunder Resistance": 1}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: 0, water: -3, thunder: 3, ice: 0, dragon: 0}
+  },
+  "Lumu α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Stamina Surge": 2}},
+    chest: {slots: [], skills: {"Master Mounter": 1, Artillery: 1}},
+    arms: {slots: [], skills: {Artillery: 2}},
+    waist: {slots: [], skills: {"Divine Blessing": 2}},
+    legs: {slots: [], skills: {Windproof: 1, "Stamina Surge": 1}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: -3, water: 2, thunder: 0, ice: 1, dragon: 0}
+  },
+  "Lumu β": {
+    rarity: 5,
+    head: {slots: [1, 1], skills: {"Stamina Surge": 1}},
+    chest: {slots: [1], skills: {"Master Mounter": 1}},
+    arms: {slots: [1], skills: {Artillery: 1}},
+    waist: {slots: [1], skills: {"Divine Blessing": 1}},
+    legs: {slots: [1, 2], skills: {Windproof: 1}},
+    defenses: {physical: {base: 44, max: 66, augmented: 82}, fire: -3, water: 2, thunder: 0, ice: 1, dragon: 0}
+  },
+  "Rathian α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Health Boost": 2, "Poison Attack": 1}},
+    chest: {slots: [], skills: {"Recovery Up": 1, Botanist: 2}},
+    arms: {slots: [], skills: {"Poison Attack": 2}},
+    waist: {slots: [], skills: {"Poison Resistance": 2, "Health Boost": 1}},
+    legs: {slots: [], skills: {"Recovery Up": 2}},
+    defenses: {physical: {base: 46, max: 68, augmented: 84}, fire: 2, water: 0, thunder: -2, ice: 0, dragon: -3}
+  },
+  "Rathian β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Health Boost": 1, "Poison Attack": 1}},
+    chest: {slots: [1], skills: {"Recovery Up": 1, Botanist: 1}},
+    arms: {slots: [1], skills: {"Poison Attack": 1}},
+    waist: {slots: [1], skills: {"Poison Resistance": 1, "Health Boost": 1}},
+    legs: {slots: [1], skills: {"Recovery Up": 1}},
+    defenses: {physical: {base: 46, max: 68, augmented: 84}, fire: 2, water: 0, thunder: -2, ice: 0, dragon: -3}
+  },
+  "Rath Heart α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Poison Attack": 1, "Evade Extender": 1}},
+    chest: {slots: [], skills: {"Tool Specialist": 2}},
+    arms: {slots: [], skills: {Windproof: 2}},
+    waist: {slots: [], skills: {"Poison Resistance": 1, Handicraft: 1}},
+    legs: {slots: [], skills: {Windproof: 1, "Tool Specialist": 1}},
+    defenses: {physical: {base: 52, max: 72, augmented: 84}, fire: 3, water: 0, thunder: -3, ice: 0, dragon: -4}
+  },
+  "Rath Heart β": {
+    rarity: 6,
+    head: {slots: [1, 1], skills: {"Evade Extender": 1}},
+    chest: {slots: [1, 2], skills: {"Tool Specialist": 1}},
+    arms: {slots: [1, 1], skills: {Windproof: 1}},
+    waist: {slots: [1], skills: {Handicraft: 1}},
+    legs: {slots: [1, 1], skills: {"Tool Specialist": 1}},
+    defenses: {physical: {base: 52, max: 72, augmented: 84}, fire: 3, water: 0, thunder: -3, ice: 0, dragon: -4}
+  },
+  "Baan α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Tremor Resistance": 2}},
+    chest: {slots: [], skills: {"Bleeding Resistance": 1, "Sleep Attack": 1}},
+    arms: {slots: [], skills: {"Sleep Attack": 2, Guard: 1}},
+    waist: {slots: [], skills: {Guard: 2}},
+    legs: {slots: [], skills: {"Bleeding Resistance": 2}},
+    defenses: {physical: {base: 46, max: 66, augmented: 78}, fire: 0, water: 2, thunder: 0, ice: -1, dragon: -2}
+  },
+  "Baan β": {
+    rarity: 6,
+    head: {slots: [1, 1], skills: {"Tremor Resistance": 1}},
+    chest: {slots: [1], skills: {"Sleep Attack": 1}},
+    arms: {slots: [1], skills: {"Sleep Attack": 1, Guard: 1}},
+    waist: {slots: [1, 1], skills: {Guard: 1}},
+    legs: {slots: [1], skills: {"Bleeding Resistance": 1}},
+    defenses: {physical: {base: 46, max: 66, augmented: 78}, fire: 0, water: 2, thunder: 0, ice: -1, dragon: -2}
+  },
+  "Gastodon α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Blast Resistance": 1, "Flinch Free": 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 48, max: 70, augmented: 86}, fire: 3, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Gastodon β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Flinch Free": 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 48, max: 70, augmented: 86}, fire: 3, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Barnos α": {
+    rarity: 5,
+    head: null,
+    chest: {slots: [], skills: {"Iron Skin": 1, "Heat Guard": 1}},
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 48, max: 70, augmented: 86}, fire: 1, water: 1, thunder: 0, ice: 1, dragon: -2}
+  },
+  "Barnos β": {
+    rarity: 5,
+    head: null,
+    chest: {slots: [1], skills: {"Heat Guard": 1}},
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 48, max: 70, augmented: 86}, fire: 1, water: 1, thunder: 0, ice: 1, dragon: -2}
+  },
+  "Dodogama α": {
+    rarity: 5,
+    head: {slots: [], skills: {"Blast Resistance": 2}},
+    chest: {slots: [], skills: {"Blast Attack": 2}},
+    arms: {slots: [], skills: {Bombardier: 2}},
+    waist: {slots: [], skills: {"Blast Resistance": 1, Artillery: 2}},
+    legs: {slots: [], skills: {"Blast Attack": 1, "Capacity Boost": 1}},
+    defenses: {physical: {base: 48, max: 70, augmented: 86}, fire: 2, water: 0, thunder: -3, ice: 0, dragon: 2}
+  },
+  "Dodogama β": {
+    rarity: 5,
+    head: {slots: [1], skills: {"Blast Resistance": 1}},
+    chest: {slots: [1], skills: {"Blast Attack": 1}},
+    arms: {slots: [1], skills: {Bombardier: 1}},
+    waist: {slots: [1], skills: {Artillery: 2}},
+    legs: {slots: [1], skills: {"Capacity Boost": 1}},
+    defenses: {physical: {base: 48, max: 70, augmented: 86}, fire: 2, water: 0, thunder: -3, ice: 0, dragon: 2}
+  },
+  "Zorah α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Blast Attack": 1, Handicraft: 1}},
+    chest: {slots: [], skills: {Windproof: 1, "Blast Attack": 2}},
+    arms: {slots: [], skills: {"Free Elem/Ammo Up": 1, Bombardier: 1}},
+    waist: {slots: [], skills: {"Tremor Resistance": 1, Fortify: 1}},
+    legs: {slots: [], skills: {Earplugs: 1, Bombardier: 2}},
+    defenses: {physical: {base: 44, max: 64, augmented: 76}, fire: 4, water: -3, thunder: -1, ice: -2, dragon: -3}
+  },
+  "Zorah β": {
+    rarity: 6,
+    head: {slots: [1], skills: {Handicraft: 1}},
+    chest: {slots: [1, 1], skills: {"Blast Attack": 2}},
+    arms: {slots: [1], skills: {"Free Elem/Ammo Up": 1}},
+    waist: {slots: [1, 1], skills: {Fortify: 1}},
+    legs: {slots: [1, 1], skills: {Bombardier: 2}},
+    defenses: {physical: {base: 44, max: 64, augmented: 76}, fire: 4, water: -3, thunder: -1, ice: -2, dragon: -3}
+  },
+  "High Metal α": {
+    rarity: 6,
+    head: {slots: [], skills: {Earplugs: 1, "Ice Resistance": 2}},
+    chest: {slots: [], skills: {Earplugs: 2, "Ice Attack": 1}},
+    arms: {slots: [], skills: {"Defense Boost": 2, "Ice Attack": 1}},
+    waist: {slots: [], skills: {"Defense Boost": 1, "Capacity Boost": 1}},
+    legs: {slots: [], skills: {"Ice Resistance": 1, "Heavy Artillery": 1}},
+    defenses: {physical: {base: 50, max: 70, augmented: 82}, fire: 0, water: -1, thunder: -2, ice: 3, dragon: 0}
+  },
+  "High Metal β": {
+    rarity: 6,
+    head: {slots: [1, 1], skills: {"Ice Resistance": 2}},
+    chest: {slots: [1, 1], skills: {Earplugs: 1, "Ice Attack": 1}},
+    arms: {slots: [1], skills: {"Defense Boost": 2}},
+    waist: {slots: [1], skills: {"Capacity Boost": 1}},
+    legs: {slots: [1], skills: {"Heavy Artillery": 1}},
+    defenses: {physical: {base: 50, max: 70, augmented: 82}, fire: 0, water: -1, thunder: -2, ice: 3, dragon: 0}
+  },
+  "Ingot α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Thunder Attack": 2}},
+    chest: {slots: [], skills: {"Thunder Resistance": 2}},
+    arms: {slots: [], skills: {"Health Boost": 2, "Thunder Attack": 1}},
+    waist: {slots: [], skills: {Windproof: 2}},
+    legs: {slots: [], skills: {Windproof: 1, "Defense Boost": 2}},
+    defenses: {physical: {base: 50, max: 70, augmented: 82}, fire: -2, water: 0, thunder: 3, ice: -1, dragon: 0}
+  },
+  "Ingot β": {
+    rarity: 6,
+    head: {slots: [1], skills: {"Thunder Attack": 1}},
+    chest: {slots: [1], skills: {"Thunder Resistance": 1}},
+    arms: {slots: [1], skills: {"Health Boost": 2}},
+    waist: {slots: [1, 1, 1], skills: {Windproof: 1}},
+    legs: {slots: [1, 1], skills: {"Defense Boost": 2}},
+    defenses: {physical: {base: 50, max: 70, augmented: 82}, fire: -2, water: 0, thunder: 3, ice: -1, dragon: 0}
+  },
+  "Brigade α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Recovery Speed": 2, "Horn Maestro": 1}},
+    chest: {slots: [1, 1], skills: {"Divine Blessing": 2}},
+    arms: {slots: [], skills: {"Heavy Artillery": 2, "Divine Blessing": 1}},
+    waist: {slots: [], skills: {"Recovery Speed": 1, Geologist: 2}},
+    legs: {slots: [1], skills: {Geologist: 1, Scholar: 1}},
+    defenses: {physical: {base: 52, max: 72, augmented: 84}, fire: 1, water: 0, thunder: 2, ice: 0, dragon: 2}
+  },
+  "Brigade β": {
+    rarity: 6,
+    head: {slots: [1], skills: {"Recovery Speed": 2}},
+    chest: {slots: [1, 1, 2, 2], skills: {"Divine Blessing": 1}},
+    arms: {slots: [1], skills: {"Heavy Artillery": 2}},
+    waist: {slots: [1], skills: {Geologist: 2}},
+    legs: {slots: [1, 1, 1], skills: {Scholar: 1}},
+    defenses: {physical: {base: 52, max: 72, augmented: 84}, fire: 1, water: 0, thunder: 2, ice: 0, dragon: 2}
+  },
+  "Faux Felyne α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Palico Rally": 3}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 56, max: 76, augmented: 88}, fire: 2, water: 2, thunder: 2, ice: 2, dragon: 2}
+  },
+  "Strategist α": {
+    rarity: 6,
+    head: {slots: [1], skills: {"Critical Eye": 2}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 56, max: 76, augmented: 88}, fire: 2, water: 2, thunder: 2, ice: 2, dragon: 2}
+  },
+  "Lavasioth α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Fire Attack": 2, "Quick Sheath": 1}},
+    chest: {slots: [], skills: {"Heat Guard": 1, "Fire Attack": 2}},
+    arms: {slots: [1, 1], skills: {"Wide-Range": 1, "Affinity Sliding": 1}},
+    waist: {slots: [], skills: {"Recovery Up": 1, "Quick Sheath": 2}},
+    legs: {slots: [1], skills: {"Fire Attack": 1, "Spread/Power Shots": 1}},
+    defenses: {physical: {base: 56, max: 76, augmented: 88}, fire: 3, water: -3, thunder: 1, ice: -2, dragon: 2}
+  },
+  "Lavasioth β": {
+    rarity: 6,
+    head: {slots: [1, 2], skills: {"Fire Attack": 1, "Quick Sheath": 1}},
+    chest: {slots: [1, 2], skills: {"Fire Attack": 2}},
+    arms: {slots: [1, 1, 1], skills: {"Affinity Sliding": 1}},
+    waist: {slots: [1], skills: {"Quick Sheath": 2}},
+    legs: {slots: [1, 1], skills: {"Spread/Power Shots": 1}},
+    defenses: {physical: {base: 56, max: 76, augmented: 88}, fire: 3, water: -3, thunder: 1, ice: -2, dragon: 2}
+  },
+  "Legiana α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Ice Attack": 1, "Divine Blessing": 2}},
+    chest: {slots: [], skills: {"Evade Window": 2, "Divine Blessing": 1}},
+    arms: {slots: [], skills: {Airborne: 1, "Evade Window": 1}},
+    waist: {slots: [], skills: {Windproof: 1, "Ice Attack": 2}},
+    legs: {slots: [], skills: {"Ice Resistance": 2, "Critical Draw": 1}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: -1, water: 2, thunder: -3, ice: 3, dragon: 0}
+  },
+  "Legiana β": {
+    rarity: 6,
+    head: {slots: [1], skills: {"Divine Blessing": 2}},
+    chest: {slots: [1], skills: {"Evade Window": 2}},
+    arms: {slots: [1, 1, 1], skills: {Airborne: 1}},
+    waist: {slots: [1, 1], skills: {"Ice Attack": 2}},
+    legs: {slots: [1, 1, 1], skills: {"Ice Resistance": 2}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: -1, water: 2, thunder: -3, ice: 3, dragon: 0}
+  },
+  "Odogaron α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Bleeding Resistance": 2, "Critical Eye": 1}},
+    chest: {slots: [], skills: {"Bleeding Resistance": 1, "Speed Sharpening": 2}},
+    arms: {slots: [], skills: {"Critical Eye": 1, Constitution: 1}},
+    waist: {slots: [], skills: {"Critical Eye": 2, "Speed Sharpening": 1}},
+    legs: {slots: [], skills: {"Critical Eye": 1, "Quick Sheath": 1}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: 2, water: 2, thunder: -2, ice: -3, dragon: 0}
+  },
+  "Odogaron β": {
+    rarity: 6,
+    head: {slots: [1, 1], skills: {"Bleeding Resistance": 2}},
+    chest: {slots: [1], skills: {"Speed Sharpening": 2}},
+    arms: {slots: [1], skills: {Constitution: 1}},
+    waist: {slots: [1, 1], skills: {"Critical Eye": 2}},
+    legs: {slots: [1], skills: {"Quick Sheath": 1}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: 2, water: 2, thunder: -2, ice: -3, dragon: 0}
+  },
+  "Rathalos α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Attack Boost": 2, "Fire Attack": 1}},
+    chest: {slots: [], skills: {"Fire Attack": 1, "Weakness Exploit": 2}},
+    arms: {slots: [], skills: {"Attack Boost": 1, "Fire Resistance": 2}},
+    waist: {slots: [], skills: {"Fire Attack": 2, Focus: 1}},
+    legs: {slots: [], skills: {"Weakness Exploit": 1, "Jump Master": 1}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: 3, water: 1, thunder: -2, ice: 1, dragon: -3}
+  },
+  "Rathalos β": {
+    rarity: 6,
+    head: {slots: [1], skills: {"Attack Boost": 2}},
+    chest: {slots: [1], skills: {"Weakness Exploit": 2}},
+    arms: {slots: [1], skills: {"Fire Resistance": 2}},
+    waist: {slots: [1, 1], skills: {"Fire Attack": 2}},
+    legs: {slots: [1, 1, 1], skills: {"Jump Master": 1}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: 3, water: 1, thunder: -2, ice: 1, dragon: -3}
+  },
+  "Rath Soul α": {
+    rarity: 7,
+    head: {slots: [], skills: {"Critical Boost": 1, Intimidator: 2}},
+    chest: {slots: [1], skills: {"Free Elem/Ammo Up": 1, Intimidator: 1}},
+    arms: {slots: [1], skills: {Windproof: 1, Focus: 1}},
+    waist: {slots: [], skills: {Windproof: 2, "Piercing Shots": 1}},
+    legs: {slots: [], skills: {Focus: 1, Cliffhanger: 1}},
+    defenses: {physical: {base: 56, max: 68, augmented: 82}, fire: 3, water: 2, thunder: 2, ice: -3, dragon: -4}
+  },
+  "Rath Soul β": {
+    rarity: 7,
+    head: {slots: [1, 2], skills: {"Critical Boost": 1}},
+    chest: {slots: [1, 1], skills: {"Free Elem/Ammo Up": 1}},
+    arms: {slots: [1, 1], skills: {Focus: 1}},
+    waist: {slots: [1, 1, 1], skills: {Windproof: 2}},
+    legs: {slots: [1], skills: {Focus: 1}},
+    defenses: {physical: {base: 56, max: 68, augmented: 82}, fire: 3, water: 2, thunder: 2, ice: -3, dragon: -4}
+  },
+  "Diablos α": {
+    rarity: 6,
+    head: {slots: [], skills: {"Critical Draw": 2, Heroics: 1}},
+    chest: {slots: [], skills: {Slugger: 2, Heroics: 1}},
+    arms: {slots: [], skills: {"Tremor Resistance": 1, Heroics: 2}},
+    waist: {slots: [], skills: {"Critical Draw": 1, "Marathon Runner": 2}},
+    legs: {slots: [], skills: {"Tremor Resistance": 2, Slugger: 1}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: 3, water: -2, thunder: 0, ice: -3, dragon: 2}
+  },
+  "Diablos β": {
+    rarity: 6,
+    head: {slots: [1, 1], skills: {"Critical Draw": 2}},
+    chest: {slots: [1, 1], skills: {Slugger: 2}},
+    arms: {slots: [1, 1], skills: {Heroics: 2}},
+    waist: {slots: [1, 1], skills: {"Marathon Runner": 2}},
+    legs: {slots: [1, 2], skills: {"Tremor Resistance": 2}},
+    defenses: {physical: {base: 54, max: 74, augmented: 86}, fire: 3, water: -2, thunder: 0, ice: -3, dragon: 2}
+  },
+  "Diablos Nero α": {
+    rarity: 7,
+    head: {slots: [1], skills: {Focus: 2}},
+    chest: {slots: [1], skills: {Resentment: 2}},
+    arms: {slots: [], skills: {Focus: 1, "Marathon Runner": 1}},
+    waist: {slots: [], skills: {Partbreaker: 1, Resentment: 1}},
+    legs: {slots: [1], skills: {"Normal Shots": 1, Heroics: 1}},
+    defenses: {physical: {base: 56, max: 68, augmented: 82}, fire: 2, water: -3, thunder: 0, ice: -4, dragon: 2}
+  },
+  "Diablos Nero β": {
+    rarity: 7,
+    head: {slots: [1, 1, 1], skills: {Focus: 1}},
+    chest: {slots: [1, 1, 2], skills: {Resentment: 1}},
+    arms: {slots: [1, 1, 2], skills: {Focus: 1}},
+    waist: {slots: [1, 1], skills: {Resentment: 1}},
+    legs: {slots: [1, 1], skills: {"Normal Shots": 1}},
+    defenses: {physical: {base: 56, max: 68, augmented: 82}, fire: 2, water: -3, thunder: 0, ice: -4, dragon: 2}
+  },
+  "Uragaan α": {
+    rarity: 7,
+    head: {slots: [1, 1, 1], skills: {"Thunder Resistance": 2}},
+    chest: {slots: [1], skills: {Partbreaker: 2}},
+    arms: {slots: [1], skills: {"Defense Boost": 1, Guard: 1}},
+    waist: {slots: [1, 2], skills: {"Thunder Resistance": 1, Partbreaker: 1}},
+    legs: {slots: [1], skills: {Guard: 2}},
+    defenses: {physical: {base: 60, max: 72, augmented: 86}, fire: 4, water: -3, thunder: 1, ice: -2, dragon: -2}
+  },
+  "Uragaan β": {
+    rarity: 7,
+    head: {slots: [1, 1, 1, 2], skills: {"Thunder Resistance": 1}},
+    chest: {slots: [1, 1, 1], skills: {Partbreaker: 1}},
+    arms: {slots: [1, 1], skills: {Guard: 1}},
+    waist: {slots: [1, 1, 2], skills: {Partbreaker: 1}},
+    legs: {slots: [1, 1, 1], skills: {Guard: 1}},
+    defenses: {physical: {base: 60, max: 72, augmented: 86}, fire: 4, water: -3, thunder: 1, ice: -2, dragon: -2}
+  },
+  "Bazel α": {
+    rarity: 7,
+    head: {slots: [1, 1], skills: {Earplugs: 2, "Blast Attack": 1}},
+    chest: {slots: [], skills: {"Blast Resistance": 2, Guard: 2}},
+    arms: {slots: [], skills: {Earplugs: 1, "Critical Draw": 2}},
+    waist: {slots: [1], skills: {Earplugs: 2, "Jump Master": 1}},
+    legs: {slots: [1], skills: {"Critical Draw": 1, Bombardier: 2}},
+    defenses: {physical: {base: 58, max: 70, augmented: 84}, fire: 3, water: 1, thunder: -4, ice: -2, dragon: -2}
+  },
+  "Bazel β": {
+    rarity: 7,
+    head: {slots: [1, 1, 1, 2], skills: {Earplugs: 2}},
+    chest: {slots: [1, 2], skills: {Guard: 2}},
+    arms: {slots: [1, 1, 1], skills: {"Critical Draw": 2}},
+    waist: {slots: [1, 1, 1], skills: {Earplugs: 2}},
+    legs: {slots: [1, 1, 1], skills: {Bombardier: 2}},
+    defenses: {physical: {base: 58, max: 70, augmented: 84}, fire: 3, water: 1, thunder: -4, ice: -2, dragon: -2}
+  },
+  "Damascus α": {
+    rarity: 7,
+    head: {slots: [1], skills: {"Defense Boost": 2, "Speed Sharpening": 1}},
+    chest: {slots: [1], skills: {"Defense Boost": 2, Focus: 2}},
+    arms: {slots: [], skills: {Handicraft: 1, "Speed Sharpening": 1}},
+    waist: {slots: [1], skills: {"Iron Skin": 2, Focus: 1}},
+    legs: {slots: [1], skills: {"Iron Skin": 1, "Defense Boost": 2}},
+    defenses: {physical: {base: 60, max: 72, augmented: 86}, fire: 4, water: -2, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Damascus β": {
+    rarity: 7,
+    head: {slots: [1, 1, 1], skills: {"Defense Boost": 2}},
+    chest: {slots: [1, 2, 3], skills: {Focus: 2}},
+    arms: {slots: [1], skills: {Handicraft: 1}},
+    waist: {slots: [1, 2, 3], skills: {Focus: 1}},
+    legs: {slots: [1, 1, 1], skills: {"Defense Boost": 2}},
+    defenses: {physical: {base: 60, max: 72, augmented: 86}, fire: 4, water: -2, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Dober α": {
+    rarity: 7,
+    head: {slots: [], skills: {"Dragon Resistance": 1, "Free Elem/Ammo Up": 1}},
+    chest: {slots: [1], skills: {"Attack Boost": 2, Mushroomancer: 1}},
+    arms: {slots: [], skills: {"Stamina Surge": 2, Mushroomancer: 1}},
+    waist: {slots: [1, 1], skills: {"Attack Boost": 1, "Dragon Resistance": 2}},
+    legs: {slots: [], skills: {"Attack Boost": 2, "Stamina Surge": 1}},
+    defenses: {physical: {base: 60, max: 72, augmented: 86}, fire: -2, water: 0, thunder: -1, ice: -1, dragon: 4}
+  },
+  "Dober β": {
+    rarity: 7,
+    head: {slots: [1], skills: {"Free Elem/Ammo Up": 1}},
+    chest: {slots: [1, 1, 1], skills: {"Attack Boost": 2}},
+    arms: {slots: [1, 2], skills: {"Stamina Surge": 1, Mushroomancer: 1}},
+    waist: {slots: [1, 1, 1], skills: {"Dragon Resistance": 2}},
+    legs: {slots: [1], skills: {"Attack Boost": 2}},
+    defenses: {physical: {base: 60, max: 72, augmented: 86}, fire: -2, water: 0, thunder: -1, ice: -1, dragon: 4}
+  },
+  "Death Stench α": {
+    rarity: 7,
+    head: {slots: [1, 1], skills: {"Critical Eye": 1, Resuscitate: 1}},
+    chest: {slots: [], skills: {"Free Elem/Ammo Up": 1, Fortify: 1}},
+    arms: {slots: [1], skills: {"Dragon Attack": 1, Focus: 2}},
+    waist: {slots: [], skills: {"Dragon Attack": 2, Focus: 1}},
+    legs: {slots: [], skills: {"Dragon Attack": 2, Handicraft: 2}},
+    defenses: {physical: {base: 62, max: 74, augmented: 88}, fire: 3, water: 2, thunder: -2, ice: 3, dragon: -4}
+  },
+  "Death Stench β": {
+    rarity: 7,
+    head: {slots: [1, 1, 1], skills: {Resuscitate: 1}},
+    chest: {slots: [1, 1, 1], skills: {Fortify: 1}},
+    arms: {slots: [1, 2], skills: {Focus: 2}},
+    waist: {slots: [1, 2], skills: {"Dragon Attack": 2}},
+    legs: {slots: [1, 2], skills: {Handicraft: 2}},
+    defenses: {physical: {base: 62, max: 74, augmented: 88}, fire: 3, water: 2, thunder: -2, ice: 3, dragon: -4}
+  },
+  "Skull α": {
+    rarity: 7,
+    head: {slots: [1, 1], skills: {Handicraft: 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 64, max: 76, augmented: 90}, fire: -3, water: -1, thunder: -1, ice: -1, dragon: 2}
+  },
+  "Nergigante α": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Attack Boost": 1, "Maximum Might": 2}},
+    chest: {slots: [1], skills: {Agitator: 1, "Stamina Surge": 2}},
+    arms: {slots: [], skills: {"Attack Boost": 1, Agitator: 2}},
+    waist: {slots: [], skills: {"Attack Boost": 2, "Stamina Surge": 1}},
+    legs: {slots: [1], skills: {Agitator: 1, "Maximum Might": 1}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: 1, water: 1, thunder: -3, ice: 1, dragon: -3}
+  },
+  "Nergigante β": {
+    rarity: 8,
+    head: {slots: [1, 2], skills: {"Maximum Might": 2}},
+    chest: {slots: [1, 1, 2], skills: {"Stamina Surge": 2}},
+    arms: {slots: [1], skills: {Agitator: 2}},
+    waist: {slots: [1, 1], skills: {"Attack Boost": 2}},
+    legs: {slots: [1, 1], skills: {"Maximum Might": 1}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: 1, water: 1, thunder: -3, ice: 1, dragon: -3}
+  },
+  "Teostra α": {
+    rarity: 8,
+    head: {slots: [], skills: {"Latent Power": 2}},
+    chest: {slots: [], skills: {"Latent Power": 1, "Special Ammo Boost": 2}},
+    arms: {slots: [1], skills: {"Weakness Exploit": 2}},
+    waist: {slots: [], skills: {"Blast Attack": 2, "Weakness Exploit": 1}},
+    legs: {slots: [], skills: {"Blast Attack": 1, "Latent Power": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: 3, water: -3, thunder: 1, ice: -3, dragon: 1}
+  },
+  "Teostra β": {
+    rarity: 8,
+    head: {slots: [1, 1], skills: {"Latent Power": 1}},
+    chest: {slots: [1, 2], skills: {"Special Ammo Boost": 2}},
+    arms: {slots: [1, 1, 1], skills: {"Weakness Exploit": 1}},
+    waist: {slots: [1, 1], skills: {"Blast Attack": 2}},
+    legs: {slots: [1], skills: {"Latent Power": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: 3, water: -3, thunder: 1, ice: -3, dragon: 1}
+  },
+  "Kushala α": {
+    rarity: 8,
+    head: {slots: [], skills: {"Ice Attack": 2, Handicraft: 1}},
+    chest: {slots: [], skills: {Focus: 1, Handicraft: 2}},
+    arms: {slots: [], skills: {Handicraft: 1, "Evade Window": 2}},
+    waist: {slots: [], skills: {"Ice Attack": 2, "Evade Extender": 1}},
+    legs: {slots: [], skills: {Handicraft: 1, "Evade Extender": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: 0, water: 2, thunder: -3, ice: 4, dragon: -2}
+  },
+  "Kushala β": {
+    rarity: 8,
+    head: {slots: [1, 2, 3], skills: {"Ice Attack": 2}},
+    chest: {slots: [1, 1], skills: {Handicraft: 2}},
+    arms: {slots: [1, 1, 1], skills: {"Evade Window": 2}},
+    waist: {slots: [1, 2], skills: {"Ice Attack": 2}},
+    legs: {slots: [1, 1, 1], skills: {"Evade Extender": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: 0, water: 2, thunder: -3, ice: 4, dragon: -2}
+  },
+  "Vaal Hazak α": {
+    rarity: 8,
+    head: {slots: [], skills: {"Dragon Attack": 2, "Peak Performance": 1}},
+    chest: {slots: [1], skills: {"Recovery Speed": 2, "Dragon Attack": 1}},
+    arms: {slots: [1], skills: {"Recovery Speed": 1, "Peak Performance": 1}},
+    waist: {slots: [1], skills: {"Peak Performance": 1, "Effluvia Resistance": 1}},
+    legs: {slots: [1], skills: {"Dragon Attack": 1, "Effluvia Resistance": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: -4, water: 4, thunder: 1, ice: -1, dragon: -3}
+  },
+  "Vaal Hazak β": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Peak Performance": 1}},
+    chest: {slots: [1, 2], skills: {"Recovery Speed": 2}},
+    arms: {slots: [1, 2, 3], skills: {"Peak Performance": 1}},
+    waist: {slots: [1, 2], skills: {"Peak Performance": 1}},
+    legs: {slots: [1, 2], skills: {"Effluvia Resistance": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: -4, water: 4, thunder: 1, ice: -1, dragon: -3}
+  },
+  "Kirin α": {
+    rarity: 8,
+    head: {slots: [], skills: {"Marathon Runner": 2, "Divine Blessing": 1}},
+    chest: {slots: [], skills: {"Thunder Attack": 1, "Divine Blessing": 2}},
+    arms: {slots: [], skills: {"Thunder Attack": 2, "Marathon Runner": 1}},
+    waist: {slots: [], skills: {"Blight Resistance": 1, "Free Elem/Ammo Up": 1}},
+    legs: {slots: [], skills: {"Thunder Resistance": 2, "Free Elem/Ammo Up": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: -3, water: -2, thunder: 4, ice: -2, dragon: 2}
+  },
+  "Kirin β": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Marathon Runner": 2}},
+    chest: {slots: [1], skills: {"Divine Blessing": 2}},
+    arms: {slots: [1, 2], skills: {"Thunder Attack": 2}},
+    waist: {slots: [1, 2, 3], skills: {"Blight Resistance": 1}},
+    legs: {slots: [1, 2], skills: {"Free Elem/Ammo Up": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: -3, water: -2, thunder: 4, ice: -2, dragon: 2}
+  },
+  "Xeno'jiiva α": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Special Ammo Boost": 1, "Flinch Free": 1}},
+    chest: {slots: [1], skills: {"Blight Resistance": 1, "Power Prolonger": 2}},
+    arms: {slots: [1], skills: {"Critical Boost": 1, "Flinch Free": 1}},
+    waist: {slots: [1, 1], skills: {"Blight Resistance": 2, "Special Ammo Boost": 1}},
+    legs: {slots: [1], skills: {"Power Prolonger": 1, "Flinch Free": 1}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: -3, water: 2, thunder: 2, ice: 2, dragon: -4}
+  },
+  "Xeno'jiiva β": {
+    rarity: 8,
+    head: {slots: [1, 1], skills: {"Flinch Free": 1}},
+    chest: {slots: [1, 2], skills: {"Power Prolonger": 2}},
+    arms: {slots: [1, 1, 1], skills: {"Flinch Free": 1}},
+    waist: {slots: [1, 1, 2], skills: {"Blight Resistance": 2}},
+    legs: {slots: [1, 2], skills: {"Flinch Free": 1}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: -3, water: 2, thunder: 2, ice: 2, dragon: -4}
+  },
+  "Guild Cross α": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Thunder Resistance": 2, "Divine Blessing": 2}},
+    chest: {slots: [1], skills: {"Ice Resistance": 2, Resuscitate: 1}},
+    arms: {slots: [1], skills: {"Water Resistance": 2, "Tool Specialist": 1}},
+    waist: {slots: [1], skills: {"Dragon Resistance": 2, Fortify: 1}},
+    legs: {slots: [1], skills: {"Fire Resistance": 2, Airborne: 1}},
+    defenses: {physical: {base: 62, max: 68, augmented: 82}, fire: 0, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Guild Cross β": {
+    rarity: 8,
+    head: {slots: [1, 2, 3], skills: {"Divine Blessing": 2}},
+    chest: {slots: [1, 1, 1], skills: {Resuscitate: 1}},
+    arms: {slots: [1, 1, 1], skills: {"Tool Specialist": 1}},
+    waist: {slots: [1, 2, 3], skills: {Fortify: 1}},
+    legs: {slots: [1, 1, 1], skills: {Airborne: 1}},
+    defenses: {physical: {base: 62, max: 68, augmented: 82}, fire: 0, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Dragonking α": {
+    rarity: 8,
+    head: {slots: [1, 1, 1], skills: {"Weakness Exploit": 2}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 70, max: 76, augmented: 90}, fire: 0, water: 0, thunder: 0, ice: 0, dragon: 0}
+  },
+  "Commission α": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Master Gatherer": 1, "Tool Specialist": 1}},
+    chest: {slots: [], skills: {"Wide-Range": 2, Cliffhanger: 1}},
+    arms: {slots: [1], skills: {"Carving Pro": 1, Blindsider: 1}},
+    waist: {slots: [1], skills: {Mushroomancer: 1, "Pro Transporter": 1}},
+    legs: {slots: [], skills: {Stealth: 2, "Affinity Sliding": 1}},
+    defenses: {physical: {base: 70, max: 76, augmented: 90}, fire: 2, water: 2, thunder: 2, ice: 2, dragon: 2}
+  },
+  "Commission β": {
+    rarity: 8,
+    head: {slots: [1, 1], skills: {"Tool Specialist": 1}},
+    chest: {slots: [1], skills: {"Wide-Range": 2}},
+    arms: {slots: [1, 1], skills: {Blindsider: 1}},
+    waist: {slots: [1, 1], skills: {Mushroomancer: 1}},
+    legs: {slots: [1, 1], skills: {Stealth: 2}},
+    defenses: {physical: {base: 70, max: 76, augmented: 90}, fire: 2, water: 2, thunder: 2, ice: 2, dragon: 2}
+  },
+  "Deviljho α": {
+    rarity: 7,
+    head: {slots: [1], skills: {Handicraft: 1, Partbreaker: 1}},
+    chest: {slots: [1, 1], skills: {Handicraft: 1, "Speed Eating": 1}},
+    arms: {slots: [], skills: {Partbreaker: 1, "Latent Power": 2}},
+    waist: {slots: [1], skills: {Handicraft: 1, "Latent Power": 1}},
+    legs: {slots: [], skills: {Partbreaker: 1, "Speed Eating": 2}},
+    defenses: {physical: {base: 58, max: 70, augmented: 84}, fire: 1, water: 1, thunder: -3, ice: 2, dragon: -3}
+  },
+  "Deviljho β": {
+    rarity: 7,
+    head: {slots: [1, 1, 1, 2], skills: {Partbreaker: 1}},
+    chest: {slots: [1, 1, 1], skills: {"Speed Eating": 1}},
+    arms: {slots: [1, 1], skills: {"Latent Power": 2}},
+    waist: {slots: [1, 1, 1, 2], skills: {"Latent Power": 1}},
+    legs: {slots: [1, 2], skills: {"Speed Eating": 2}},
+    defenses: {physical: {base: 58, max: 70, augmented: 84}, fire: 1, water: 1, thunder: -3, ice: 2, dragon: -3}
+  },
+  "Kulve Taroth α": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Free Elem/Ammo Up": 1, Agitator: 2}},
+    chest: {slots: [1], skills: {"Stun Resistance": 2, "Critical Boost": 2}},
+    arms: {slots: [1], skills: {"Free Elem/Ammo Up": 1, "Power Prolonger": 2}},
+    waist: {slots: [1], skills: {"Free Elem/Ammo Up": 1, Handicraft: 2}},
+    legs: {slots: [1], skills: {"Peak Performance": 2, "Wide-Range": 2}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: 4, water: -2, thunder: 3, ice: -4, dragon: -2}
+  },
+  "Kulve Taroth β": {
+    rarity: 8,
+    head: {slots: [1, 1, 2], skills: {"Free Elem/Ammo Up": 1, Agitator: 1}},
+    chest: {slots: [1, 1, 1, 2], skills: {"Stun Resistance": 2, "Critical Boost": 1}},
+    arms: {slots: [1, 1, 1, 2], skills: {"Free Elem/Ammo Up": 1, "Power Prolonger": 1}},
+    waist: {slots: [1, 1, 1, 2], skills: {"Free Elem/Ammo Up": 1, Handicraft: 1}},
+    legs: {slots: [1, 1, 2], skills: {"Peak Performance": 1, "Wide-Range": 2}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: 4, water: -2, thunder: 3, ice: -4, dragon: -2}
+  },
+  "Blossom α": {
+    rarity: 5,
+    head: {slots: [1, 2], skills: {"Honey Hunter": 1}},
+    chest: {slots: [1, 2], skills: {"Quick Sheath": 1}},
+    arms: {slots: [1, 2], skills: {"Paralysis Resistance": 1}},
+    waist: {slots: [1, 2], skills: {"Scoutfly Range Up": 1}},
+    legs: {slots: [1, 2], skills: {"Recovery Speed": 1}},
+    defenses: {physical: {base: 40, max: 62, augmented: 78}, fire: 1, water: 1, thunder: 4, ice: 1, dragon: 1}
+  },
+  "Kirin γ": {
+    rarity: 8,
+    head: {slots: [1, 1], skills: {"Blight Resistance": 1, "Thunder Attack": 3}},
+    chest: {slots: [1, 2], skills: {"Free Elem/Ammo Up": 2}},
+    arms: {slots: [1, 1, 2, 2], skills: {"Blight Resistance": 1, "Free Elem/Ammo Up": 1}},
+    waist: {slots: [1, 2], skills: {"Marathon Runner": 2}},
+    legs: {slots: [1, 1, 1], skills: {"Blight Resistance": 1, "Thunder Attack": 2}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: -3, water: -2, thunder: 4, ice: -2, dragon: 2}
+  },
+  "Dante α": {
+    rarity: 8,
+    head: {slots: [1], skills: {"Critical Eye": 1, "Weakness Exploit": 1}},
+    chest: {slots: [1, 1, 1], skills: {"Critical Eye": 1, "Evade Window": 1}},
+    arms: {slots: [1, 1, 1], skills: {"Special Ammo Boost": 1, "Evade Window": 1}},
+    waist: {slots: [1, 1, 1], skills: {"Latent Power": 1, "Evade Window": 1}},
+    legs: {slots: [1, 2], skills: {"Weakness Exploit": 2}},
+    defenses: {physical: {base: 64, max: 70, augmented: 84}, fire: 3, water: -3, thunder: 3, ice: -3, dragon: 3}
+  },
+  "Lunastra α": {
+    rarity: 8,
+    head: {slots: [1, 1, 1, 2], skills: {"Evade Extender": 2, "Tool Specialist": 1}},
+    chest: {slots: [1, 2], skills: {"Health Boost": 1, "Peak Performance": 2}},
+    arms: {slots: [1, 1, 1], skills: {"Blast Attack": 2, "Wide-Range": 2}},
+    waist: {slots: [1, 1, 2], skills: {"Blast Attack": 1, "Tool Specialist": 2}},
+    legs: {slots: [1, 1, 2], skills: {"Health Boost": 2, "Wide-Range": 2}},
+    defenses: {physical: {base: 70, max: 76, augmented: 90}, fire: 3, water: 1, thunder: 1, ice: -3, dragon: -2}
+  },
+  "Lunastra β": {
+    rarity: 8,
+    head: {slots: [1, 1, 1, 2, 2], skills: {"Evade Extender": 2}},
+    chest: {slots: [1, 2, 3], skills: {"Peak Performance": 2}},
+    arms: {slots: [1, 1, 1, 2, 2], skills: {"Wide-Range": 2}},
+    waist: {slots: [1, 1, 2, 2], skills: {"Tool Specialist": 2}},
+    legs: {slots: [1, 1, 2, 2], skills: {"Health Boost": 2}},
+    defenses: {physical: {base: 70, max: 76, augmented: 90}, fire: 3, water: 1, thunder: 1, ice: -3, dragon: -2}
+  },
+  "Sealed Eyepatch α": {
+    rarity: 5,
+    head: {slots: [1, 1, 2], skills: {"Fire Resistance": 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 46, max: 68, augmented: 84}, fire: 3, water: 2, thunder: 0, ice: 2, dragon: 0}
+  },
+  "Shadow Shades α": {
+    rarity: 5,
+    head: {slots: [1, 2, 3], skills: {"Stun Resistance": 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 46, max: 68, augmented: 84}, fire: 4, water: 0, thunder: 4, ice: 2, dragon: 0}
+  },
+  "Kulu-Ya-Ku Head α": {
+    rarity: 5,
+    head: {slots: [1, 1, 1, 2], skills: {"Pro Transporter": 1}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 46, max: 68, augmented: 84}, fire: 2, water: 0, thunder: 2, ice: 3, dragon: 2}
+  },
+  "Wiggler Head α": {
+    rarity: 5,
+    head: {slots: [1, 2], skills: {"Wide-Range": 2}},
+    chest: null,
+    arms: null,
+    waist: null,
+    legs: null,
+    defenses: {physical: {base: 46, max: 68, augmented: 84}, fire: 0, water: 4, thunder: 0, ice: 0, dragon: 4}
+  },
+  Harvest: {
+    rarity: 3,
+    head: {slots: [], skills: {Focus: 1}},
+    chest: {slots: [], skills: {"Tremor Resistance": 1}},
+    arms: {slots: [], skills: {Resentment: 1}},
+    waist: {slots: [], skills: {Constitution: 1}},
+    legs: {slots: [], skills: {Mushroomancer: 1}},
+    defenses: {physical: {base: 26, max: 54, augmented: 78}, fire: 4, water: 1, thunder: 1, ice: 1, dragon: 1}
+  },
+  Orion: {
+    rarity: 4,
+    head: {slots: [], skills: {"Recovery Up": 1}},
+    chest: {slots: [], skills: {"Flinch Free": 1}},
+    arms: {slots: [], skills: {Windproof: 1}},
+    waist: {slots: [], skills: {"Health Boost": 1}},
+    legs: {slots: [], skills: {Heroics: 1}},
+    defenses: {physical: {base: 30, max: 54, augmented: 74}, fire: 1, water: 1, thunder: 1, ice: 4, dragon: 1}
+  },
+  "Harvest α": {
+    rarity: 6,
+    head: {slots: [1, 1, 2], skills: {Focus: 1}},
+    chest: {slots: [1, 1, 2], skills: {"Tremor Resistance": 1}},
+    arms: {slots: [1, 1, 2], skills: {Resentment: 1}},
+    waist: {slots: [1, 1, 2], skills: {Constitution: 1}},
+    legs: {slots: [1, 1, 2], skills: {Mushroomancer: 1}},
+    defenses: {physical: {base: 52, max: 72, augmented: 84}, fire: 4, water: 1, thunder: 1, ice: 1, dragon: 1}
+  },
+  "Orion α": {
+    rarity: 6,
+    head: {slots: [1, 1, 1, 2], skills: {"Recovery Up": 1}},
+    chest: {slots: [1, 1, 1], skills: {"Flinch Free": 1}},
+    arms: {slots: [1, 1, 1, 2], skills: {Windproof: 1}},
+    waist: {slots: [1, 1, 1, 2], skills: {"Health Boost": 1}},
+    legs: {slots: [1, 1, 1, 2], skills: {Heroics: 1}},
+    defenses: {physical: {base: 58, max: 78, augmented: 90}, fire: 1, water: 1, thunder: 1, ice: 4, dragon: 1}
+  },
+  "Vaal Hazak γ": {
+    rarity: 8,
+    head: {slots: [1, 1, 1], skills: {"Recovery Up": 2, "Dragon Attack": 1}},
+    chest: {slots: [1, 1, 1], skills: {"Recovery Up": 1, "Peak Performance": 1}},
+    arms: {slots: [1, 1, 1, 2, 2], skills: {"Dragon Attack": 3}},
+    waist: {slots: [1, 1, 2, 3], skills: {"Recovery Speed": 2, "Dragon Attack": 1}},
+    legs: {slots: [1, 1, 1, 2], skills: {"Recovery Speed": 1, "Peak Performance": 1}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: -4, water: 4, thunder: 1, ice: -1, dragon: -3}
+  },
+  "Drachen α": {
+    rarity: 8,
+    head: {slots: [1, 1, 1, 2], skills: {"Critical Boost": 1, Airborne: 1}},
+    chest: {slots: [1, 1, 1], skills: {"Critical Eye": 2, "Critical Boost": 1}},
+    arms: {slots: [1, 1, 2, 2], skills: {"Attack Boost": 1, "Critical Eye": 2}},
+    waist: {slots: [1, 1, 1], skills: {"Critical Eye": 2, "Power Prolonger": 1}},
+    legs: {slots: [1, 1], skills: {"Attack Boost": 2, "Critical Boost": 1}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: -2, water: -2, thunder: 3, ice: -2, dragon: 4}
+  },
+  "Gala Suit α": {
+    rarity: 7,
+    head: {slots: [1, 1, 2, 3], skills: {"Critical Boost": 1}},
+    chest: {slots: [1, 1, 2, 3], skills: {"Critical Draw": 1}},
+    arms: {slots: [1, 1, 2, 3], skills: {"Maximum Might": 1}},
+    waist: {slots: [1, 1, 1, 2, 3], skills: {"Slinger Capacity": 1}},
+    legs: {slots: [1, 1, 1, 2, 3], skills: {"Divine Blessing": 1}},
+    defenses: {physical: {base: 64, max: 76, augmented: 90}, fire: 1, water: 1, thunder: 1, ice: 1, dragon: 4}
+  },
+  "Gala Suit": {
+    rarity: 4,
+    head: {slots: [], skills: {"Critical Boost": 1}},
+    chest: {slots: [], skills: {"Critical Draw": 1}},
+    arms: {slots: [], skills: {"Maximum Might": 1}},
+    waist: {slots: [], skills: {"Slinger Capacity": 1}},
+    legs: {slots: [], skills: {"Divine Blessing": 1}},
+    defenses: {physical: {base: 34, max: 58, augmented: 78}, fire: 1, water: 1, thunder: 1, ice: 1, dragon: 4}
+  },
+  "Teostra γ": {
+    rarity: 8,
+    head: {slots: [1, 1, 2, 2], skills: {"Critical Eye": 2}},
+    chest: {slots: [1, 1], skills: {"Weakness Exploit": 1, "Latent Power": 2}},
+    arms: {slots: [1, 1, 1], skills: {"Critical Eye": 3}},
+    waist: {slots: [1, 2], skills: {"Latent Power": 3}},
+    legs: {slots: [1, 1, 1, 2], skills: {"Critical Eye": 2}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: 3, water: -3, thunder: 1, ice: -3, dragon: 1}
+  },
+  "Azure Starlord α": {
+    rarity: 7,
+    head: {slots: [1, 1, 1], skills: {Agitator: 1}},
+    chest: {slots: [1, 1], skills: {Handicraft: 1}},
+    arms: {slots: [1, 1, 1], skills: {"Recovery Up": 2}},
+    waist: {slots: [1, 1], skills: {Handicraft: 1}},
+    legs: {slots: [1, 1, 1], skills: {"Critical Boost": 1}},
+    defenses: {physical: {base: 56, max: 68, augmented: 82}, fire: 2, water: 2, thunder: 0, ice: 0, dragon: 3}
+  },
+  Diver: {
+    rarity: 3,
+    head: {slots: [], skills: {"Marathon Runner": 1}},
+    chest: {slots: [], skills: {"Critical Eye": 1}},
+    arms: {slots: [], skills: {"Quick Sheath": 1}},
+    waist: {slots: [], skills: {"Aquatic Expert": 1}},
+    legs: {slots: [], skills: {"Hunger Resistance": 1}},
+    defenses: {physical: {base: 22, max: 50, augmented: 74}, fire: 1, water: 4, thunder: 1, ice: 1, dragon: 1}
+  },
+  "Diver α": {
+    rarity: 5,
+    head: {slots: [1, 1], skills: {"Marathon Runner": 1}},
+    chest: {slots: [1, 1], skills: {"Critical Eye": 1}},
+    arms: {slots: [1, 1], skills: {"Quick Sheath": 1}},
+    waist: {slots: [1, 1], skills: {"Aquatic Expert": 1}},
+    legs: {slots: [1, 1], skills: {"Hunger Resistance": 1}},
+    defenses: {physical: {base: 46, max: 68, augmented: 84}, fire: 1, water: 4, thunder: 1, ice: 1, dragon: 1}
+  },
+  "Kushala γ": {
+    rarity: 8,
+    head: {slots: [1, 1], skills: {Handicraft: 2}},
+    chest: {slots: [1, 1], skills: {"Ice Attack": 3, "Evade Extender": 1}},
+    arms: {slots: [1, 2, 3], skills: {Focus: 2}},
+    waist: {slots: [1, 2], skills: {Handicraft: 2}},
+    legs: {slots: [1, 1, 1], skills: {"Evade Window": 2}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: 0, water: 2, thunder: -3, ice: 4, dragon: -2}
+  },
+  "Lunastra γ": {
+    rarity: 8,
+    head: {slots: [1, 2, 3], skills: {"Peak Performance": 1, "Wide-Range": 2}},
+    chest: {slots: [1, 1, 1], skills: {Earplugs: 2, "Tool Specialist": 1}},
+    arms: {slots: [1, 1, 1, 2], skills: {Agitator: 2, "Evade Extender": 1}},
+    waist: {slots: [1, 1, 1], skills: {"Health Boost": 2, "Evade Window": 2}},
+    legs: {slots: [1, 1, 1], skills: {Earplugs: 2, Agitator: 1}},
+    defenses: {physical: {base: 70, max: 76, augmented: 90}, fire: 3, water: 1, thunder: 1, ice: -3, dragon: -2}
+  },
+  "Zorah γ": {
+    rarity: 8,
+    head: {slots: [1, 1], skills: {Windproof: 2, "Critical Eye": 2}},
+    chest: {slots: [1, 2, 3], skills: {"Tremor Resistance": 2}},
+    arms: {slots: [1, 1, 1, 2], skills: {Earplugs: 2}},
+    waist: {slots: [1, 1, 1, 2, 2], skills: {"Critical Eye": 1, Bombardier: 2}},
+    legs: {slots: [1, 1, 1, 2, 2], skills: {"Blast Attack": 2, "Critical Eye": 1}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: 4, water: -3, thunder: -1, ice: -2, dragon: -3}
+  },
+  "Xeno'jiiva γ": {
+    rarity: 8,
+    head: {slots: [1, 1, 2, 3], skills: {"Blight Resistance": 2, "Power Prolonger": 1}},
+    chest: {slots: [1, 2], skills: {"Flinch Free": 2}},
+    arms: {slots: [1, 1, 2, 2, 3], skills: {"Power Prolonger": 1, "Special Ammo Boost": 1}},
+    waist: {slots: [1, 1, 1, 2], skills: {"Critical Boost": 1}},
+    legs: {slots: [1, 1, 2, 3], skills: {"Critical Boost": 1}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: -3, water: 2, thunder: 2, ice: 2, dragon: -4}
+  },
+  "Kulve Taroth γ": {
+    rarity: 8,
+    head: {slots: [1, 1, 1, 2, 3], skills: {"Stun Resistance": 1, "Power Prolonger": 1}},
+    chest: {slots: [1], skills: {Handicraft: 2, Agitator: 1}},
+    arms: {slots: [1], skills: {Handicraft: 2, Constitution: 1}},
+    waist: {slots: [1, 1, 1], skills: {"Critical Boost": 1, "Weakness Exploit": 1}},
+    legs: {slots: [1, 1, 1, 2], skills: {"Heat Guard": 1, Agitator: 2}},
+    defenses: {physical: {base: 72, max: 78, augmented: 92}, fire: 4, water: -2, thunder: 3, ice: -4, dragon: -2}
+  }
+}

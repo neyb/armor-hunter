@@ -4,6 +4,7 @@
     "baseUrl": "src",
     "paths": {
       "/*": ["./*"]
-    }
+    },
+    "lib": ["es2015", "webworker", "es5", "scripthost"]
   }
 }
