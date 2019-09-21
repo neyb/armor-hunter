@@ -1,0 +1,90 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--@formatter:off-->
+<mapper namespace="armorhunter.extractor.db.ArmorSetDao">
+    <select id="all" resultMap="armorset">
+        select 'null' nnuull,
+            <include refid="armorset">
+                <property name="nameTable" value="armorset_text_en"/>
+            </include>,
+            <include refid="armor">
+               <property name="prefix" value="armor_"/>
+            </include>,
+            <include refid="armorSkill">
+                <property name="nameTable" value="skilltree_text_en"/>
+                <property name="prefix" value="armor_armorSkill_"/>
+            </include>,
+            <include refid="setSkill">
+                <property name="nameTable" value="armorset_bonus_skill_en"/>
+                <property name="prefix" value="setskill_"/>
+            </include>
+        from armorset
+            join armorset_text armorset_text_en  on armorset.id = armorset_text_en.id and armorset_text_en.lang_id = 'en'
+            join armor on armorset.id = armor.armorset_id
+            left join armor_skill on armor.id = armor_skill.armor_id
+            left join skilltree_text skilltree_text_en on armor_skill.skilltree_id = skilltree_text_en.id and skilltree_text_en.lang_id = 'en'
+            left join armorset_bonus_skill on armorset_bonus_skill.setbonus_id = armorset.armorset_bonus_id
+            left join skilltree_text armorset_bonus_skill_en on armorset_bonus_skill_en.id = armorset_bonus_skill.skilltree_id and armorset_bonus_skill_en.lang_id = 'en'
+    </select>
+
+    <resultMap id="armorset" type="armorhunter.extractor.db.ArmorSet">
+        <id column="id" property="id"/>
+        <id column="id" property="id"/>
+        <collection property="armors" resultMap="armor" columnPrefix="armor_"/>
+        <collection property="setSkills" resultMap="setSkill" columnPrefix="setskill_"/>
+    </resultMap>
+
+    <resultMap id="setSkill" type="armorhunter.extractor.db.SetSkill">
+        <id column="skillId"/>
+        <id column="setId"/>
+    </resultMap>
+
+    <resultMap id="armor" type="armorhunter.extractor.db.Armor">
+        <id column="id"/>
+        <collection property="skills" resultMap="armorSkill" columnPrefix="armorSkill_"/>
+    </resultMap>
+
+    <resultMap id="armorSkill" type="armorhunter.extractor.db.ArmorSkill">
+        <id column="skillId"/>
+    </resultMap>
+
+    <sql id="armorset">
+        ${table:armorset}.id ${prefix:}id,
+        ${nameTable}.name ${prefix}name
+    </sql>
+
+    <sql id="setSkill">
+        ${table:armorset_bonus_skill}.skilltree_id ${prefix}skillId,
+        ${table:armorset_bonus_skill}.setbonus_id ${prefix}setId,
+        ${table:armorset_bonus_skill}.required ${prefix}required,
+        ${nameTable}.name ${prefix}name
+    </sql>
+
+    <sql id="armor">
+        ${table:armor}.id ${prefix:}id,
+        ${table:armor}.order_id ${prefix:}order_id,
+        ${table:armor}.rarity ${prefix:}rarity,
+        ${table:armor}.rank ${prefix:}rank,
+        ${table:armor}.armor_type ${prefix:}armor_type,
+        ${table:armor}.armorset_id ${prefix:}armorset_id,
+        ${table:armor}.armorset_bonus_id ${prefix:}armorset_bonus_id,
+        ${table:armor}.male ${prefix:}male,
+        ${table:armor}.female ${prefix:}female,
+        ${table:armor}.slot_1 ${prefix:}slot_1,
+        ${table:armor}.slot_2 ${prefix:}slot_2,
+        ${table:armor}.slot_3 ${prefix:}slot_3,
+        ${table:armor}.defense_base ${prefix:}defense_base,
+        ${table:armor}.defense_max ${prefix:}defense_max,
+        ${table:armor}.defense_augment_max ${prefix:}defense_augment_max,
+        ${table:armor}.fire ${prefix:}fire,
+        ${table:armor}.water ${prefix:}water,
+        ${table:armor}.thunder ${prefix:}thunder,
+        ${table:armor}.ice ${prefix:}ice,
+        ${table:armor}.dragon ${prefix:}dragon
+    </sql>
+
+    <sql id="armorSkill">
+        ${table:armor_skill}.skilltree_id ${prefix:}skillId,
+        ${table:armor_skill}.level ${prefix:}level,
+        ${nameTable}.name ${prefix:}skillName
+    </sql>
+</mapper>

@@ -1,0 +1,38 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.3.50'
+    id 'nu.studer.jooq' version '3.0.3'
+}
+
+group 'neyb.armorset'
+version '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://dl.bintray.com/kotlin/exposed" }
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation 'org.xerial:sqlite-jdbc:3.28.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.12.0"
+    implementation "org.mybatis:mybatis:3.5.2"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.5.2"
+    testImplementation "org.assertj:assertj-core:3.13.2"
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+}
+
+test {
+    useJUnitPlatform()
+}
