@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, waitForElement } from '@testing-library/react'
 
-import Hello from "./Hello";
+import Hello from "/Hello";
 
 describe("hello component", () => {
 
