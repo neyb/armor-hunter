@@ -1,8 +1,10 @@
+// import {search} from "./search-ws";
 import {search} from "/logic/search/search-ws";
+import {Build} from "/logic/search/types";
+import {Message} from "/logic/search/index";
 
+window.onmessage = null;
 describe("search", () => {
-
-
     const postMessage = jest.fn();
 
     beforeAll(() => {

@@ -1,56 +1,76 @@
 import {Build, SearchContext, SearchRequest} from "./types";
 
-interface Message {
-    readonly type: string
+interface Observer {
+    readonly onNext: (build: Build) => void
+    readonly onEnd: (Build: Build[]) => void
+    readonly onError: () => void
+    readonly onFinally: () => void
 }
 
-export interface BuildFoundMessage extends Message {
-    readonly type: string;
-    readonly data: Build;
+class MessageReceiver {
+    private readonly builds: Build[] = [];
+
+    constructor(private readonly observer: Observer) {
+    }
+
+    receiveMessage(message: Message) {
+        if (BuildFoundMessage.is(message)) {
+            this.builds.push(message.build);
+            this.observer.onNext(message.build);
+        }
+        if (EndMessage.is(message)) {
+            this.observer.onEnd(this.builds);
+            this.observer.onFinally();
+        }
+    }
+
+    onError() {
+        this.observer.onError();
+        this.observer.onFinally();
+    }
+}
+
+export interface Message {
+    readonly type: string
 }
 
 export class BuildFoundMessage implements Message {
     readonly type: string = "build-found";
 
-    constructor(readonly data: Build) {
+    constructor(readonly build: Build) {
+    }
+
+    static is(message: Message): message is BuildFoundMessage {
+        return message.type === "build-found"
     }
 }
 
-function isBuildFoundMessage(message: Message): message is BuildFoundMessage {
-    return message.type === "build-found"
+class EndMessage implements Message {
+    readonly type = "end";
+
+    static is(message: Message): message is EndMessage {
+        return message.type === "end"
+    }
 }
 
-function isEndMessage(message: Message): message is EndMessage {
-    return message.type === "end"
-}
-
-
-export interface EndMessage extends Message {
-}
-
-export const endMessage: EndMessage = {type: "end"};
+export const endMessage = new EndMessage();
 
 export function startSearch(request: SearchRequest,
                             context: SearchContext,
-                            onNext: (Build) => void = () => undefined)
+                            onNext: (build: Build) => void = () => undefined)
     : { promise: Promise<Array<Build>>, stop: () => void } {
     const worker = new Worker("./search-ws.ts");
-    const builds: Array<Build> = [];
 
     const promise = new Promise<Build[]>((resolve, reject) => {
-        worker.onmessage = ({data: message}: { data: Message }) => {
-            if (isBuildFoundMessage(message)) {
-                const build = message.data;
-                builds.push(build);
-                onNext(build);
-            }
+        const receiver = new MessageReceiver({
+            onNext,
+            onEnd: resolve,
+            onError: reject,
+            onFinally: () => worker.terminate()
+        });
 
-            if (isEndMessage(message)) {
-                worker.terminate()
-                resolve(builds);
-            }
-        };
-        worker.onerror = reject
+        worker.onmessage = m => receiver.receiveMessage(m.data);
+        worker.onerror = _ => receiver.onError();
     });
     worker.postMessage({type: "start", data: {request, context}});
 

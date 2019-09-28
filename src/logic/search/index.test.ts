@@ -1,21 +1,36 @@
-import {startSearch} from "./index";
+import {BuildFoundMessage, endMessage, startSearch} from "./index";
 import {Build} from "/logic/search/types";
-// import {Mock} from "jest"
-
-
 
 describe("startSearch", () => {
     const worker = {
         postMessage: jest.fn(),
-        onmessage: jest.fn()
+        onmessage: jest.fn(),
         // as Mock<
         //     { data: { type: "end", data: undefined } | { type: "build-found", data: Build } }, void>
+        terminate: jest.fn()
     };
 
-    let origWorker;
+    const testSimulatingWorker = (...builds: Build[]) => async () => {
+        simulateCalc(...builds);
+        const search = startSearch(
+            {leveledSkills: []},
+            {availableParts: []});
+        return search.promise.then(expect(builds).toEqual)
+    };
+
+    test("without found builds", testSimulatingWorker());
+
+    test("with 5 found builds", testSimulatingWorker(
+        {build: 1},
+        {build: 2},
+        {build: 3},
+        {build: 4},
+        {build: 5},
+    ));
+
+    let origWorker: any;
     beforeAll(() => {
         origWorker = window.Worker;
-
         //@ts-ignore
         window.Worker = () => worker;
     });
@@ -25,36 +40,10 @@ describe("startSearch", () => {
         window.worker = origWorker;
     });
 
-
-    test("without found builds", async () => {
+    function simulateCalc(...builds: Build[]) {
         worker.postMessage.mockImplementation(() => {
-            worker.onmessage({data: {type: "end"}});
+            builds.forEach(build => worker.onmessage({data: new BuildFoundMessage(build)}));
+            worker.onmessage({data: endMessage});
         });
-        const search = startSearch(undefined, undefined);
-
-        return search.promise.then(builds => {
-            expect(builds).toEqual([])
-        })
-    });
-
-    test("with 5 found builds", async () => {
-        worker.postMessage.mockImplementation(() => {
-            worker.onmessage({data: {type: "build-found", data: {build:1}}});
-            worker.onmessage({data: {type: "build-found", data: {build:2}}});
-            worker.onmessage({data: {type: "build-found", data: {build:3}}});
-            worker.onmessage({data: {type: "build-found", data: {build:4}}});
-            worker.onmessage({data: {type: "build-found", data: {build:5}}});
-            worker.onmessage({data: {type: "end"}});
-        });
-        let search = startSearch(undefined, undefined);
-        return search.promise.then(builds => {
-            expect(builds).toEqual([{build:1},
-                {build:2},
-                {build:3},
-                {build:4},
-                {build:5},
-            ])
-        })
-    });
-
+    }
 });

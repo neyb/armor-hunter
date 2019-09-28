@@ -1,4 +1,4 @@
-import {ArmorPart, Skill, three} from "/logic/conf";
+import {ArmorPart, Skill} from "/logic/conf";
 
 export interface SearchRequest {
     leveledSkills: LeveledSkill[]

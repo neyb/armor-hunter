@@ -6,9 +6,12 @@
   "description": "stuff for mhw",
   "main": "index.html",
   "scripts": {
-    "test": "jest --watch",
-    "build": "parcel build src/index.html --out-dir build --public-url ./",
+    "dev:check": "tsc --noEmit --skipLibCheck --watch",
+    "dev:test": "jest --watch",
+    "check": "tsc --noEmit --skipLibCheck",
+    "test": "jest",
     "start": "BROWSER=none parcel -p 3000 src/index.html --no-autoinstall --out-dir build",
+    "build": "parcel build src/index.html --out-dir build --public-url ./",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
