@@ -7,7 +7,7 @@ interface Observer {
     readonly onFinally: () => void
 }
 
-class MessageReceiver {
+export class MessageReceiver {
     private readonly builds: Build[] = [];
 
     constructor(private readonly observer: Observer) {

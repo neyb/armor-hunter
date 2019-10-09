@@ -5,20 +5,19 @@ export interface SearchRequest {
 }
 
 export interface SearchContext{
-    availableParts: Part[]
+    availableParts: ArmorPart[]
 }
 
-export interface Part{
-    skills:LeveledSkill[]
-}
-
-interface LeveledSkill {
+export interface LeveledSkill {
     level: number
     skill: Skill
 }
 
 
-export class Build {
-    constructor({}: { readonly parts: ArmorPart[] }) {
-    }
+export interface Build {
+    readonly head?: ArmorPart
+    readonly chest?: ArmorPart
+    readonly arm?: ArmorPart
+    readonly waist?: ArmorPart
+    readonly legs?: ArmorPart
 }

@@ -1,7 +1,7 @@
-// import {search} from "./search-ws";
-import {search} from "/logic/search/search-ws";
-import {Build} from "/logic/search/types";
-import {Message} from "/logic/search/index";
+import {search} from "./search-ws";
+import {MessageReceiver} from "/logic/search/index";
+import {Build, LeveledSkill} from "/logic/search/types";
+import {ArmorPart, PartType} from "/logic/conf";
 
 window.onmessage = null;
 describe("search", () => {
@@ -11,25 +11,43 @@ describe("search", () => {
         postMessage.mockReset();
     });
 
-    test("impossible build returns no build", async () => {
-        search(
-            {leveledSkills: [{skill: {id: "skill"}, level: 1}]},
-            {availableParts: []},
-            postMessage);
+    const testFoundArmour = ({leveledSkills, availableParts, expectedBuilds}: {
+        leveledSkills: LeveledSkill[],
+        availableParts: ArmorPart[],
+        expectedBuilds: Build[]
+    }) => () => {
+        const receiver = new MessageReceiver({
+            onNext: _ => null,
+            onError: () => {
+                throw new Error()
+            },
+            onEnd: builds => expect(builds).toEqual(expectedBuilds),
+            onFinally: () => null
+        });
+        search({leveledSkills}, {availableParts}, m => receiver.receiveMessage(m));
 
-        expect(postMessage.mock.calls[0]).toEqual([{type: "end"}])
-    });
+        // const messages: Message[] = expectedBuilds.map(b => new BuildFoundMessage(b));
+        // messages.push(endMessage);
+        // expect(postMessage.mock.calls).toEqual(messages.map(m => [m]))
 
-    // test("with only one part returns it", async () => {
-    //     search(
-    //         {leveledSkills: [{skill: {id: "skill"}, level: 1}]},
-    //         {availableParts: [{skills: [{skill: {id: "skill"}, level: 1}]}]},
-    //         postMessage);
-    //
-    //     expect(postMessage.mock.calls[0]).toEqual([
-    //         {type: "build-found", data: {build:1}},
-    //         {type: "end"},
-    //     ])
-    // });
+    }
+
+    test("impossible build returns no build", testFoundArmour({
+        leveledSkills: [{skill: {id: "skill"}, level: 1}],
+        availableParts: [],
+        expectedBuilds: []
+    }));
+
+    test("with only 1 part works as expected", testFoundArmour({
+        leveledSkills: [{skill: {id: "skill"}, level: 1}],
+        availableParts: [
+            {set: {id: "set1"}, partType: PartType.head, skills: [{skill: {id: "skill"}, level: 1}]}
+        ],
+        expectedBuilds: [
+            {
+                head: {set: {id: "set1"}, partType: PartType.head, skills: [{skill: {id: "skill"}, level: 1}]}
+            }
+        ]
+    }));
 
 });

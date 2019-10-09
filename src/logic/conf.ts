@@ -1,9 +1,17 @@
+import {LeveledSkill} from "/logic/search/types";
+
 interface WorldInventory {
     parts: ArmorPart[]
 }
 
 export interface ArmorPart {
     set: ArmorSet
+    partType: PartType
+    skills: LeveledSkill[]
+}
+
+export enum PartType {
+    head,chest, arm, waist, legs
 }
 
 export interface ArmorSet {
