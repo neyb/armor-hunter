@@ -41,11 +41,15 @@ describe("search", () => {
     test("with only 1 part works as expected", testFoundArmour({
         leveledSkills: [{skill: {id: "skill"}, level: 1}],
         availableParts: [
-            {set: {id: "set1"}, partType: PartType.head, skills: [{skill: {id: "skill"}, level: 1}]}
+            ArmorPart.from({set: {id: "set1"}, partType: PartType.head, skills: [{skill: {id: "skill"}, level: 1}]})
         ],
         expectedBuilds: [
             {
-                head: {set: {id: "set1"}, partType: PartType.head, skills: [{skill: {id: "skill"}, level: 1}]}
+                head: ArmorPart.from({
+                    set: {id: "set1"},
+                    partType: PartType.head,
+                    skills: [{skill: {id: "skill"}, level: 1}]
+                })
             }
         ]
     }));

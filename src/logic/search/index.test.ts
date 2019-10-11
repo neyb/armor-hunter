@@ -10,7 +10,7 @@ describe("startSearch", () => {
         terminate: jest.fn()
     };
 
-    const testSimulatingWorker = (...builds: Build[]) => async () => {
+    const testSimulatingWorker = (...builds: any[]) => async () => {
         simulateCalc(...builds);
         const search = startSearch(
             {leveledSkills: []},
