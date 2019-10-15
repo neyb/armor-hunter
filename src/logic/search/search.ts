@@ -24,12 +24,8 @@ if (typeof window === "undefined")
     };
 
 export function search(request: SearchRequest, context: SearchContext): Observable<Build> {
-    return new Observable<BuildCandidate>(subscriber => {
-        context = filter(request, context);
-        const buildCandidates = allCandidates();
-        for (let buildCandidate of buildCandidates) subscriber.next(buildCandidate);
-        subscriber.complete();
-    })
+    context = filter(request, context);
+    return allCandidates()
         .pipe(rxFilter(candidate => candidate.satisfy(request)))
         .pipe(map(candidate => ({
             head: candidate.parts.find(part => part.partType === PartType.head),
@@ -37,11 +33,9 @@ export function search(request: SearchRequest, context: SearchContext): Observab
             arm: candidate.parts.find(part => part.partType === PartType.arm),
             waist: candidate.parts.find(part => part.partType === PartType.waist),
             legs: candidate.parts.find(part => part.partType === PartType.legs),
-        })))
+        })));
 
-        ;
-
-    function* allCandidates(): IterableIterator<BuildCandidate> {
+    function allCandidates(): Observable<BuildCandidate> {
         const heads: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.head);
         heads.push(null);
         const chests: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.chest);
@@ -53,20 +47,23 @@ export function search(request: SearchRequest, context: SearchContext): Observab
         const legs: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.legs);
         legs.push(null);
 
-        for (const headPart of heads) {
-            for (const chestPart of chests) {
-                for (const armsPart of arms) {
-                    for (const waistPart of waists) {
-                        for (const legsPart of legs) {
-                            yield new BuildCandidate([headPart, chestPart, armsPart, waistPart, legsPart]
-                                .filter(part => part !== null)
-                                .map(part => part as ArmorPart)
-                            )
+        return new Observable(subscriber => {
+            for (const headPart of heads) {
+                for (const chestPart of chests) {
+                    for (const armsPart of arms) {
+                        for (const waistPart of waists) {
+                            for (const legsPart of legs) {
+                                subscriber.next(new BuildCandidate([headPart, chestPart, armsPart, waistPart, legsPart]
+                                    .filter(part => part !== null)
+                                    .map(part => part as ArmorPart)
+                                ));
+                            }
                         }
                     }
                 }
             }
-        }
+            subscriber.complete();
+        });
     }
 }
 
