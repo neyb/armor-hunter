@@ -1,7 +1,8 @@
-import {search} from "./search-ws";
-import {MessageReceiver} from "/logic/search/index";
-import {Build, LeveledSkill} from "/logic/search/types";
-import {ArmorPart, PartType} from "/logic/conf";
+import {search, _} from "./search-ws";
+import {MessageReceiver} from "./index";
+import {Build, PartType} from "./types";
+import {LeveledSkill} from "./leveledSkill";
+import {ArmorPart} from "./armorPart";
 
 window.onmessage = null;
 describe("search", () => {
@@ -53,5 +54,44 @@ describe("search", () => {
             }
         ]
     }));
+});
 
+describe("filter", () => {
+    const filter = _.filter;
+    test("same part but one with 1 skill higher level than the other should", () => {
+        const filteredContext = filter({
+                leveledSkills: [
+                    {level: 3, skill: {id: "skill 1"}}
+                ]
+            },
+            {
+                availableParts: [
+                    ArmorPart.from({
+                        partType: PartType.head,
+                        set: {id: "set1"},
+                        skills: [
+                            {level: 3, skill: {id: "skill 1"}}
+                        ]
+                    }),
+                    ArmorPart.from({
+                        partType: PartType.head,
+                        set: {id: "set2"},
+                        skills: [
+                            {level: 2, skill: {id: "skill 1"}}
+                        ]
+                    }),
+                ]
+            });
+
+        expect(filteredContext.availableParts).toEqual([
+                ArmorPart.from({
+                    partType: PartType.head,
+                    set: {id: "set1"},
+                    skills: [
+                        {level: 3, skill: {id: "skill 1"}}
+                    ]
+                }),
+            ]
+        )
+    })
 });

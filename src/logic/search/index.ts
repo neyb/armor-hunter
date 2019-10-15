@@ -1,4 +1,5 @@
 import {Build, SearchContext, SearchRequest} from "./types";
+import {Observable, Subscriber} from "rxjs";
 
 interface Observer {
     readonly onNext: (build: Build) => void
@@ -29,6 +30,16 @@ export class MessageReceiver {
         this.observer.onFinally();
     }
 }
+
+// const messageObserver = (subscriber: Subscriber<Build>) => (message: Message) => {
+//     if (BuildFoundMessage.is(message)) {
+//         subscriber.next(message.build)
+//     }
+//     if (EndMessage.is(message)) {
+//         subscriber.complete()
+//     }
+// };
+
 
 export interface Message {
     readonly type: string
@@ -62,6 +73,7 @@ export function startSearch(request: SearchRequest,
     const worker = new Worker("./search-ws.ts");
 
     const promise = new Promise<Build[]>((resolve, reject) => {
+
         const receiver = new MessageReceiver({
             onNext,
             onEnd: resolve,

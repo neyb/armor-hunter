@@ -1,6 +1,6 @@
 import {LeveledSkill, SearchContext, SearchRequest} from "/logic/search/types";
 import {BuildFoundMessage, endMessage} from "/logic/search/index";
-import {ArmorPart, PartType} from "/logic/conf";
+import {ArmorPart, PartType} from "/logic/conf/conf";
 
 // onmessage = null;
 if (typeof window === "undefined")
@@ -61,7 +61,6 @@ function filter(request: SearchRequest, context: SearchContext): SearchContext {
             }
         }, [] as ArmorPart[])
     }
-
 }
 
-export const _ = {filter}
+export const _ = {filter};
