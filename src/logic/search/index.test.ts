@@ -1,5 +1,6 @@
-import {BuildFoundMessage, endMessage, startSearch} from "./index";
-import {Build} from "/logic/search/types";
+import {startSearch} from "./index";
+import {Build} from "./types";
+import {BuildFoundMessage, endMessage} from "./messages";
 
 describe("startSearch", () => {
     const worker = {
@@ -15,7 +16,7 @@ describe("startSearch", () => {
         const search = startSearch(
             {leveledSkills: []},
             {availableParts: []});
-        return search.promise.then(expect(builds).toEqual)
+        return search.builds.then(expect(builds).toEqual)
     };
 
     test("without found builds", testSimulatingWorker());

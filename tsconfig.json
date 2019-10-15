@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
     "noImplicitReturns": true,
     "strict": true,
     "moduleResolution": "node",

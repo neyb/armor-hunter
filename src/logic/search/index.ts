@@ -1,90 +1,41 @@
 import {Build, SearchContext, SearchRequest} from "./types";
 import {Observable, Subscriber} from "rxjs";
+import {reduce} from "rxjs/operators";
+import {BuildFoundMessage, EndMessage, Message} from "./messages";
 
-interface Observer {
-    readonly onNext: (build: Build) => void
-    readonly onEnd: (Build: Build[]) => void
-    readonly onError: () => void
-    readonly onFinally: () => void
-}
-
-export class MessageReceiver {
-    private readonly builds: Build[] = [];
-
-    constructor(private readonly observer: Observer) {
+const receiveMessages = (subscriber: Subscriber<Build>) => (message: Message) => {
+    if (BuildFoundMessage.is(message)) {
+        subscriber.next(message.build)
     }
-
-    receiveMessage(message: Message) {
-        if (BuildFoundMessage.is(message)) {
-            this.builds.push(message.build);
-            this.observer.onNext(message.build);
-        }
-        if (EndMessage.is(message)) {
-            this.observer.onEnd(this.builds);
-            this.observer.onFinally();
-        }
+    if (EndMessage.is(message)) {
+        subscriber.complete()
     }
+};
 
-    onError() {
-        this.observer.onError();
-        this.observer.onFinally();
-    }
-}
+export function startSearch(request: SearchRequest, context: SearchContext)
+    : { observableBuilds: Observable<Build>, builds: Promise<Build[]>, stop: () => void } {
+    const worker = new Worker("./search.ts");
 
-// const messageObserver = (subscriber: Subscriber<Build>) => (message: Message) => {
-//     if (BuildFoundMessage.is(message)) {
-//         subscriber.next(message.build)
-//     }
-//     if (EndMessage.is(message)) {
-//         subscriber.complete()
-//     }
-// };
-
-
-export interface Message {
-    readonly type: string
-}
-
-export class BuildFoundMessage implements Message {
-    readonly type: string = "build-found";
-
-    constructor(readonly build: Build) {
-    }
-
-    static is(message: Message): message is BuildFoundMessage {
-        return message.type === "build-found"
-    }
-}
-
-class EndMessage implements Message {
-    readonly type = "end";
-
-    static is(message: Message): message is EndMessage {
-        return message.type === "end"
-    }
-}
-
-export const endMessage = new EndMessage();
-
-export function startSearch(request: SearchRequest,
-                            context: SearchContext,
-                            onNext: (build: Build) => void = () => undefined)
-    : { promise: Promise<Array<Build>>, stop: () => void } {
-    const worker = new Worker("./search-ws.ts");
-
-    const promise = new Promise<Build[]>((resolve, reject) => {
-
-        const receiver = new MessageReceiver({
-            onNext,
-            onEnd: resolve,
-            onError: reject,
-            onFinally: () => worker.terminate()
-        });
-
-        worker.onmessage = m => receiver.receiveMessage(m.data);
-        worker.onerror = _ => receiver.onError();
+    const observableBuilds: Observable<Build> = new Observable(subscriber => {
+        const messageReceiver = receiveMessages(subscriber);
+        worker.onmessage = m => messageReceiver(m.data);
+        worker.onerror = ({message}) => subscriber.error(new Error(message));
     });
+
+    const stopWorkerSubscription = observableBuilds.subscribe({error: worker.terminate, complete: worker.terminate});
+
+    const promise = observableBuilds
+        .pipe(reduce((acc, build) => [...acc, build], [] as Build[]))
+        .toPromise();
+
     worker.postMessage({type: "start", data: {request, context}});
 
-    return {promise, stop: () => worker.terminate()}
+    return {
+        observableBuilds,
+        builds:promise,
+        stop: () => {
+            worker.terminate();
+            stopWorkerSubscription.unsubscribe();
+        }
+    }
 }
