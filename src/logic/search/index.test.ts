@@ -10,24 +10,6 @@ describe("startSearch", () => {
         terminate: jest.fn()
     };
 
-    const testSimulatingWorker = (...builds: any[]) => async () => {
-        simulateCalc(...builds);
-        const search = startSearch(
-            {leveledSkills: []},
-            {availableParts: []});
-        return search.builds.then(expect(builds).toEqual)
-    };
-
-    test("without found builds", testSimulatingWorker());
-
-    test("with 5 found builds", testSimulatingWorker(
-        {build: 1},
-        {build: 2},
-        {build: 3},
-        {build: 4},
-        {build: 5},
-    ));
-
     let origWorker: any;
     beforeAll(() => {
         origWorker = window.Worker;
@@ -39,6 +21,25 @@ describe("startSearch", () => {
         //@ts-ignore
         window.worker = origWorker;
     });
+
+    test("without found builds", () => testSimulatingWorker());
+
+    test("with 5 found builds", () =>
+        testSimulatingWorker(
+            {build: 1},
+            {build: 2},
+            {build: 3},
+            {build: 4},
+            {build: 5},
+        ));
+
+    function testSimulatingWorker(...builds: any[]) {
+        simulateCalc(...builds);
+        const search = startSearch(
+            {leveledSkills: []},
+            {availableParts: []});
+        return search.builds.then(expect(builds).toEqual)
+    }
 
     function simulateCalc(...builds: Build[]) {
         worker.postMessage.mockImplementation(() => {

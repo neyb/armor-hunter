@@ -18,16 +18,11 @@ export function search(request: SearchRequest, context: SearchContext): Observab
         })));
 
     function allCandidates(): Observable<BuildCandidate> {
-        const heads: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.head);
-        heads.push(null);
-        const chests: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.chest);
-        chests.push(null);
-        const arms: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.arm);
-        arms.push(null);
-        const waists: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.waist);
-        waists.push(null);
-        const legs: (ArmorPart | null)[] = context.availableParts.filter(p => p.partType === PartType.legs);
-        legs.push(null);
+        const heads = all(PartType.head);
+        const chests = all(PartType.chest);
+        const arms = all(PartType.arm);
+        const waists = all(PartType.waist);
+        const legs = all(PartType.legs);
 
         return new Observable(subscriber => {
             for (const headPart of heads) {
@@ -46,6 +41,10 @@ export function search(request: SearchRequest, context: SearchContext): Observab
             }
             subscriber.complete();
         });
+
+        function all(partType:PartType):(ArmorPart|null)[]{
+            return [...context.availableParts.filter(p => p.partType === partType), null]
+        }
     }
 }
 
@@ -82,12 +81,12 @@ function filter(request: SearchRequest, context: SearchContext): SearchContext {
 
             return retainedParts;
 
-            function removeObsoleteParts() {
+            function removeObsoleteParts():ArmorPart[] {
                 return retainedParts.filter(aRetainedPart => !newPart.isABetterPart(aRetainedPart, request));
             }
 
-            function aBetterPartIsAlreadyRetained() {
-                return retainedParts.find(retainedPart => retainedPart.isABetterPart(newPart, request));
+            function aBetterPartIsAlreadyRetained():boolean {
+                return retainedParts.some(retainedPart => retainedPart.isABetterPart(newPart, request));
             }
         }, [] as ArmorPart[])
     }

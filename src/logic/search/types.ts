@@ -11,6 +11,7 @@ export interface SearchContext {
 
 export interface ArmorSet {
     readonly id: string
+    readonly rarity:number
 }
 
 export enum PartType {
@@ -27,4 +28,8 @@ export interface Build {
     readonly arm?: ArmorPart
     readonly waist?: ArmorPart
     readonly legs?: ArmorPart
+}
+
+export enum Slot {
+    small = 1, medium, large, huge
 }
