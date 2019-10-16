@@ -15,9 +15,12 @@ export class ArmorPart {
     }
 
     isABetterPart(other: ArmorPart, request: SearchRequest): boolean {
-        return other.skills.reduce((acc: boolean, otherSkill: LeveledSkill) => {
-            if (!acc) return false;
-            return !!this.skills.find(lskill => lskill.isBetterOrSameLevelThan(otherSkill));
-        }, true)
+        return this.hasBetterSkills(other, request)
+    }
+
+    private hasBetterSkills(other: ArmorPart, request: SearchRequest) {
+        return other.skills.reduce<boolean>((acc, otherSkill) =>acc
+            && (!request.leveledSkills.some(skill => skill.skill.id === otherSkill.skill.id)
+            || this.skills.some(lskill => lskill.isBetterOrSameLevelThan(otherSkill))), true);
     }
 }
