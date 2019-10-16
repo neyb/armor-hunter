@@ -1,27 +1,9 @@
 import {Build, PartType, SearchContext, SearchRequest} from "./types";
-import {BuildFoundMessage, endMessage} from "./messages";
 import {ArmorPart} from "./armorPart";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {filter as rxFilter, map} from "rxjs/operators";
 import {LeveledSkill} from "./leveledSkill";
 
-let messagePosterBuildSubscription: Subscription;
-if (typeof window === "undefined")
-    onmessage = ({data: {type, data}}
-                     : { data: { type: "start" | "stop", data: { request: SearchRequest, context: SearchContext } } }) => {
-        switch (type) {
-            case "start":
-                messagePosterBuildSubscription = search(data.request, data.context)
-                    .subscribe({
-                        next: build => postMessage(new BuildFoundMessage(build)),
-                        complete: () => postMessage(endMessage)
-                    });
-                break;
-            case "stop":
-                messagePosterBuildSubscription.unsubscribe();
-                break;
-        }
-    };
 
 export function search(request: SearchRequest, context: SearchContext): Observable<Build> {
     context = filter(request, context);

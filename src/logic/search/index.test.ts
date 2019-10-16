@@ -1,6 +1,5 @@
-import {startSearch} from "./index";
+import {BuildFoundMessage, endMessage, startSearch} from ".";
 import {Build} from "./types";
-import {BuildFoundMessage, endMessage} from "./messages";
 
 describe("startSearch", () => {
     const worker = {
