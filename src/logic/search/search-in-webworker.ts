@@ -4,19 +4,18 @@ import {search} from "./search";
 import {BuildFoundMessage, endMessage} from ".";
 
 let messagePosterBuildSubscription: Subscription;
-if (typeof window === "undefined")
-  onmessage = ({data: {type, data}}
+onmessage = ({data: {type, data}}
                  : { data: { type: "start" | "stop", data: { request: SearchRequest, context: SearchContext } } }) => {
     switch (type) {
-      case "start":
-        messagePosterBuildSubscription = search(data.request, data.context)
-          .subscribe({
-            next: build => postMessage(new BuildFoundMessage(build)),
-            complete: () => postMessage(endMessage)
-          });
-        break;
-      case "stop":
-        messagePosterBuildSubscription.unsubscribe();
-        break;
+        case "start":
+            messagePosterBuildSubscription = search(data.request, data.context)
+                .subscribe({
+                    next: build => postMessage(new BuildFoundMessage(build)),
+                    complete: () => postMessage(endMessage)
+                });
+            break;
+        case "stop":
+            messagePosterBuildSubscription.unsubscribe();
+            break;
     }
-  };
+};
