@@ -1,6 +1,6 @@
 import {Build, SearchContext, SearchRequest} from "./types";
-import {Observable, Subscriber} from "rxjs";
-import {reduce} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {finalize} from "rxjs/operators";
 
 export interface Message {
     readonly type: string
@@ -27,35 +27,15 @@ export class EndMessage implements Message {
 
 export const endMessage = new EndMessage();
 
-const receiveMessages = (subscriber: Subscriber<Build>) => (message: Message) => {
-    if (BuildFoundMessage.is(message)) subscriber.next(message.build);
-    if (EndMessage.is(message)) subscriber.complete();
-};
-
-export function startSearch(request: SearchRequest, context: SearchContext)
-    : { observableBuilds: Observable<Build>, builds: Promise<Build[]>, stop: () => void } {
-    const worker = new Worker("./search-in-webworker.ts");
-
-    const observableBuilds: Observable<Build> = new Observable(subscriber => {
-        const messageReceiver = receiveMessages(subscriber);
-        worker.onmessage = ({data:message}) => messageReceiver(message);
+export function startSearch(request: SearchRequest, context: SearchContext): Observable<Build> {
+    let worker: Worker;
+    return new Observable<Build>(subscriber => {
+        worker = new Worker("./search-in-webworker.ts");
+        worker.onmessage = ({data: message}) => {
+            if (BuildFoundMessage.is(message)) subscriber.next(message.build);
+            if (EndMessage.is(message)) subscriber.complete()
+        };
         worker.onerror = ({message}) => subscriber.error(new Error(message));
-    });
-
-    const stopWorkerSubscription = observableBuilds.subscribe({error: worker.terminate, complete: worker.terminate});
-
-    const promise = observableBuilds
-        .pipe(reduce((acc, build) => [...acc, build], [] as Build[]))
-        .toPromise();
-
-    worker.postMessage({type: "start", data: {request, context}});
-
-    return {
-        observableBuilds,
-        builds: promise,
-        stop: () => {
-            worker.terminate();
-            stopWorkerSubscription.unsubscribe();
-        }
-    }
+        worker.postMessage({type: "start", data: {request, context}});
+    }).pipe(finalize(() => worker.terminate()))
 }

@@ -2,22 +2,23 @@ import {Build, PartType, SearchContext, SearchRequest} from "./types";
 import {ArmorPart} from "./armorPart";
 import {Observable} from "rxjs";
 import {filter as rxFilter, map} from "rxjs/operators";
-import {LeveledSkill} from "./leveledSkill";
+import {PartsCandidate} from "/logic/search/partsCandidate";
 
 
 export function search(request: SearchRequest, context: SearchContext): Observable<Build> {
     context = filter(request, context);
     return allCandidates()
-        .pipe(rxFilter(candidate => candidate.satisfy(request)))
+        .pipe(rxFilter(candidate => candidate.satisfy(request, context)))
         .pipe(map(candidate => ({
             head: candidate.parts.find(part => part.partType === PartType.head),
             chest: candidate.parts.find(part => part.partType === PartType.chest),
             arm: candidate.parts.find(part => part.partType === PartType.arm),
             waist: candidate.parts.find(part => part.partType === PartType.waist),
             legs: candidate.parts.find(part => part.partType === PartType.legs),
+            decorations: []
         })));
 
-    function allCandidates(): Observable<BuildCandidate> {
+    function allCandidates(): Observable<PartsCandidate> {
         const heads = all(PartType.head);
         const chests = all(PartType.chest);
         const arms = all(PartType.arm);
@@ -30,7 +31,7 @@ export function search(request: SearchRequest, context: SearchContext): Observab
                     for (const armsPart of arms) {
                         for (const waistPart of waists) {
                             for (const legsPart of legs) {
-                                subscriber.next(new BuildCandidate([headPart, chestPart, armsPart, waistPart, legsPart]
+                                subscriber.next(new PartsCandidate([headPart, chestPart, armsPart, waistPart, legsPart]
                                     .filter(part => part !== null)
                                     .map(part => part as ArmorPart)
                                 ));
@@ -42,26 +43,9 @@ export function search(request: SearchRequest, context: SearchContext): Observab
             subscriber.complete();
         });
 
-        function all(partType:PartType):(ArmorPart|null)[]{
+        function all(partType: PartType): (ArmorPart | null)[] {
             return [...context.availableParts.filter(p => p.partType === partType), null]
         }
-    }
-}
-
-class BuildCandidate {
-    constructor(readonly parts: ArmorPart[]) {
-    }
-
-    satisfy(request: SearchRequest): boolean {
-        return request.leveledSkills.reduce(
-            (acc, skill) => acc && this.skill(skill.skill.id).isBetterOrSameLevelThan(skill),
-            true as boolean);
-    }
-
-    private skill(id: string): LeveledSkill {
-        return this.parts.flatMap(part => part.skills)
-            .filter(skill => skill.skill.id === id)
-            .reduce((skill1, skill2) => skill1.combine(skill2), new LeveledSkill(0, {id}))
     }
 }
 
@@ -81,11 +65,11 @@ function filter(request: SearchRequest, context: SearchContext): SearchContext {
 
             return retainedParts;
 
-            function removeObsoleteParts():ArmorPart[] {
+            function removeObsoleteParts(): ArmorPart[] {
                 return retainedParts.filter(aRetainedPart => !newPart.isABetterPart(aRetainedPart, request));
             }
 
-            function aBetterPartIsAlreadyRetained():boolean {
+            function aBetterPartIsAlreadyRetained(): boolean {
                 return retainedParts.some(retainedPart => retainedPart.isABetterPart(newPart, request));
             }
         }, [] as ArmorPart[])

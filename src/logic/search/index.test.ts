@@ -1,5 +1,6 @@
 import {BuildFoundMessage, endMessage, startSearch} from ".";
-import {Build} from "./types";
+import {Build, SearchContext} from "./types";
+import {reduce} from "rxjs/operators";
 
 describe("startSearch", () => {
     const worker = {
@@ -35,10 +36,10 @@ describe("startSearch", () => {
 
     function testSimulatingWorker(...builds: any[]) {
         simulateCalc(...builds);
-        const search = startSearch(
-            {leveledSkills: []},
-            {availableParts: []});
-        return search.builds.then(expect(builds).toEqual)
+        return startSearch({leveledSkills: []}, SearchContext.from({availableParts: [], decorations: []}))
+            .pipe(reduce((acc, build) => [...acc, build], [] as Build[]))
+            .toPromise()
+            .then(receivedBuilds => expect(builds).toEqual(receivedBuilds))
     }
 
     function simulateCalc(...builds: Build[]) {
