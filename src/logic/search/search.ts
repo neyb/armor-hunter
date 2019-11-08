@@ -6,7 +6,7 @@ import {PartsCandidate} from "/logic/search/partsCandidate";
 
 
 export function search(request: SearchRequest, context: SearchContext): Observable<Build> {
-    context = filter(request, context);
+    context = context.filter(request);
     return allCandidates()
         .pipe(rxFilter(candidate => candidate.satisfy(request, context)))
         .pipe(map(candidate => ({
@@ -48,32 +48,3 @@ export function search(request: SearchRequest, context: SearchContext): Observab
         }
     }
 }
-
-function filter(request: SearchRequest, context: SearchContext): SearchContext {
-    const partsByType = context.availableParts.reduce((acc, part) =>
-        Object.assign(acc, {[part.partType]: [...(acc[part.partType] || []), part]}), {} as any);
-    return {
-        availableParts: (Object.values(partsByType) as ArmorPart[][]).flatMap(removeUselessArmor)
-    };
-
-    function removeUselessArmor(parts: ArmorPart[]): ArmorPart[] {
-        return parts.reduce((retainedParts, newPart) => {
-            retainedParts = removeObsoleteParts();
-
-            if (!aBetterPartIsAlreadyRetained())
-                retainedParts.push(newPart);
-
-            return retainedParts;
-
-            function removeObsoleteParts(): ArmorPart[] {
-                return retainedParts.filter(aRetainedPart => !newPart.isABetterPart(aRetainedPart, request));
-            }
-
-            function aBetterPartIsAlreadyRetained(): boolean {
-                return retainedParts.some(retainedPart => retainedPart.isABetterPart(newPart, request));
-            }
-        }, [] as ArmorPart[])
-    }
-}
-
-export const _ = {filter};

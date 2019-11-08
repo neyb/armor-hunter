@@ -1,6 +1,7 @@
 import {LeveledSkill} from "./leveledSkill";
 import {ArmorPart} from "./armorPart";
 import {Skill} from "./types";
+import {Decorations} from "/logic/search/Decorations";
 
 export interface SearchRequest {
     leveledSkills: LeveledSkill[]
@@ -9,19 +10,20 @@ export interface SearchRequest {
 export class SearchContext {
 
     static from = ({availableParts, decorations}: { availableParts: ArmorPart[], decorations: Decoration[] }) =>
-        new SearchContext(availableParts, decorations || []);
+        new SearchContext(availableParts, new Decorations(decorations));
 
     constructor(readonly availableParts: ArmorPart[],
-                readonly decorations: Decoration[]) {
+                readonly decorations: Decorations) {
     }
 
     filter(request: SearchRequest): SearchContext {
         const partsByType = this.availableParts.reduce((acc, part) =>
             Object.assign(acc, {[part.partType]: [...(acc[part.partType] || []), part]}), {} as any);
-        return SearchContext.from({
-            decorations: this.decorations,
-            availableParts: (Object.values(partsByType) as ArmorPart[][]).flatMap(removeUselessArmor)
-        });
+
+        return new SearchContext(
+            (Object.values(partsByType) as ArmorPart[][]).flatMap(removeUselessArmor),
+            this.decorations.filterFor(request)
+        );
 
         function removeUselessArmor(parts: ArmorPart[]): ArmorPart[] {
             return parts.reduce((retainedParts, newPart) => {
@@ -73,6 +75,6 @@ export enum Slot {
 export class Decoration {
     static of = (size: number, skill: string) => new Decoration(size, {id: skill});
 
-    constructor(readonly size: number, readonly skill: Skill) {
+    constructor(readonly size: Slot, readonly skill: Skill) {
     }
 }

@@ -13,13 +13,7 @@ export class LeveledSkill {
         return other.skill.id === this.skill.id && this.level >= other.level
     }
 
-    combine = (other: LeveledSkill) =>
-             new LeveledSkill(this.level + other.level, this.skill)
-        // this.skill.id === other.skill.id
-        //     ? new LeveledSkill(this.level + other.level, this.skill)
-        //     : throw new Error("...")
+    plus = (other: LeveledSkill) => new LeveledSkill(this.level + other.level, this.skill)
 
-
-plus = (level: number) => new LeveledSkill(this.level + level, this.skill)
-
+    minus = (other:LeveledSkill) => new LeveledSkill(this.level - other.level, this.skill)
 }
