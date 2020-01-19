@@ -26,7 +26,7 @@ describe("search", () => {
         }).then(builds => expect(builds).toMatchObject([{head: {set: {id: "set1"}}}]))
     );
 
-    test.skip("a build with only decoration is ok", () =>
+    test("a build with only decoration is ok", () =>
         searchAll({
             leveledSkills: [LeveledSkill.of("skill1", 1)],
             availableParts: [

@@ -9,14 +9,7 @@ export function search(request: SearchRequest, context: SearchContext): Observab
     context = context.filter(request);
     return allCandidates()
         .pipe(rxFilter(candidate => candidate.satisfy(request, context)))
-        .pipe(map(candidate => ({
-            head: candidate.parts.find(part => part.partType === PartType.head),
-            chest: candidate.parts.find(part => part.partType === PartType.chest),
-            arm: candidate.parts.find(part => part.partType === PartType.arm),
-            waist: candidate.parts.find(part => part.partType === PartType.waist),
-            legs: candidate.parts.find(part => part.partType === PartType.legs),
-            decorations: []
-        })));
+        .pipe(map(candidate => candidate.fillDecorations(request, context)));
 
     function allCandidates(): Observable<PartsCandidate> {
         const heads = all(PartType.head);

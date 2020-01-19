@@ -1,5 +1,5 @@
 import {ArmorPart} from "./armorPart";
-import {SearchContext, SearchRequest, Slot} from "./types";
+import {Build, Decoration, PartType, SearchContext, SearchRequest, Slot} from "./types";
 import {LeveledSkill} from "./leveledSkill";
 
 export class PartsCandidate {
@@ -15,6 +15,27 @@ export class PartsCandidate {
                 return remaining + (slot && availableSlots.get(slot) || 0) - (neededSlots.get(slot) || 0)
             }, 0);
         return unused >= 0;
+    }
+
+    fillDecorations(request: SearchRequest, context: SearchContext): Build {
+        return this.withDecorations(this.getDecorationsFor(request, context));
+    }
+
+    private getDecorationsFor(request: SearchRequest, context: SearchContext): Decoration[] {
+        return this.missingLeveledSkills(request, context)
+            .flatMap(leveledSkill => Array(leveledSkill.level).fill(leveledSkill.skill))
+            .map(skill => context.decorations.forSkill(skill))
+    }
+
+    private withDecorations(decorations: Decoration[]): Build {
+        return {
+            head: this.parts.find(part => part.partType === PartType.head),
+            chest: this.parts.find(part => part.partType === PartType.chest),
+            arm: this.parts.find(part => part.partType === PartType.arm),
+            waist: this.parts.find(part => part.partType === PartType.waist),
+            legs: this.parts.find(part => part.partType === PartType.legs),
+            decorations: decorations
+        }
     }
 
     private neededSlots(request: SearchRequest, context: SearchContext): Map<Slot | undefined, number> {
