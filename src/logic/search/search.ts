@@ -1,15 +1,15 @@
 import {Build, PartType, SearchContext, SearchRequest} from "./types";
 import {ArmorPart} from "./armorPart";
 import {Observable} from "rxjs";
-import {filter as rxFilter, map} from "rxjs/operators";
+import {from} from "rxjs";
+import {filter as rxFilter, flatMap, map} from "rxjs/operators";
 import {PartsCandidate} from "/logic/search/partsCandidate";
 
 
 export function search(request: SearchRequest, context: SearchContext): Observable<Build> {
     context = context.filter(request);
     return allCandidates()
-        .pipe(rxFilter(candidate => candidate.satisfy(request, context)))
-        .pipe(map(candidate => candidate.fillDecorations(request, context)));
+        .pipe(flatMap(candidate => from(candidate.searchBuilds(request, context))));
 
     function allCandidates(): Observable<PartsCandidate> {
         const heads = all(PartType.head);

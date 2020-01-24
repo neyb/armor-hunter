@@ -1,4 +1,4 @@
-import {Decoration, SearchContext, SearchRequest, Skill, Slot} from "./types";
+import {Decoration, SearchRequest, Skill, Slot} from "./types";
 import {min} from "lodash";
 
 export class Decorations {
@@ -12,7 +12,7 @@ export class Decorations {
 
     forSkill(skill: Skill): Decoration {
         const decoration = this.decorations.find(decoration => decoration.skill.id === skill.id);
-        if(decoration === undefined) throw new Error("no decoration for skill skill");
+        if (decoration === undefined) throw new Error("no decoration for skill skill");
         return decoration
     }
 

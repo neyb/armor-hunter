@@ -8,6 +8,7 @@
     "paths": {
       "/*": ["./*"]
     },
-    "lib": ["es2019", "webworker", "es5", "scripthost", "dom"]
+    "lib": ["es2019", "webworker", "es5", "scripthost", "dom"],
+    "esModuleInterop": true
   }
 }

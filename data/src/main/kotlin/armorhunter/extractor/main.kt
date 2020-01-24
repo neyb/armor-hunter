@@ -7,6 +7,10 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 
 fun main(vararg args: String) {
+    if(args.size < 1) {
+        System.err.println("need file db path as first argument")
+        System.exit(1)
+    }
     val sessionFactory = SqliteSessionFactory(args[0])
     val json = Json(JsonConfiguration.Stable)
 
