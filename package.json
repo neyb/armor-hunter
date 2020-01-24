@@ -31,18 +31,18 @@
     "@types/jest": "^24.9.1",
     "@types/lodash": "^4.14.149",
     "gh-pages": "^2.2.0",
-    "jest": "^24.9.0",
     "parcel-bundler": "^1.12.4",
-    "ts-jest": "^24.3.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {
     "conf": "^6.2.0",
+    "jest": "^25.1.0",
     "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
     "redux": "^4.0.5",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "ts-jest": "^25.0.0"
   }
 }
