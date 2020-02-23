@@ -21,6 +21,7 @@ devDependencies:
   gh-pages: 2.2.0
   parcel-bundler: 1.12.4
   pnpm: 4.9.3
+  prettier: 1.19.1
   ts-jest: 25.2.1_jest@25.1.0
   typescript: 3.8.2
 lockfileVersion: 5.1
@@ -5515,6 +5516,13 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
+  /prettier/1.19.1:
+    dev: true
+    engines:
+      node: '>=4'
+    hasBin: true
+    resolution:
+      integrity: sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
   /pretty-format/24.9.0:
     dependencies:
       '@jest/types': 24.9.0
@@ -7144,6 +7152,7 @@ specifiers:
   lodash: ^4.17.15
   parcel-bundler: ^1.12.4
   pnpm: ^4.9.3
+  prettier: ^1.19.1
   react: ^16.12.0
   react-dom: ^16.12.0
   react-redux: ^7.2.0
