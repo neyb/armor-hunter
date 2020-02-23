@@ -13,7 +13,7 @@ export enum PartType {
   chest,
   arm,
   waist,
-  legs
+  legs,
 }
 
 export interface ArmorSet {

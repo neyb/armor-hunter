@@ -5,7 +5,7 @@ import {BuildFoundMessage, endMessage} from "."
 
 let messagePosterBuildSubscription: Subscription
 onmessage = ({
-  data: {type, data}
+  data: {type, data},
 }: {
   data: {type: "start" | "stop"; data: {request: SearchRequest; context: SearchContext}}
 }) => {
@@ -13,7 +13,7 @@ onmessage = ({
     case "start":
       messagePosterBuildSubscription = search(data.request, data.context).subscribe({
         next: build => postMessage(new BuildFoundMessage(build)),
-        complete: () => postMessage(endMessage)
+        complete: () => postMessage(endMessage),
       })
       break
     case "stop":

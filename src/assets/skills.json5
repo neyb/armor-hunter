@@ -105,5 +105,5 @@
   "Water Resistance": {maxLevel: 3},
   "Weakness Exploit": {maxLevel: 3},
   "Wide-Range": {maxLevel: 5},
-  Windproof: {maxLevel: 5}
+  Windproof: {maxLevel: 5},
 }

@@ -14,20 +14,20 @@ describe("search", () => {
   test("impossible build returns no build", () =>
     searchAll({
       leveledSkills: [LeveledSkill.of("skill", 1)],
-      availableParts: []
+      availableParts: [],
     }).then(builds => expect(builds).toEqual([])))
 
   test("with only 1 part works as expected", () =>
     searchAll({
       leveledSkills: [LeveledSkill.of("skill", 1)],
-      availableParts: [ArmorPart.of("set1", 1, PartType.head, [LeveledSkill.of("skill", 1)], [])]
+      availableParts: [ArmorPart.of("set1", 1, PartType.head, [LeveledSkill.of("skill", 1)], [])],
     }).then(builds => expect(builds).toMatchObject([{head: {set: {id: "set1"}}}])))
 
   test("a build with only decoration is ok", () =>
     searchAll({
       leveledSkills: [LeveledSkill.of("skill1", 1)],
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1])],
-      decorations: [Decoration.of(1, "skill1")]
+      decorations: [Decoration.of(1, "skill1")],
     }).then(builds => {
       expect(builds).toMatchObject([{head: {}, decorations: [{skill: {id: "skill1"}}]}])
     }))
@@ -35,7 +35,7 @@ describe("search", () => {
   function searchAll({
     leveledSkills,
     availableParts,
-    decorations = []
+    decorations = [],
   }: {
     leveledSkills: LeveledSkill[]
     availableParts: ArmorPart[]
@@ -52,11 +52,11 @@ describe("context filtering", () => {
     const filteredContext = SearchContext.from({
       availableParts: [
         ArmorPart.of("set1", 1, PartType.head, [LeveledSkill.of("skill1", 3)], []),
-        ArmorPart.of("set2", 1, PartType.chest, [LeveledSkill.of("skill1", 2)], [])
+        ArmorPart.of("set2", 1, PartType.chest, [LeveledSkill.of("skill1", 2)], []),
       ],
-      decorations: []
+      decorations: [],
     }).filter({
-      leveledSkills: [LeveledSkill.of("skill1", 3)]
+      leveledSkills: [LeveledSkill.of("skill1", 3)],
     })
 
     expect(filteredContext.availableParts).toMatchObject([{set: {id: "set1"}}, {set: {id: "set2"}}])
@@ -67,11 +67,11 @@ describe("context filtering", () => {
       const filteredContext = SearchContext.from({
         availableParts: [
           ArmorPart.of("set1", 1, PartType.head, [LeveledSkill.of("skill1", 3)], []),
-          ArmorPart.of("set2", 1, PartType.head, [LeveledSkill.of("skill1", 2)], [])
+          ArmorPart.of("set2", 1, PartType.head, [LeveledSkill.of("skill1", 2)], []),
         ],
-        decorations: []
+        decorations: [],
       }).filter({
-        leveledSkills: [LeveledSkill.of("skill1", 3)]
+        leveledSkills: [LeveledSkill.of("skill1", 3)],
       })
 
       expect(filteredContext.availableParts).toMatchObject([{set: {id: "set1"}}])
@@ -85,9 +85,9 @@ describe("context filtering", () => {
           ArmorPart.of("set1", 1, PartType.head, [], [1, 1, 3]),
           ArmorPart.of("set2", 1, PartType.head, [], [1, 2, 2]),
           ArmorPart.of("set3", 1, PartType.head, [], [1, 2, 3]),
-          ArmorPart.of("set4", 1, PartType.head, [], [1, 1, 1, 3])
+          ArmorPart.of("set4", 1, PartType.head, [], [1, 1, 1, 3]),
         ],
-        decorations: []
+        decorations: [],
       }).filter({leveledSkills: []})
       expect(filteredContext.availableParts).toMatchObject([{set: {id: "set3"}}, {set: {id: "set4"}}])
     })
@@ -98,9 +98,9 @@ describe("context filtering", () => {
       const filteredContext = SearchContext.from({
         availableParts: [
           ArmorPart.of("set1", 1, PartType.head, [], []),
-          ArmorPart.of("set2", 2, PartType.head, [], [])
+          ArmorPart.of("set2", 2, PartType.head, [], []),
         ],
-        decorations: []
+        decorations: [],
       }).filter({leveledSkills: []})
       expect(filteredContext.availableParts).toMatchObject([{set: {id: "set2"}}])
     })

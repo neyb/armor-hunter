@@ -40,7 +40,7 @@ export const findDecorations = (
       arm: parts.find(part => part.partType === PartType.arm),
       waist: parts.find(part => part.partType === PartType.waist),
       legs: parts.find(part => part.partType === PartType.legs),
-      decorations: decorations
+      decorations: decorations,
     }
   }
 

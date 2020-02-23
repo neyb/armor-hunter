@@ -8,7 +8,7 @@ describe("startSearch", () => {
     onmessage: jest.fn(),
     // as Mock<
     //     { data: { type: "end", data: undefined } | { type: "build-found", data: Build } }, void>
-    terminate: jest.fn()
+    terminate: jest.fn(),
   }
 
   let origWorker: any

@@ -54,7 +54,7 @@ export enum PartType {
   chest,
   arm,
   waist,
-  legs
+  legs,
 }
 
 export interface Skill {
@@ -74,7 +74,7 @@ export enum Slot {
   small = 1,
   medium,
   large,
-  huge
+  huge,
 }
 
 export class Decoration {
