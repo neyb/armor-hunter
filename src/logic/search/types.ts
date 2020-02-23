@@ -1,6 +1,5 @@
 import {LeveledSkill} from "./leveledSkill"
 import {ArmorPart} from "./armorPart"
-import {Skill} from "./types"
 import {Decorations} from "/logic/search/Decorations"
 
 export interface SearchRequest {
