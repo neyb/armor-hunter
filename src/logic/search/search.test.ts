@@ -32,6 +32,15 @@ describe("search", () => {
       expect(builds).toMatchObject([{head: {}, decorations: [{skill: {id: "skill1"}}]}])
     }))
 
+  test("a build with 1 armor & 1 decoration is ok", async () => {
+    const builds = await searchAll({
+      leveledSkills: [LeveledSkill.of("skill1", 2)],
+      availableParts: [ArmorPart.of("set", 1, PartType.head, [LeveledSkill.of("skill1", 1)], [1])],
+      decorations: [Decoration.of(1, "skill1")],
+    })
+    expect(builds).toMatchObject([{head: {set: {id: "set"}}, decorations: [{skill: {id: "skill1"}}]}])
+  })
+
   function searchAll({
     leveledSkills,
     availableParts,
