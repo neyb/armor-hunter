@@ -1,4 +1,1 @@
-interface Save {
-
-}
-
+interface Save {}
