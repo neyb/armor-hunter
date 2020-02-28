@@ -1,6 +1,6 @@
 import {ArmorPart} from "./armorPart"
 import {Build, PartType, SearchRequest, Slot} from "./types"
-import {findDecorations} from "/logic/search/findDecorations"
+import {searchBuild} from "/logic/search/searchBuild"
 import {LeveledSkill} from "/logic/search/leveledSkill"
 import {Skill} from "/logic/search/skill"
 import {SearchContext} from "/logic/search/searchContext"
@@ -10,8 +10,8 @@ import {Map} from "immutable"
 export class PartsCandidate {
   constructor(readonly parts: ArmorPart[]) {}
 
-  searchBuilds(request: SearchRequest, context: SearchContext): Build[] {
-    return findDecorations(this, request, context)
+  searchBuild(request: SearchRequest, context: SearchContext): Build | undefined {
+    return searchBuild(this, request, context)
   }
 
   skillFor(searchedSkill: Skill): LeveledSkill {

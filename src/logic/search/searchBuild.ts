@@ -6,13 +6,13 @@ import {Decoration} from "/logic/search/decoration"
 import {Map, mergeWith} from "immutable"
 import {Skill} from "/logic/search/skill"
 
-export function findDecorations(
+export function searchBuild(
   partsCandidate: PartsCandidate,
   request: SearchRequest,
   context: SearchContext
-): Build[] {
-  if (satisfy()) return [fillDecorations()]
-  else return []
+): Build | undefined {
+  if (satisfy()) return fillDecorations()
+  else return undefined
 
   function satisfy(): boolean {
     return !calcMissingSlots().some(value => value > 0)
@@ -28,9 +28,7 @@ export function findDecorations(
     return skillsNotInParts()
       .flatMap(leveledSkill => Array<Skill>(leveledSkill.level).fill(leveledSkill.skill))
       .map(skill => decorations.takeMinDecoration(skill))
-      .filter<Decoration>(function(dec: Decoration | undefined): dec is Decoration {
-        return dec !== undefined
-      })
+      .filter<Decoration>((dec): dec is Decoration => dec !== undefined)
   }
 
   function calcNeedsPerSlot(): Map<Slot | undefined, number> {
