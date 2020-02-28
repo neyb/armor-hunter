@@ -3,7 +3,7 @@ import {LeveledSkill} from "/logic/search/LeveledSkill"
 import {PartsCandidate} from "/logic/search/PartsCandidate"
 import {SearchContext} from "/logic/search/searchContext"
 import {Decoration} from "/logic/search/Decoration"
-import {Map, mergeWith} from "immutable"
+import {Map} from "immutable"
 import {Skill} from "/logic/search/Skill"
 
 export function searchBuild(
@@ -47,6 +47,33 @@ export function searchBuild(
   }
 
   function calcMissingSlots(): Map<Slot | undefined, number> {
-    return mergeWith((oldVal, newVal) => oldVal - newVal, calcNeedsPerSlot(), partsCandidate.availableSlots())
+    const needsPerSlot = calcNeedsPerSlot()
+    const availableSlots = partsCandidate.availableSlots() as Map<Slot | undefined, number>
+    return [undefined, Slot.lvl1, Slot.lvl2, Slot.lvl3, Slot.lvl4]
+      .reduce(
+        (map, slot) => map.set(slot, needsPerSlot.get(slot, 0) - availableSlots.get(slot, 0)),
+        Map<Slot | undefined, number>()
+      )
+      .withMutations(recycleUnusedSlots)
+  }
+
+  function recycleUnusedSlots(missingSlots: Map<Slot | undefined, number>) {
+    ;[Slot.lvl1, Slot.lvl2, Slot.lvl3].reduce<Slot[]>((unplaced, slot) => {
+      const missing = missingSlots.get(slot, 0)
+
+      for (let i = 0; i < missing; i++) {
+        unplaced.push(slot)
+      }
+
+      for (let i = 0; i < -1 * missing; i++) {
+        const DecoSizeToPlace = unplaced.pop()
+        if (DecoSizeToPlace !== undefined) {
+          missingSlots.update(DecoSizeToPlace, nb => nb - 1)
+          missingSlots.update(slot, nb => nb + 1)
+        }
+      }
+
+      return unplaced
+    }, [])
   }
 }

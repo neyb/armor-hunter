@@ -25,28 +25,37 @@ describe("search", () => {
       availableParts: [ArmorPart.of("set1", 1, PartType.head, [LeveledSkill.of("skill", 1)], [])],
     }).then(builds => expect(builds).toMatchObject([{head: {set: {id: "set1"}}}])))
 
-  test("a build with only 1 decoration is ok", () =>
-    searchAll({
+  test("a build with only 1 decoration is ok", async () => {
+    const builds = await searchAll({
       leveledSkills: [LeveledSkill.of("skill1", 1)],
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1])],
       decorations: [Decoration.of(1, "skill1")],
-    }).then(builds => {
-      expect(builds).toMatchObject([{head: {}, decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}]}])
-    }))
+    })
+    expect(builds).toMatchObject([{head: {}, decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}]}])
+  })
 
-  test("a build with only 2 decorations is ok", () =>
-    searchAll({
+  test("a build with only 1 decoration in super size slot is ok", async () => {
+    const builds = await searchAll({
+      leveledSkills: [LeveledSkill.of("skill1", 1)],
+      availableParts: [ArmorPart.of("set", 1, PartType.head, [], [2])],
+      decorations: [Decoration.of(1, "skill1")],
+    })
+    expect(builds).toMatchObject([{head: {}, decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}]}])
+  })
+
+  test("a build with only 2 decorations is ok", async () => {
+    const builds = await searchAll({
       leveledSkills: [LeveledSkill.of("skill1", 2)],
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1, 1])],
       decorations: [Decoration.of(1, "skill1"), Decoration.of(1, "skill1")],
-    }).then(builds => {
-      expect(builds).toMatchObject([
-        {
-          head: {},
-          decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}, {leveledSkills: [{skill: {id: "skill1"}}]}],
-        },
-      ])
-    }))
+    })
+    expect(builds).toMatchObject([
+      {
+        head: {},
+        decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}, {leveledSkills: [{skill: {id: "skill1"}}]}],
+      },
+    ])
+  })
 
   test("a build with 1 armor & 1 decoration is ok", async () => {
     const builds = await searchAll({
