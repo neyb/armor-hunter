@@ -1,5 +1,5 @@
 import {SearchRequest, Slot} from "./types"
-import {is, List, Map, ValueObject, Seq} from "immutable"
+import {is, List, Map, Seq, ValueObject} from "immutable"
 import {min} from "lodash"
 import {Skill} from "/logic/search/skill"
 import {Decoration} from "/logic/search/decoration"
@@ -8,8 +8,7 @@ export class Decorations implements ValueObject {
   constructor(readonly decorationsAndQuantity: Map<Decoration, number>) {}
 
   static of(decorations: Decoration[]) {
-    const decorationsAndQuantity1 = List(decorations).countBy(dec => dec)
-    return new Decorations(decorationsAndQuantity1)
+    return new Decorations(List(decorations).countBy(dec => dec))
   }
 
   filterFor(request: SearchRequest): Decorations {
