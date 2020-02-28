@@ -27,7 +27,7 @@ export class ArmorPart {
   }
 
   private hasBetterSlots(other: ArmorPart) {
-    return [Slot.small, Slot.medium, Slot.large, Slot.huge].every(
+    return [Slot.lvl1, Slot.lvl2, Slot.lvl3, Slot.lvl4].every(
       slot => this.numberOfSlot(slot) >= other.numberOfSlot(slot)
     )
   }

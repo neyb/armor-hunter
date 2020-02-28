@@ -29,8 +29,8 @@ export interface Build {
 }
 
 export enum Slot {
-  small = 1,
-  medium,
-  large,
-  huge,
+  lvl1 = 1,
+  lvl2,
+  lvl3,
+  lvl4,
 }
