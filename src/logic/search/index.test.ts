@@ -1,6 +1,7 @@
 import {BuildFoundMessage, endMessage, startSearch} from "."
-import {Build, SearchContext} from "./types"
+import {Build} from "./types"
 import {reduce} from "rxjs/operators"
+import {SearchContext} from "/logic/search/searchContext"
 
 describe("startSearch", () => {
   const worker = {

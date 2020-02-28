@@ -1,8 +1,10 @@
-import {Build, Decoration, PartType, SearchContext} from "./types"
+import {Build, PartType} from "./types"
 import {LeveledSkill} from "./leveledSkill"
 import {ArmorPart} from "./armorPart"
 import {reduce} from "rxjs/operators"
 import {search} from "./search"
+import {SearchContext} from "/logic/search/searchContext"
+import {Decoration} from "/logic/search/decoration"
 
 describe("search", () => {
   const postMessage = jest.fn()
@@ -32,11 +34,11 @@ describe("search", () => {
       expect(builds).toMatchObject([{head: {}, decorations: [{skill: {id: "skill1"}}]}])
     }))
 
-  test("a build with only 2 decorations is ok", () =>
+  test("a build with only 2 decorationsAndQuantity is ok", () =>
     searchAll({
       leveledSkills: [LeveledSkill.of("skill1", 2)],
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1, 1])],
-      decorations: [Decoration.of(1, "skill1")],
+      decorations: [Decoration.of(1, "skill1"), Decoration.of(1, "skill1")],
     }).then(builds => {
       expect(builds).toMatchObject([{head: {}, decorations: [{skill: {id: "skill1"}}, {skill: {id: "skill1"}}]}])
     }))
@@ -50,7 +52,7 @@ describe("search", () => {
     expect(builds).toMatchObject([{head: {set: {id: "set"}}, decorations: [{skill: {id: "skill1"}}]}])
   })
 
-  test.skip("a build needing 2 same decorations but got only 1 find no builds", async () => {
+  test("a build needing 2 same decorationsAndQuantity but got only 1 find no builds", async () => {
     const builds = await searchAll({
       leveledSkills: [LeveledSkill.of("skill1", 2)],
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1, 1])],
@@ -60,15 +62,16 @@ describe("search", () => {
   })
 
   function searchAll({
-    leveledSkills,
-    availableParts,
+    leveledSkills = [],
+    availableParts = [],
     decorations = [],
   }: {
-    leveledSkills: LeveledSkill[]
-    availableParts: ArmorPart[]
+    leveledSkills?: LeveledSkill[]
+    availableParts?: ArmorPart[]
     decorations?: Decoration[]
   }): Promise<Build[]> {
-    return search({leveledSkills}, SearchContext.from({availableParts, decorations: decorations || []}))
+    const context = SearchContext.from({availableParts, decorations})
+    return search({leveledSkills}, context)
       .pipe(reduce((builds: Build[], build: Build) => [...builds, build], []))
       .toPromise()
   }

@@ -1,7 +1,9 @@
 import {ArmorPart} from "./armorPart"
-import {Build, SearchContext, SearchRequest, Skill} from "./types"
+import {Build, SearchRequest} from "./types"
 import {findDecorations} from "/logic/search/findDecorations"
 import {LeveledSkill} from "/logic/search/leveledSkill"
+import {Skill} from "/logic/search/skill"
+import {SearchContext} from "/logic/search/searchContext"
 
 export class PartsCandidate {
   constructor(readonly parts: ArmorPart[]) {}

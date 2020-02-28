@@ -1,7 +1,8 @@
 import {Subscription} from "rxjs"
-import {SearchContext, SearchRequest} from "./types"
+import {SearchRequest} from "./types"
 import {search} from "./search"
 import {BuildFoundMessage, endMessage} from "."
+import {SearchContext} from "/logic/search/searchContext"
 
 let messagePosterBuildSubscription: Subscription
 onmessage = ({

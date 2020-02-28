@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "conf": "^6.2.1",
+    "immutable": "^4.0.0-rc.12",
     "jest": "^25.1.0",
     "lodash": "^4.17.15",
     "react": "^16.12.0",

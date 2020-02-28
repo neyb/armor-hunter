@@ -1,6 +1,7 @@
-import {Build, SearchContext, SearchRequest} from "./types"
+import {Build, SearchRequest} from "./types"
 import {Observable} from "rxjs"
 import {finalize} from "rxjs/operators"
+import {SearchContext} from "/logic/search/searchContext"
 
 export interface Message {
   readonly type: string
