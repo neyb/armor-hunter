@@ -1,4 +1,4 @@
-import {LeveledSkill} from "/logic/search/leveledSkill"
+import {LeveledSkill} from "/logic/search/LeveledSkill"
 import {Slot} from "/logic/search/types"
 
 export interface PartsCandidateAnalyseResult {

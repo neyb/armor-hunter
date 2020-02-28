@@ -1,18 +1,17 @@
 import {Build, SearchRequest, Slot} from "/logic/search/types"
-import {LeveledSkill} from "/logic/search/leveledSkill"
-import {PartsCandidate} from "/logic/search/partsCandidate"
+import {LeveledSkill} from "/logic/search/LeveledSkill"
+import {PartsCandidate} from "/logic/search/PartsCandidate"
 import {SearchContext} from "/logic/search/searchContext"
-import {Decoration} from "/logic/search/decoration"
+import {Decoration} from "/logic/search/Decoration"
 import {Map, mergeWith} from "immutable"
-import {Skill} from "/logic/search/skill"
+import {Skill} from "/logic/search/Skill"
 
 export function searchBuild(
   partsCandidate: PartsCandidate,
   request: SearchRequest,
   context: SearchContext
 ): Build | undefined {
-  if (satisfy()) return fillDecorations()
-  else return undefined
+  return satisfy() ? fillDecorations() : undefined
 
   function satisfy(): boolean {
     return !calcMissingSlots().some(value => value > 0)

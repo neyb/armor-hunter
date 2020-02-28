@@ -1,11 +1,11 @@
 import {SearchRequest, Slot} from "./types"
 import {is, List, Map, Seq, ValueObject} from "immutable"
 import {min} from "lodash"
-import {Skill} from "/logic/search/skill"
-import {Decoration} from "/logic/search/decoration"
+import {Skill} from "/logic/search/Skill"
+import {Decoration} from "/logic/search/Decoration"
 
-export class Decorations implements ValueObject {
-  constructor(readonly decorationsAndQuantity: Map<Decoration, number>) {}
+export class Decorations {
+  constructor(readonly decorations: Map<Decoration, number>) {}
 
   static of(decorations: Decoration[]) {
     return new Decorations(List(decorations).countBy(dec => dec))
@@ -14,39 +14,35 @@ export class Decorations implements ValueObject {
   filterFor(request: SearchRequest): Decorations {
     return new Decorations(
       Map(
-        this.decorationsAndQuantity
-          .entrySeq()
-          .filter(([decoration]) =>
-            request.leveledSkills.some(leveledSkill => is(leveledSkill.skill, decoration.skill))
-          )
+        this.decorations.filter((_, decoration) =>
+          request.leveledSkills.some(leveledSkill => decoration.hasSkill(leveledSkill.skill))
+        )
       )
     )
   }
 
   forSkill(skill: Skill): Seq.Indexed<Decoration> {
-    return this.decorationsAndQuantity.keySeq().filter(decoration => is(decoration.skill, skill))
+    return this.decorations.keySeq().filter(decoration => decoration.hasSkill(skill))
   }
 
   minNeededSlot(skill: Skill): Slot | undefined {
-    const map = this.decorationsAndQuantity
+    const map = this.decorations
       .keySeq()
-      .filter(dec => dec.skill.equals(skill))
+      .filter(dec => dec.hasSkill(skill))
       .map(dec => dec.size)
     return min(map.toArray())
   }
 
-  hashCode = () => this.decorationsAndQuantity.hashCode()
-  equals = (other: Decorations) => is(this.decorationsAndQuantity, other.decorationsAndQuantity)
-  mutableCopy = () => new MutableDecorations(this.decorationsAndQuantity.asMutable())
+  mutableCopy = () => new MutableDecorations(this.decorations.asMutable())
 }
 
 class MutableDecorations extends Decorations {
   takeMinDecoration(skill: Skill): Decoration | undefined {
     const decoration = this.forSkill(skill).min((dec1, dec2) => dec1.size - dec2.size)
     if (decoration !== undefined) {
-      const nb = this.decorationsAndQuantity.get(decoration)
-      if (nb && nb > 1) this.decorationsAndQuantity.set(decoration, nb - 1)
-      else this.decorationsAndQuantity.delete(decoration)
+      const nb = this.decorations.get(decoration)
+      if (nb && nb > 1) this.decorations.set(decoration, nb - 1)
+      else this.decorations.delete(decoration)
     }
     return decoration
   }

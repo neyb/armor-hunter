@@ -1,6 +1,7 @@
-import {ArmorPart} from "/logic/search/armorPart"
-import {Decoration, SearchRequest} from "/logic/search/types"
+import {ArmorPart} from "/logic/search/ArmorPart"
+import {Decoration} from "/logic/search/Decoration"
 import {Decorations} from "/logic/search/Decorations"
+import {SearchRequest} from "/logic/search/types"
 
 export class SearchContext {
   static from = ({availableParts, decorations}: {availableParts: ArmorPart[]; decorations: Decoration[]}) =>

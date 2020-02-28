@@ -1,6 +1,6 @@
-import {LeveledSkill} from "./leveledSkill"
-import {ArmorPart} from "./armorPart"
-import {Decoration} from "/logic/search/decoration"
+import {LeveledSkill} from "logic/search/LeveledSkill"
+import {ArmorPart} from "logic/search/ArmorPart"
+import {Decoration} from "/logic/search/Decoration"
 
 export interface SearchRequest {
   leveledSkills: LeveledSkill[]

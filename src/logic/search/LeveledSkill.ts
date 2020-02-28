@@ -1,4 +1,4 @@
-import {Skill} from "/logic/search/skill"
+import {Skill} from "/logic/search/Skill"
 
 export class LeveledSkill {
   static from = ({level, skill}: {level: number; skill: Skill}) => new LeveledSkill(level, skill)

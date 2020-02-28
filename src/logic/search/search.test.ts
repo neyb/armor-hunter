@@ -1,10 +1,10 @@
 import {Build, PartType} from "./types"
-import {LeveledSkill} from "./leveledSkill"
-import {ArmorPart} from "./armorPart"
+import {LeveledSkill} from "/logic/search/LeveledSkill"
+import {ArmorPart} from "/logic/search/ArmorPart"
 import {reduce} from "rxjs/operators"
 import {search} from "./search"
 import {SearchContext} from "/logic/search/searchContext"
-import {Decoration} from "/logic/search/decoration"
+import {Decoration} from "/logic/search/Decoration"
 
 describe("search", () => {
   const postMessage = jest.fn()
@@ -31,16 +31,21 @@ describe("search", () => {
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1])],
       decorations: [Decoration.of(1, "skill1")],
     }).then(builds => {
-      expect(builds).toMatchObject([{head: {}, decorations: [{skill: {id: "skill1"}}]}])
+      expect(builds).toMatchObject([{head: {}, decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}]}])
     }))
 
-  test("a build with only 2 decorationsAndQuantity is ok", () =>
+  test("a build with only 2 decorations is ok", () =>
     searchAll({
       leveledSkills: [LeveledSkill.of("skill1", 2)],
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1, 1])],
       decorations: [Decoration.of(1, "skill1"), Decoration.of(1, "skill1")],
     }).then(builds => {
-      expect(builds).toMatchObject([{head: {}, decorations: [{skill: {id: "skill1"}}, {skill: {id: "skill1"}}]}])
+      expect(builds).toMatchObject([
+        {
+          head: {},
+          decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}, {leveledSkills: [{skill: {id: "skill1"}}]}],
+        },
+      ])
     }))
 
   test("a build with 1 armor & 1 decoration is ok", async () => {
@@ -49,10 +54,12 @@ describe("search", () => {
       availableParts: [ArmorPart.of("set", 1, PartType.head, [LeveledSkill.of("skill1", 1)], [1])],
       decorations: [Decoration.of(1, "skill1")],
     })
-    expect(builds).toMatchObject([{head: {set: {id: "set"}}, decorations: [{skill: {id: "skill1"}}]}])
+    expect(builds).toMatchObject([
+      {head: {set: {id: "set"}}, decorations: [{leveledSkills: [{skill: {id: "skill1"}}]}]},
+    ])
   })
 
-  test("a build needing 2 same decorationsAndQuantity but got only 1 find no builds", async () => {
+  test("a build needing 2 same decorations but got only 1 find no builds", async () => {
     const builds = await searchAll({
       leveledSkills: [LeveledSkill.of("skill1", 2)],
       availableParts: [ArmorPart.of("set", 1, PartType.head, [], [1, 1])],
@@ -60,6 +67,8 @@ describe("search", () => {
     })
     expect(builds).toMatchObject([])
   })
+
+  test("a build with only a decoration lvl4", async () => {})
 
   function searchAll({
     leveledSkills = [],
@@ -93,7 +102,7 @@ describe("context filtering", () => {
   })
 
   describe("filtering on skills", () => {
-    test("same part but one with 1 skill higher level than the other should", () => {
+    test("same part but one with 1 leveledSkill higher level than the other should", () => {
       const filteredContext = SearchContext.from({
         availableParts: [
           ArmorPart.of("set1", 1, PartType.head, [LeveledSkill.of("skill1", 3)], []),

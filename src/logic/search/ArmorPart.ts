@@ -1,4 +1,4 @@
-import {LeveledSkill} from "./leveledSkill"
+import {LeveledSkill} from "logic/search/LeveledSkill"
 import {ArmorSet, PartType, SearchRequest, Slot} from "./types"
 
 export class ArmorPart {

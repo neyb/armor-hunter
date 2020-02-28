@@ -1,10 +1,10 @@
-import {ArmorPart} from "./armorPart"
+import {ArmorPart} from "logic/search/ArmorPart"
 import {Build, PartType, SearchRequest, Slot} from "./types"
 import {searchBuild} from "/logic/search/searchBuild"
-import {LeveledSkill} from "/logic/search/leveledSkill"
-import {Skill} from "/logic/search/skill"
+import {LeveledSkill} from "/logic/search/LeveledSkill"
+import {Skill} from "/logic/search/Skill"
 import {SearchContext} from "/logic/search/searchContext"
-import {Decoration} from "/logic/search/decoration"
+import {Decoration} from "/logic/search/Decoration"
 import {Map} from "immutable"
 
 export class PartsCandidate {
@@ -22,20 +22,23 @@ export class PartsCandidate {
   }
 
   availableSlots(): Map<Slot, number> {
-    return this.parts.reduce(
-      (nbBySlot, part) => part.slots.reduce((nbBySlot, slot) => nbBySlot.update(slot, (nb = 0) => nb + 1), nbBySlot),
-      Map<Slot, number>()
-    )
+    return this.parts
+      .flatMap(part => part.slots)
+      .reduce((nbBySlot, slot) => nbBySlot.update(slot, (nb = 0) => nb + 1), Map<Slot, number>())
   }
 
   withDecorations(decorations: Decoration[]): Build {
     return {
-      head: this.parts.find(part => part.partType === PartType.head),
-      chest: this.parts.find(part => part.partType === PartType.chest),
-      arm: this.parts.find(part => part.partType === PartType.arm),
-      waist: this.parts.find(part => part.partType === PartType.waist),
-      legs: this.parts.find(part => part.partType === PartType.legs),
+      head: this.part(PartType.head),
+      chest: this.part(PartType.chest),
+      arm: this.part(PartType.arm),
+      waist: this.part(PartType.waist),
+      legs: this.part(PartType.legs),
       decorations: decorations,
     }
+  }
+
+  part(partType: PartType): ArmorPart | undefined {
+    return this.parts.find(part => part.partType === partType)
   }
 }
