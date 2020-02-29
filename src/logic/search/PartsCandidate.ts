@@ -1,11 +1,11 @@
-import {ArmorPart} from "logic/search/ArmorPart"
+import {ArmorPart} from "./ArmorPart"
 import {Build, PartType, SearchRequest, Size} from "./types"
-import {searchBuild} from "/logic/search/searchBuild"
-import {LeveledSkill} from "/logic/search/LeveledSkill"
-import {Skill} from "/logic/search/Skill"
-import {SearchContext} from "/logic/search/searchContext"
-import {Decoration} from "/logic/search/Decoration"
-import {Map} from "immutable"
+import {searchBuild} from "./searchBuild"
+import {LeveledSkill} from "./LeveledSkill"
+import {Skill} from "./Skill"
+import {SearchContext} from "./searchContext"
+import {Decoration} from "./Decoration"
+import {List, Map} from "immutable"
 
 export class PartsCandidate {
   constructor(readonly parts: ArmorPart[]) {}
@@ -15,8 +15,7 @@ export class PartsCandidate {
   }
 
   skillFor(searchedSkill: Skill): LeveledSkill {
-    return this.parts
-      .flatMap(part => part.skills)
+    return this.skills()
       .filter(skill => skill.skill.id === searchedSkill.id)
       .reduce((skill1, skill2) => skill1.plus(skill2), new LeveledSkill(0, searchedSkill))
   }
@@ -40,5 +39,23 @@ export class PartsCandidate {
 
   part(partType: PartType): ArmorPart | undefined {
     return this.parts.find(part => part.partType === partType)
+  }
+
+  private skills(): LeveledSkill[] {
+    return [
+      ...this.parts.flatMap(part => part.skills),
+      ...this.activatedSetSkills().map(skill => new LeveledSkill(1, skill)),
+    ]
+  }
+
+  private activatedSetSkills(): Skill[] {
+    const setSkills = this.parts.flatMap(part => part.set).flatMap(set => set.setSkills)
+    const countedSetSkills = List(setSkills).countBy(v => v)
+    const skills = countedSetSkills
+      .filter((nb, setSkills) => setSkills.activationPartCount <= nb)
+      .keySeq()
+      .map(setSkill => setSkill.skill)
+      .toArray()
+    return skills
   }
 }
