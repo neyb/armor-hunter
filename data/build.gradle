@@ -36,7 +36,6 @@ dependencies {
 
 application {
     mainClassName = "armorhunter.extractor.MainKt"
-    args = "mhw.db"
 }
 
 test {
