@@ -13,14 +13,11 @@ fun ArmorSet.json() = with(parts) {
                      DefensesJson(with(physical) { PhysicalDefenseJson(base, max, augmented) },
                                   fire, water, thunder, ice, dragon)
                  },
-                skillSets.map(SkillSet::json)
+                skillSets.associate { it.skill.name to it.nbParts }
     )
 }
 
 private fun Armor.json() = ArmorJson(slots.map { it.size }, skills.associateBy({ it.skill.name }, { it.level }))
-
-private fun SkillSet.json() = SetSkill(skill.name, nbParts)
-
 
 @Serializable data class ArmorSetJson(val rarity: Int,
                                       val head: ArmorJson?,
@@ -29,7 +26,7 @@ private fun SkillSet.json() = SetSkill(skill.name, nbParts)
                                       val waist: ArmorJson?,
                                       val legs: ArmorJson?,
                                       val defenses: DefensesJson,
-                                      val setSkill: List<SetSkill>)
+                                      val setSkill: Map<String, Int>)
 
 @Serializable data class DefensesJson(val physical: PhysicalDefenseJson,
                                       val fire: Int,
@@ -41,5 +38,3 @@ private fun SkillSet.json() = SetSkill(skill.name, nbParts)
 @Serializable data class PhysicalDefenseJson(val base: Int, val max: Int, val augmented: Int)
 
 @Serializable data class ArmorJson(val slots: List<Int>, val skills: Map<String, Int>)
-
-@Serializable data class SetSkill(val skill:String, val nbParts:Int)
