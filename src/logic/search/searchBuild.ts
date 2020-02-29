@@ -1,4 +1,4 @@
-import {Build, SearchRequest, Slot} from "/logic/search/types"
+import {Build, SearchRequest, Size} from "/logic/search/types"
 import {LeveledSkill} from "/logic/search/LeveledSkill"
 import {PartsCandidate} from "/logic/search/PartsCandidate"
 import {SearchContext} from "/logic/search/searchContext"
@@ -14,7 +14,7 @@ export function searchBuild(
   return satisfy() ? fillDecorations() : undefined
 
   function satisfy(): boolean {
-    return !calcMissingSlots().some(value => value > 0)
+    return !calcMissingSlots().some(({missing}) => missing > 0)
   }
 
   function fillDecorations(): Build {
@@ -30,13 +30,18 @@ export function searchBuild(
       .filter<Decoration>((dec): dec is Decoration => dec !== undefined)
   }
 
-  function calcNeedsPerSlot(): Map<Slot | undefined, number> {
+  function calcNeedsPerSlot(): Map<Size | undefined, {nb: number; skills: Skill[]}> {
     const decorations = context.decorations.mutableCopy()
     return skillsNotInParts()
       .flatMap(leveledSkill => Array<Skill>(leveledSkill.level).fill(leveledSkill.skill))
       .reduce(
-        (acc, neededSkill) => acc.update(decorations.takeMinDecoration(neededSkill)?.size, (v = 0) => v + 1),
-        Map<Slot | undefined, number>()
+        (acc, neededSkill) =>
+          acc.update(decorations.takeMinDecoration(neededSkill)?.size, (v = {nb: 0, skills: []}) => {
+            v.nb += 1
+            v.skills.push(neededSkill)
+            return v
+          }),
+        Map<Size | undefined, {nb: number; skills: Skill[]}>()
       )
   }
 
@@ -46,30 +51,31 @@ export function searchBuild(
       .filter(skill => skill.level > 0)
   }
 
-  function calcMissingSlots(): Map<Slot | undefined, number> {
+  function calcMissingSlots(): Map<Size | undefined, {missing: number; skills: Skill[]}> {
     const needsPerSlot = calcNeedsPerSlot()
-    const availableSlots = partsCandidate.availableSlots() as Map<Slot | undefined, number>
-    return [undefined, Slot.lvl1, Slot.lvl2, Slot.lvl3, Slot.lvl4]
-      .reduce(
-        (map, slot) => map.set(slot, needsPerSlot.get(slot, 0) - availableSlots.get(slot, 0)),
-        Map<Slot | undefined, number>()
-      )
+    const availableSlots = partsCandidate.availableSlots() as Map<Size | undefined, number>
+    return [undefined, Size.lvl1, Size.lvl2, Size.lvl3, Size.lvl4]
+      .reduce((map, slot) => {
+        const slotInfo = needsPerSlot.get(slot) || {nb: 0, skills: []}
+        return map.set(slot, {missing: slotInfo.nb - availableSlots.get(slot, 0), skills: slotInfo.skills})
+      }, Map<Size | undefined, {missing: number; skills: Skill[]}>().asMutable())
       .withMutations(recycleUnusedSlots)
+      .asImmutable()
   }
 
-  function recycleUnusedSlots(missingSlots: Map<Slot | undefined, number>) {
-    ;[Slot.lvl1, Slot.lvl2, Slot.lvl3].reduce<Slot[]>((unplaced, slot) => {
-      const missing = missingSlots.get(slot, 0)
+  function recycleUnusedSlots(missingSlots: Map<Size | undefined, {missing: number; skills: Skill[]}>) {
+    ;[Size.lvl1, Size.lvl2, Size.lvl3].reduce<Size[]>((unplaced, slotSize) => {
+      const sizeInfo = missingSlots.get(slotSize) || {missing: 0, skills: []}
 
-      for (let i = 0; i < missing; i++) {
-        unplaced.push(slot)
+      for (let i = 0; i < sizeInfo.missing; i++) {
+        unplaced.push(slotSize)
       }
 
-      for (let i = 0; i < -1 * missing; i++) {
+      for (let i = 0; i < -1 * sizeInfo.missing; i++) {
         const DecoSizeToPlace = unplaced.pop()
         if (DecoSizeToPlace !== undefined) {
-          missingSlots.update(DecoSizeToPlace, nb => nb - 1)
-          missingSlots.update(slot, nb => nb + 1)
+          missingSlots.update(DecoSizeToPlace, sizeInfo => ({missing: sizeInfo.missing - 1, skills: sizeInfo.skills}))
+          missingSlots.update(slotSize, sizeInfo => ({missing: sizeInfo.missing + 1, skills: sizeInfo.skills}))
         }
       }
 

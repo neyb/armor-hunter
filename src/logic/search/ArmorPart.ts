@@ -1,15 +1,12 @@
 import {LeveledSkill} from "logic/search/LeveledSkill"
-import {ArmorSet, PartType, SearchRequest, Slot} from "./types"
+import {ArmorSet, PartType, SearchRequest, Size} from "./types"
 
 export class ArmorPart {
-  static of = (set: string, rarity: number, partType: PartType, skills: LeveledSkill[], slots: number[]) =>
-    new ArmorPart({id: set, rarity}, partType, skills, slots)
-
   constructor(
     readonly set: ArmorSet,
     readonly partType: PartType,
     readonly skills: LeveledSkill[],
-    readonly slots: Slot[]
+    readonly slots: Size[]
   ) {}
 
   isABetterPart(other: ArmorPart, request: SearchRequest): boolean {
@@ -27,12 +24,12 @@ export class ArmorPart {
   }
 
   private hasBetterSlots(other: ArmorPart) {
-    return [Slot.lvl1, Slot.lvl2, Slot.lvl3, Slot.lvl4].every(
+    return [Size.lvl1, Size.lvl2, Size.lvl3, Size.lvl4].every(
       slot => this.numberOfSlot(slot) >= other.numberOfSlot(slot)
     )
   }
 
-  private numberOfSlot(slot: Slot) {
+  private numberOfSlot(slot: Size) {
     return this.slots.filter(s => s >= slot).length
   }
 }

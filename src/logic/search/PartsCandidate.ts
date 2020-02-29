@@ -1,5 +1,5 @@
 import {ArmorPart} from "logic/search/ArmorPart"
-import {Build, PartType, SearchRequest, Slot} from "./types"
+import {Build, PartType, SearchRequest, Size} from "./types"
 import {searchBuild} from "/logic/search/searchBuild"
 import {LeveledSkill} from "/logic/search/LeveledSkill"
 import {Skill} from "/logic/search/Skill"
@@ -21,10 +21,10 @@ export class PartsCandidate {
       .reduce((skill1, skill2) => skill1.plus(skill2), new LeveledSkill(0, searchedSkill))
   }
 
-  availableSlots(): Map<Slot, number> {
+  availableSlots(): Map<Size, number> {
     return this.parts
       .flatMap(part => part.slots)
-      .reduce((nbBySlot, slot) => nbBySlot.update(slot, (nb = 0) => nb + 1), Map<Slot, number>())
+      .reduce((nbBySlot, slot) => nbBySlot.update(slot, (nb = 0) => nb + 1), Map<Size, number>())
   }
 
   withDecorations(decorations: Decoration[]): Build {

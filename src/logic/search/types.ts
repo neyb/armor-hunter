@@ -1,6 +1,7 @@
 import {LeveledSkill} from "logic/search/LeveledSkill"
 import {ArmorPart} from "logic/search/ArmorPart"
 import {Decoration} from "/logic/search/Decoration"
+import {Skill} from "/logic/conf/conf"
 
 export interface SearchRequest {
   leveledSkills: LeveledSkill[]
@@ -9,6 +10,12 @@ export interface SearchRequest {
 export interface ArmorSet {
   readonly id: string
   readonly rarity: number
+  readonly setSkills: SetSkill[]
+}
+
+export interface SetSkill {
+  skill: Skill
+  ActivationPartCount: number
 }
 
 export enum PartType {
@@ -28,7 +35,7 @@ export interface Build {
   readonly decorations: Decoration[]
 }
 
-export enum Slot {
+export enum Size {
   lvl1 = 1,
   lvl2,
   lvl3,

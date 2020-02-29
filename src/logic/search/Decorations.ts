@@ -1,8 +1,7 @@
-import {SearchRequest, Slot} from "./types"
-import {is, List, Map, Seq, ValueObject} from "immutable"
-import {min} from "lodash"
-import {Skill} from "/logic/search/Skill"
-import {Decoration} from "/logic/search/Decoration"
+import {SearchRequest, Size} from "./types"
+import {List, Map, Seq} from "immutable"
+import {Skill} from "./Skill"
+import {Decoration} from "./Decoration"
 
 export class Decorations {
   constructor(readonly decorations: Map<Decoration, number>) {}
@@ -21,17 +20,13 @@ export class Decorations {
     )
   }
 
-  forSkill(skill: Skill): Seq.Indexed<Decoration> {
-    return this.decorations.keySeq().filter(decoration => decoration.hasSkill(skill))
-  }
+  forSkill = (skill: Skill): Seq.Indexed<Decoration> =>
+    this.decorations.keySeq().filter(decoration => decoration.hasSkill(skill))
 
-  minNeededSlot(skill: Skill): Slot | undefined {
-    const map = this.decorations
-      .keySeq()
-      .filter(dec => dec.hasSkill(skill))
-      .map(dec => dec.size)
-    return min(map.toArray())
-  }
+  minNeededSlot = (skill: Skill): Size | undefined =>
+    this.forSkill(skill)
+      .map(decoration => decoration.size)
+      .min()
 
   mutableCopy = () => new MutableDecorations(this.decorations.asMutable())
 }
