@@ -1,11 +1,10 @@
-import {ArmorPart} from "/logic/search/ArmorPart"
-import {Decoration} from "/logic/search/Decoration"
-import {Decorations} from "/logic/search/Decorations"
-import {SearchRequest} from "/logic/search/types"
+import {SearchContext as Data, SearchRequest} from "./data"
+import {ArmorPart} from "./ArmorPart"
+import {Decorations} from "./Decorations"
 
 export class SearchContext {
-  static from = ({availableParts, decorations}: {availableParts: ArmorPart[]; decorations: Decoration[]}) =>
-    new SearchContext(availableParts, Decorations.of(decorations))
+  static ofData = ({availableParts, decorations}: Data) =>
+    new SearchContext(availableParts.map(ArmorPart.ofData), Decorations.ofData(decorations))
 
   constructor(readonly availableParts: ArmorPart[], readonly decorations: Decorations) {}
 

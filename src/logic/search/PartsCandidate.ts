@@ -1,11 +1,12 @@
 import {ArmorPart} from "./ArmorPart"
-import {Build, PartType, SearchRequest, Size} from "./types"
 import {searchBuild} from "./searchBuild"
 import {LeveledSkill} from "./LeveledSkill"
 import {Skill} from "./Skill"
 import {SearchContext} from "./searchContext"
 import {Decoration} from "./Decoration"
 import {List, Map} from "immutable"
+import {Build, PartType, SearchRequest, Size} from "./data"
+import {SetSkill} from "./SetSkill"
 
 export class PartsCandidate {
   constructor(readonly parts: ArmorPart[]) {}
@@ -49,13 +50,11 @@ export class PartsCandidate {
   }
 
   private activatedSetSkills(): Skill[] {
-    const setSkills = this.parts.flatMap(part => part.set).flatMap(set => set.setSkills)
-    const countedSetSkills = List(setSkills).countBy(v => v)
-    const skills = countedSetSkills
-      .filter((nb, setSkills) => setSkills.activationPartCount <= nb)
+    return List(this.parts.flatMap(part => part.set).flatMap(set => set.setSkills))
+      .countBy(v => v)
+      .filter((nb, setSkills: SetSkill) => setSkills.activationPartCount <= nb)
       .keySeq()
       .map(setSkill => setSkill.skill)
       .toArray()
-    return skills
   }
 }

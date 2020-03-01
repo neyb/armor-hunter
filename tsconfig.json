@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {"/*": ["./*"]},
+    "lib": ["es2019", "webworker", "es5", "scripthost", "dom"],
+    "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "strict": true,
-    "moduleResolution": "node",
-    "baseUrl": "src",
-    "paths": {
-      "/*": ["./*"]
-    },
-    "lib": ["es2019", "webworker", "es5", "scripthost", "dom"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true
   }
 }

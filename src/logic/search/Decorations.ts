@@ -1,20 +1,19 @@
-import {SearchRequest, Size} from "./types"
 import {List, Map, Seq} from "immutable"
 import {Skill} from "./Skill"
 import {Decoration} from "./Decoration"
+import {SearchRequest, Size, Decoration as DecorationData} from "./data"
 
 export class Decorations {
+  static ofData = (data: [DecorationData, number][]) =>
+    new Decorations(Map(data.map(([dec, nb]) => [Decoration.ofData(dec), nb])))
+  static of = (decorations: Decoration[]) => new Decorations(List(decorations).countBy(dec => dec))
   constructor(readonly decorations: Map<Decoration, number>) {}
-
-  static of(decorations: Decoration[]) {
-    return new Decorations(List(decorations).countBy(dec => dec))
-  }
 
   filterFor(request: SearchRequest): Decorations {
     return new Decorations(
       Map(
         this.decorations.filter((_, decoration) =>
-          request.leveledSkills.some(leveledSkill => decoration.hasSkill(leveledSkill.skill))
+          request.leveledSkills.some(leveledSkill => decoration.hasSkill(Skill.ofData(leveledSkill.skill)))
         )
       )
     )

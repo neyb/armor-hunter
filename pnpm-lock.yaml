@@ -1226,7 +1226,7 @@ packages:
   /@sheerun/mutationobserver-shim/0.3.2:
     dev: true
     resolution:
-      integrity: sha512-vTCdPp/T/Q3oSqwHmZ5Kpa9oI7iLtGl3RQaA/NyLHikvcrPxACkkKVr/XzkSPJWXHRhKGzVvb0urJsbMlRxi1Q==
+      integrity: sha512-vTCdPp/Data/Q3oSqwHmZ5Kpa9oI7iLtGl3RQaA/NyLHikvcrPxACkkKVr/XzkSPJWXHRhKGzVvb0urJsbMlRxi1Q==
   /@sinonjs/commons/1.7.1:
     dependencies:
       type-detect: 4.0.8
@@ -1384,7 +1384,7 @@ packages:
       node: '>=0.4.0'
     hasBin: true
     resolution:
-      integrity: sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
+      integrity: sha512-Data/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
   /acorn/6.4.0:
     engines:
       node: '>=0.4.0'

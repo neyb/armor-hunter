@@ -1,9 +1,9 @@
-import {Build, PartType, SearchRequest} from "./types"
 import {ArmorPart} from "logic/search/ArmorPart"
 import {Observable} from "rxjs"
 import {filter, map} from "rxjs/operators"
-import {PartsCandidate} from "/logic/search/PartsCandidate"
-import {SearchContext} from "/logic/search/searchContext"
+import {PartsCandidate} from "./PartsCandidate"
+import {SearchContext} from "./searchContext"
+import {Build, PartType, SearchRequest} from "./data"
 
 export function search(request: SearchRequest, context: SearchContext): Observable<Build> {
   context = context.filter(request)

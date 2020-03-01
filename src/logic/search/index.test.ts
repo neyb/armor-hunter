@@ -1,7 +1,6 @@
 import {BuildFoundMessage, endMessage, startSearch} from "."
-import {Build} from "./types"
 import {reduce} from "rxjs/operators"
-import {SearchContext} from "/logic/search/searchContext"
+import {Build} from "./data"
 
 describe("startSearch", () => {
   const worker = {
@@ -30,7 +29,7 @@ describe("startSearch", () => {
 
   function testSimulatingWorker(...builds: any[]) {
     simulateCalc(...builds)
-    return startSearch({leveledSkills: []}, SearchContext.from({availableParts: [], decorations: []}))
+    return startSearch({leveledSkills: []}, {decorations: [], availableParts: []})
       .pipe(reduce((acc, build) => [...acc, build], [] as Build[]))
       .toPromise()
       .then(receivedBuilds => expect(builds).toEqual(receivedBuilds))

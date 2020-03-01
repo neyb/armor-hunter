@@ -1,7 +1,11 @@
-import {LeveledSkill} from "logic/search/LeveledSkill"
-import {ArmorSet, PartType, SearchRequest, Size} from "./types"
+import {LeveledSkill} from "./LeveledSkill"
+import {ArmorPart as Data, PartType, SearchRequest, Size} from "./data"
+import {ArmorSet} from "./ArmorSet"
 
-export class ArmorPart {
+export class ArmorPart implements Data {
+  static ofData = ({set, partType, skills, slots}: Data) =>
+    new ArmorPart(ArmorSet.ofData(set), partType, skills.map(LeveledSkill.ofData), slots)
+
   constructor(
     readonly set: ArmorSet,
     readonly partType: PartType,

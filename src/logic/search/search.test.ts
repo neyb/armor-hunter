@@ -1,12 +1,24 @@
-import {ArmorSet, Build, PartType, Size} from "./types"
-import {LeveledSkill} from "./LeveledSkill"
-import {ArmorPart} from "./ArmorPart"
+import {
+  ArmorPart,
+  ArmorSet,
+  Build,
+  Decoration,
+  dualDecoration,
+  LeveledSkill as LeveledSkillData,
+  PartType,
+  simpleDecoration,
+  Size,
+  SetSkill as SetSkillData,
+  Skill,
+} from "./data"
 import {reduce} from "rxjs/operators"
 import {search} from "./search"
 import {SearchContext} from "./searchContext"
-import {Decoration} from "./Decoration"
-import {Skill} from "/logic/search/Skill"
-import {SetSkill} from "/logic/search/SetSkill"
+
+const skill = (nb?: number) => ({id: `skill${nb || ""}`})
+const setSkill = {id: "set skill"}
+const level = (level: number) => (skill: Skill) => ({level, skill})
+const level1 = level(1)
 
 describe("search", () => {
   const postMessage = jest.fn()
@@ -18,44 +30,43 @@ describe("search", () => {
   describe("without decoration", () => {
     test("impossible build returns no build", () =>
       searchAll({
-        leveledSkills: [LeveledSkill.of("skill", 1)],
+        leveledSkills: [level1(skill())],
         availableParts: [],
       }).then(builds => expect(builds).toEqual([])))
 
     test("with only 1 part works as expected", () =>
       searchAll({
-        leveledSkills: [LeveledSkill.of("skill", 1)],
-        availableParts: [part({skills: [LeveledSkill.of("skill", 1)]})],
+        leveledSkills: [level1(skill())],
+        availableParts: [part({skills: [level1(skill())]})],
       }).then(builds => expect(builds).toMatchObject([{head: {set: {id: "set"}}}])))
   })
 
   describe("simple decorations", () => {
     test("a build with only 1 decoration is ok", async () => {
-      const decoration = Decoration.of(1, "skill1")
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("skill1", 1)],
+        leveledSkills: [level1(skill(1))],
         availableParts: [part({slots: [1]})],
-        decorations: [decoration],
+        decorations: [[simpleDecoration(1, skill(1)), 1]],
       })
-      expect(builds).toMatchObject([{head: {}, decorations: [decoration]}])
+      expect(builds).toMatchObject([{head: {}, decorations: [simpleDecoration(1, skill(1))]}])
     })
 
     test("a build with only 1 decoration in super size slot is ok", async () => {
-      const decoration = Decoration.of(1, "skill1")
+      const decoration = simpleDecoration(1, skill(1))
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("skill1", 1)],
+        leveledSkills: [level1(skill(1))],
         availableParts: [part({slots: [2]})],
-        decorations: [decoration],
+        decorations: [[decoration, 1]],
       })
       expect(builds).toMatchObject([{head: {}, decorations: [decoration]}])
     })
 
     test("a build with only 2 decorations is ok", async () => {
-      const decoration = Decoration.of(1, "skill1")
+      const decoration = simpleDecoration(1, skill(1))
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("skill1", 2)],
+        leveledSkills: [level(2)(skill(1))],
         availableParts: [part({slots: [1, 1]})],
-        decorations: [decoration, decoration],
+        decorations: [[decoration, 2]],
       })
       expect(builds).toMatchObject([
         {
@@ -66,20 +77,20 @@ describe("search", () => {
     })
 
     test("a build with 1 armor & 1 decoration is ok", async () => {
-      const decoration = Decoration.of(1, "skill1")
+      const decoration = simpleDecoration(1, skill(1))
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("skill1", 2)],
-        availableParts: [part({skills: [LeveledSkill.of("skill1", 1)], slots: [1]})],
-        decorations: [decoration],
+        leveledSkills: [level(2)(skill(1))],
+        availableParts: [part({skills: [level1(skill(1))], slots: [1]})],
+        decorations: [[decoration, 1]],
       })
       expect(builds).toMatchObject([{head: {set: {id: "set"}}, decorations: [decoration]}])
     })
 
     test("a build needing 2 same decorations but got only 1 find no builds", async () => {
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("skill1", 2)],
+        leveledSkills: [level(2)(skill(1))],
         availableParts: [part({slots: [1, 1]})],
-        decorations: [Decoration.of(1, "skill1")],
+        decorations: [[simpleDecoration(1, skill(1)), 1]],
       })
       expect(builds).toMatchObject([])
     })
@@ -88,8 +99,8 @@ describe("search", () => {
   describe("with set skills", () => {
     test("a build with only a set skill is ok", async () => {
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("set skill", 1)],
-        availableParts: [part({set: set({setSkills: [{skill: new Skill("set skill"), activationPartCount: 1}]})})],
+        leveledSkills: [{skill: setSkill, level: 1}],
+        availableParts: [part({set: set({setSkills: [{skill: setSkill, activationPartCount: 1}]})})],
         decorations: [],
       })
       expect(builds).toMatchObject([{head: {}}])
@@ -97,19 +108,19 @@ describe("search", () => {
 
     test("3 parts available of 2-parts set skill should make 4 builds (3x(2 of them)+1xall)", async () => {
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("set skill", 1)],
+        leveledSkills: [level(1)(setSkill)],
         availableParts: [
           part({
             partType: PartType.head,
-            set: set({setSkills: [{skill: new Skill("set skill"), activationPartCount: 2}]}),
+            set: set({setSkills: [{skill: setSkill, activationPartCount: 2}]}),
           }),
           part({
             partType: PartType.chest,
-            set: set({setSkills: [{skill: new Skill("set skill"), activationPartCount: 2}]}),
+            set: set({setSkills: [{skill: setSkill, activationPartCount: 2}]}),
           }),
           part({
             partType: PartType.arm,
-            set: set({setSkills: [{skill: new Skill("set skill"), activationPartCount: 2}]}),
+            set: set({setSkills: [{skill: setSkill, activationPartCount: 2}]}),
           }),
         ],
         decorations: [],
@@ -121,11 +132,11 @@ describe("search", () => {
 
   describe.skip("lvl4 decorations", () => {
     test("a build with only a decoration lvl4", async () => {
-      const decoration = Decoration.dual("skill1", "skill2")
+      const decoration = dualDecoration(skill(1), skill(2))
       const builds = await searchAll({
-        leveledSkills: [LeveledSkill.of("skill1", 1), LeveledSkill.of("skill2", 1)],
+        leveledSkills: [level1(skill(1)), level1(skill(2))],
         availableParts: [part({slots: [4]})],
-        decorations: [decoration],
+        decorations: [[decoration, 1]],
       })
       expect(builds).toMatchObject([{head: {set: {id: "set"}}, decorations: [decoration]}])
     })
@@ -136,12 +147,11 @@ describe("search", () => {
     availableParts = [],
     decorations = [],
   }: {
-    leveledSkills?: LeveledSkill[]
+    leveledSkills?: LeveledSkillData[]
     availableParts?: ArmorPart[]
-    decorations?: Decoration[]
+    decorations?: [Decoration, number][]
   }): Promise<Build[]> {
-    const context = SearchContext.from({availableParts, decorations})
-    return search({leveledSkills}, context)
+    return search({leveledSkills}, SearchContext.ofData({availableParts, decorations}))
       .pipe(reduce((builds: Build[], build: Build) => [...builds, build], []))
       .toPromise()
   }
@@ -149,14 +159,14 @@ describe("search", () => {
 
 describe("context filtering", () => {
   test("parts of different type does not filter each other", () => {
-    const filteredContext = SearchContext.from({
+    const filteredContext = SearchContext.ofData({
       availableParts: [
-        part({set: set({id: "set1"}), partType: PartType.head, skills: [LeveledSkill.of("skill1", 3)]}),
-        part({set: set({id: "set2"}), partType: PartType.chest, skills: [LeveledSkill.of("skill1", 2)]}),
+        part({set: set({id: "set1"}), partType: PartType.head, skills: [level(3)(skill(1))]}),
+        part({set: set({id: "set2"}), partType: PartType.chest, skills: [level(2)(skill(1))]}),
       ],
       decorations: [],
     }).filter({
-      leveledSkills: [LeveledSkill.of("skill1", 3)],
+      leveledSkills: [level(3)(skill(1))],
     })
 
     expect(filteredContext.availableParts).toMatchObject([{set: {id: "set1"}}, {set: {id: "set2"}}])
@@ -164,14 +174,14 @@ describe("context filtering", () => {
 
   describe("filtering on skills", () => {
     test("same part but one with 1 leveledSkill higher level than the other should", () => {
-      const filteredContext = SearchContext.from({
+      const filteredContext = SearchContext.ofData({
         availableParts: [
-          part({set: set({id: "set1"}), skills: [LeveledSkill.of("skill1", 3)]}),
-          part({set: set({id: "set2"}), skills: [LeveledSkill.of("skill1", 2)]}),
+          part({set: set({id: "set1"}), skills: [level(3)(skill(1))]}),
+          part({set: set({id: "set2"}), skills: [level(2)(skill(1))]}),
         ],
         decorations: [],
       }).filter({
-        leveledSkills: [LeveledSkill.of("skill1", 3)],
+        leveledSkills: [level(3)(skill(1))],
       })
 
       expect(filteredContext.availableParts).toMatchObject([{set: {id: "set1"}}])
@@ -180,7 +190,7 @@ describe("context filtering", () => {
 
   describe("filter on slots", () => {
     test("complex test", () => {
-      const filteredContext = SearchContext.from({
+      const filteredContext = SearchContext.ofData({
         availableParts: [
           part({set: set({id: "set1"}), slots: [1, 1, 3]}),
           part({set: set({id: "set2"}), slots: [1, 2, 2]}),
@@ -195,7 +205,7 @@ describe("context filtering", () => {
 
   describe("filtering on rarity", () => {
     test("same parts with different rarity", () => {
-      const filteredContext = SearchContext.from({
+      const filteredContext = SearchContext.ofData({
         availableParts: [part({set: set({id: "set1", rarity: 1})}), part({set: set({id: "set2", rarity: 2})})],
         decorations: [],
       }).filter({leveledSkills: []})
@@ -211,12 +221,13 @@ function set({
 }: {
   id?: string
   rarity?: number
-  setSkills?: {skill: Skill; activationPartCount: number}[]
+  setSkills?: SetSkillData[]
 } = {}): ArmorSet {
-  return {id, rarity, setSkills: setSkills.map(ss => new SetSkill(ss.skill, ss.activationPartCount))}
+  return {id, rarity, setSkills}
 }
 
 const defaultSet = set()
+
 function part({
   set = defaultSet,
   partType = PartType.head,
@@ -225,8 +236,8 @@ function part({
 }: {
   set?: ArmorSet
   partType?: PartType
-  skills?: LeveledSkill[]
+  skills?: LeveledSkillData[]
   slots?: Size[]
 }): ArmorPart {
-  return new ArmorPart(set, partType, skills, slots)
+  return {set, partType, skills, slots}
 }
