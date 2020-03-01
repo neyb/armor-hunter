@@ -2595,79 +2595,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react.development.js');
 }
-},{"./cjs/react.development.js":"../node_modules/react/cjs/react.development.js"}],"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"custom.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/scheduler/cjs/scheduler.development.js":[function(require,module,exports) {
+},{"./cjs/react.development.js":"../node_modules/react/cjs/react.development.js"}],"../node_modules/scheduler/cjs/scheduler.development.js":[function(require,module,exports) {
 /** @license React v0.18.0
  * scheduler.development.js
  *
@@ -31802,7 +31730,79 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"custom.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47056,49 +47056,156 @@ function startSearch(request, context) {
 }
 
 exports.startSearch = startSearch;
-},{"rxjs":"../node_modules/rxjs/_esm5/index.js","rxjs/operators":"../node_modules/rxjs/_esm5/operators/index.js","./search-in-webworker.ts":[["search-in-webworker.22eb00b8.js","logic/search/search-in-webworker.ts"],"search-in-webworker.22eb00b8.js.map","logic/search/search-in-webworker.ts"]}],"Hello.js":[function(require,module,exports) {
+},{"rxjs":"../node_modules/rxjs/_esm5/index.js","rxjs/operators":"../node_modules/rxjs/_esm5/operators/index.js","./search-in-webworker.ts":[["search-in-webworker.22eb00b8.js","logic/search/search-in-webworker.ts"],"search-in-webworker.22eb00b8.js.map","logic/search/search-in-webworker.ts"]}],"logic/search/data.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Hello;
 
-var _react = _interopRequireDefault(require("react"));
+exports.simpleDecoration = function (size, skill) {
+  return {
+    size: size,
+    leveledSkills: [{
+      level: 1,
+      skill: skill
+    }]
+  };
+};
 
-var _index = require("./logic/search/index.ts");
+exports.dualDecoration = function (skill1, skill2) {
+  return {
+    size: Size.lvl4,
+    leveledSkills: [{
+      level: 1,
+      skill: skill1
+    }, {
+      level: 1,
+      skill: skill2
+    }]
+  };
+};
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+exports.pureDecoration = function (skill, level) {
+  return {
+    size: Size.lvl4,
+    leveledSkills: [{
+      level: level,
+      skill: skill
+    }]
+  };
+};
 
-function Hello(_ref) {
-  var name = _ref.name;
-  return _react.default.createElement("div", {
-    onClick: function onClick(e) {
-      (0, _index.startSearch)().promise.then(console.log);
+var PartType;
+
+(function (PartType) {
+  PartType[PartType["head"] = 0] = "head";
+  PartType[PartType["chest"] = 1] = "chest";
+  PartType[PartType["arm"] = 2] = "arm";
+  PartType[PartType["waist"] = 3] = "waist";
+  PartType[PartType["legs"] = 4] = "legs";
+})(PartType = exports.PartType || (exports.PartType = {}));
+
+var Size;
+
+(function (Size) {
+  Size[Size["lvl1"] = 1] = "lvl1";
+  Size[Size["lvl2"] = 2] = "lvl2";
+  Size[Size["lvl3"] = 3] = "lvl3";
+  Size[Size["lvl4"] = 4] = "lvl4";
+})(Size = exports.Size || (exports.Size = {}));
+},{}],"Hello.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var react_1 = __importDefault(require("react"));
+
+var search_1 = require("/logic/search");
+
+var data_1 = require("./logic/search/data");
+
+function Hello(_a) {
+  var name = _a.name;
+  var skill = {
+    id: "skill1"
+  };
+
+  var start = function start() {
+    return search_1.startSearch({
+      leveledSkills: [{
+        skill: skill,
+        level: 2
+      }]
+    }, {
+      availableParts: [{
+        set: {
+          id: "set",
+          rarity: 1,
+          setSkills: []
+        },
+        partType: data_1.PartType.head,
+        skills: [{
+          skill: skill,
+          level: 1
+        }],
+        slots: [1]
+      }],
+      decorations: [[{
+        size: data_1.Size.lvl1,
+        leveledSkills: [{
+          level: 1,
+          skill: skill
+        }]
+      }, 1]]
+    }).toPromise().then(console.log);
+  };
+
+  return react_1.default.createElement("div", {
+    onClick: function onClick() {
+      start();
     }
   }, "hello ", name);
 }
-},{"react":"../node_modules/react/index.js","./logic/search/index.ts":"logic/search/index.ts"}],"app.js":[function(require,module,exports) {
+
+exports.default = Hello;
+},{"react":"../node_modules/react/index.js","/logic/search":"logic/search/index.ts","./logic/search/data":"logic/search/data.ts"}],"app.tsx":[function(require,module,exports) {
 "use strict";
 
-var _react = _interopRequireDefault(require("react"));
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var react_1 = __importDefault(require("react"));
+
+var react_dom_1 = __importDefault(require("react-dom"));
 
 require("/custom.css");
 
-var _reactDom = _interopRequireDefault(require("react-dom"));
-
-var _Hello = _interopRequireDefault(require("/Hello"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var Hello_1 = __importDefault(require("/Hello"));
 
 var App = function App() {
-  return _react.default.createElement("div", null, _react.default.createElement(_Hello.default, {
+  return react_1.default.createElement("div", null, react_1.default.createElement(Hello_1.default, {
     name: "world"
   }));
 };
 
-_reactDom.default.render(_react.default.createElement(App, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","/custom.css":"custom.css","react-dom":"../node_modules/react-dom/index.js","/Hello":"Hello.js"}],"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+react_dom_1.default.render(react_1.default.createElement(App, null), document.getElementById("root"));
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","/custom.css":"custom.css","/Hello":"Hello.tsx"}],"../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -47126,7 +47233,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46501" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37555" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -47302,5 +47409,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
-//# sourceMappingURL=/app.c328ef1a.js.map
+},{}]},{},["../node_modules/.pnpm/registry.npmjs.org/parcel-bundler/1.12.4/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.tsx"], null)
+//# sourceMappingURL=/app.5793fd45.js.map
