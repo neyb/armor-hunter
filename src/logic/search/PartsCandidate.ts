@@ -29,12 +29,15 @@ export class PartsCandidate {
 
   withDecorations(decorations: Decoration[]): Build {
     return {
-      head: this.part(PartType.head),
-      chest: this.part(PartType.chest),
-      arm: this.part(PartType.arm),
-      waist: this.part(PartType.waist),
-      legs: this.part(PartType.legs),
-      decorations: decorations,
+      head: this.part(PartType.head)?.data() || null,
+      chest: this.part(PartType.chest)?.data() || null,
+      arm: this.part(PartType.arm)?.data() || null,
+      waist: this.part(PartType.waist)?.data() || null,
+      legs: this.part(PartType.legs)?.data() || null,
+      decorations: List(decorations)
+        .countBy(dec => dec)
+        .mapKeys(dec => dec.data())
+        .toArray(),
     }
   }
 

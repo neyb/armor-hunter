@@ -6,6 +6,7 @@ export class Skill implements ValueObject {
 
   constructor(readonly id: string) {}
 
+  data = (): Data => ({id: this.id})
   equals = (other: any) => is(this.id, other.id)
   hashCode = () => hash(this.id)
 }

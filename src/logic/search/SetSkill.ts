@@ -7,6 +7,7 @@ export class SetSkill implements ValueObject {
 
   constructor(readonly skill: Skill, readonly activationPartCount: number) {}
 
+  data = (): Data => ({skill: this.skill.data(), activationPartCount: this.activationPartCount})
   hashCode = this.skill.hashCode
   equals = (other: any) =>
     other instanceof SetSkill && is(this.skill, other.skill) && is(this.activationPartCount, other.activationPartCount)

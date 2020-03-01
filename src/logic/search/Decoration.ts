@@ -5,6 +5,7 @@ import {Decoration as Data, Size} from "./data"
 
 export class Decoration implements ValueObject {
   static ofData = ({size, leveledSkills}: Data) => new Decoration(size, leveledSkills.map(LeveledSkill.ofData))
+  data = (): Data => ({size: this.size, leveledSkills: this.leveledSkills.map(skill => skill.data())})
 
   static of = (size: number, skill: string) => new Decoration(size, [new LeveledSkill(1, new Skill(skill))])
   static dual = (skill1: string, skill2: string) =>

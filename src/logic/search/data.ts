@@ -1,27 +1,27 @@
-export interface SearchRequest {
+export interface SearchRequest extends SerialisableObject {
   leveledSkills: LeveledSkill[]
 }
 
-export interface SearchContext {
+export interface SearchContext extends SerialisableObject {
   readonly availableParts: ArmorPart[]
   readonly decorations: [Decoration, number][]
 }
 
-export interface Build {
-  readonly head?: ArmorPart
-  readonly chest?: ArmorPart
-  readonly arm?: ArmorPart
-  readonly waist?: ArmorPart
-  readonly legs?: ArmorPart
-  readonly decorations: Decoration[]
+export interface Build extends SerialisableObject {
+  readonly head: ArmorPart | null
+  readonly chest: ArmorPart | null
+  readonly arm: ArmorPart | null
+  readonly waist: ArmorPart | null
+  readonly legs: ArmorPart | null
+  readonly decorations: [Decoration, number][]
 }
 
-export interface LeveledSkill {
+export interface LeveledSkill extends SerialisableObject {
   readonly level: number
   readonly skill: Skill
 }
 
-export interface ArmorPart {
+export interface ArmorPart extends SerialisableObject {
   readonly set: ArmorSet
   readonly partType: PartType
   readonly skills: LeveledSkill[]
@@ -43,16 +43,16 @@ export const pureDecoration = (skill: Skill, level: number): Decoration => ({
   size: Size.lvl4,
   leveledSkills: [{level, skill}],
 })
-export interface Decoration {
+export interface Decoration extends SerialisableObject {
   readonly size: Size
   readonly leveledSkills: LeveledSkill[]
 }
 
-export interface Skill {
+export interface Skill extends SerialisableObject {
   readonly id: string
 }
 
-export interface ArmorSet {
+export interface ArmorSet extends SerialisableObject {
   readonly id: string
   readonly rarity: number
   readonly setSkills: SetSkill[]
@@ -73,7 +73,13 @@ export enum Size {
   lvl4,
 }
 
-export interface SetSkill {
+export interface SetSkill extends SerialisableObject {
   readonly skill: Skill
   readonly activationPartCount: number
+}
+
+type SerialisablePrimitive = bigint | boolean | null | number | string | symbol | undefined
+type SerialisableValue = SerialisablePrimitive | SerialisableObject | Array<SerialisableValue>
+interface SerialisableObject {
+  [key: string]: SerialisableValue
 }

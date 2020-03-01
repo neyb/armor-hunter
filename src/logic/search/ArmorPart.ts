@@ -2,7 +2,7 @@ import {LeveledSkill} from "./LeveledSkill"
 import {ArmorPart as Data, PartType, SearchRequest, Size} from "./data"
 import {ArmorSet} from "./ArmorSet"
 
-export class ArmorPart implements Data {
+export class ArmorPart {
   static ofData = ({set, partType, skills, slots}: Data) =>
     new ArmorPart(ArmorSet.ofData(set), partType, skills.map(LeveledSkill.ofData), slots)
 
@@ -13,6 +13,12 @@ export class ArmorPart implements Data {
     readonly slots: Size[]
   ) {}
 
+  data = (): Data => ({
+    set: this.set.data(),
+    partType: this.partType,
+    skills: this.skills.map(s => s.data()),
+    slots: this.slots,
+  })
   isABetterPart(other: ArmorPart, request: SearchRequest): boolean {
     return this.hasBetterSkills(other, request) && this.hasBetterSlots(other) && this.set.rarity >= other.set.rarity
   }

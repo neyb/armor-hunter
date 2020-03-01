@@ -13,6 +13,7 @@ export class LeveledSkill {
   }
 
   plus = (other: LeveledSkill) => new LeveledSkill(this.level + other.level, this.skill)
-
   minus = (other: LeveledSkill) => new LeveledSkill(this.level - other.level, this.skill)
+
+  data = (): Data => ({skill: this.skill.data(), level: this.level})
 }

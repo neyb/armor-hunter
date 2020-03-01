@@ -48,7 +48,7 @@ describe("search", () => {
         availableParts: [part({slots: [1]})],
         decorations: [[simpleDecoration(1, skill(1)), 1]],
       })
-      expect(builds).toMatchObject([{head: {}, decorations: [simpleDecoration(1, skill(1))]}])
+      expect(builds).toMatchObject([{head: {}, decorations: [[simpleDecoration(1, skill(1)), 1]]}])
     })
 
     test("a build with only 1 decoration in super size slot is ok", async () => {
@@ -58,7 +58,7 @@ describe("search", () => {
         availableParts: [part({slots: [2]})],
         decorations: [[decoration, 1]],
       })
-      expect(builds).toMatchObject([{head: {}, decorations: [decoration]}])
+      expect(builds).toMatchObject([{head: {}, decorations: [[decoration, 1]]}])
     })
 
     test("a build with only 2 decorations is ok", async () => {
@@ -71,7 +71,7 @@ describe("search", () => {
       expect(builds).toMatchObject([
         {
           head: {},
-          decorations: [decoration, decoration],
+          decorations: [[decoration, 2]],
         },
       ])
     })
@@ -83,7 +83,7 @@ describe("search", () => {
         availableParts: [part({skills: [level1(skill(1))], slots: [1]})],
         decorations: [[decoration, 1]],
       })
-      expect(builds).toMatchObject([{head: {set: {id: "set"}}, decorations: [decoration]}])
+      expect(builds).toMatchObject([{head: {set: {id: "set"}}, decorations: [[decoration, 1]]}])
     })
 
     test("a build needing 2 same decorations but got only 1 find no builds", async () => {
