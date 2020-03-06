@@ -1,5 +1,6 @@
 import uid from "uniqid"
-import {dux, merge} from "/lib/dux"
+import {dux} from "/lib/dux"
+import {merge} from "/lib/merge"
 
 export type State = {readonly query: Query}
 type Query = {readonly skills: LeveledSkillRow[]}
