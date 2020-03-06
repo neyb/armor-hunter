@@ -1,0 +1,17 @@
+body {
+  padding-top: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  display:flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 1rem;
+}

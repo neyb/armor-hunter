@@ -3,13 +3,14 @@
     "moduleResolution": "node",
     "baseUrl": "src",
     "paths": {"/*": ["./*"]},
-    "lib": ["es2019", "webworker", "es5", "scripthost", "dom"],
+    "lib": ["es2020", "webworker", "scripthost", "dom"],
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "target": "ES6"
   }
 }

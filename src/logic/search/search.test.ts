@@ -16,7 +16,7 @@ import {search} from "./search"
 import {SearchContext} from "./searchContext"
 
 const skill = (nb?: number) => ({id: `skill${nb || ""}`})
-const setSkill = {id: "set skill"}
+const setSkill = {id: "set row"}
 const level = (level: number) => (skill: Skill) => ({level, skill})
 const level1 = level(1)
 
@@ -96,8 +96,8 @@ describe("search", () => {
     })
   })
 
-  describe("with set skills", () => {
-    test("a build with only a set skill is ok", async () => {
+  describe("with set rows", () => {
+    test("a build with only a set row is ok", async () => {
       const builds = await searchAll({
         leveledSkills: [{skill: setSkill, level: 1}],
         availableParts: [part({set: set({setSkills: [{skill: setSkill, activationPartCount: 1}]})})],
@@ -106,7 +106,7 @@ describe("search", () => {
       expect(builds).toMatchObject([{head: {}}])
     })
 
-    test("3 parts available of 2-parts set skill should make 4 builds (3x(2 of them)+1xall)", async () => {
+    test("3 parts available of 2-parts set row should make 4 builds (3x(2 of them)+1xall)", async () => {
       const builds = await searchAll({
         leveledSkills: [level(1)(setSkill)],
         availableParts: [
@@ -172,7 +172,7 @@ describe("context filtering", () => {
     expect(filteredContext.availableParts).toMatchObject([{set: {id: "set1"}}, {set: {id: "set2"}}])
   })
 
-  describe("filtering on skills", () => {
+  describe("filtering on rows", () => {
     test("same part but one with 1 leveledSkill higher level than the other should", () => {
       const filteredContext = SearchContext.ofData({
         availableParts: [

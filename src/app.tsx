@@ -1,12 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "/custom.css";
-import Hello from "/Hello";
-
-const App = () => (
-  <div>
-    <Hello name="world" />
-  </div>
-)
+import "./custom.scss";
+import {App} from "./ui/App";
 
 ReactDOM.render(<App/>, document.getElementById("root"))
