@@ -1,13 +1,11 @@
-import React, {useState} from "react"
-import {Query} from "./query"
+import React from "react"
 import Results from "./Results"
+import {Query} from "./query"
 
 export default function Builder() {
-  const [query, setQuery] = useState<Query>({skills: []})
-
   return (
     <div className="container row">
-      <Query query={query} />
+      <Query />
       <Results />
     </div>
   )

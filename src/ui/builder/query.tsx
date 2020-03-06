@@ -1,9 +1,8 @@
-import React, {ChangeEventHandler, useState} from "react"
-import {isEqual, flow} from "lodash"
-import {Skill, actions} from "/logic/builder/store"
-import {LeveledSkillRow} from "../../logic/builder/store"
+import React, {ChangeEventHandler} from "react"
+import {flow, isEqual, noop} from "lodash"
+import {actions, LeveledSkillRow, Skill} from "/logic/builder/store"
 import {useDispatch, useSelector} from "react-redux"
-import {RootState} from "../../logic/store"
+import {RootState} from "/logic/store"
 
 const allSkills: Skill[] = [
   {id: "skill 1", max: 1},
@@ -17,7 +16,7 @@ export function Query() {
   const rows = useSelector((state: RootState) => state.builder.query.skills)
   const dispatch = useDispatch()
   const updateRow = flow(actions.updateRow, dispatch)
-  const cleanRows = () => dispatch(actions.cleanRows(undefined))
+  const cleanRows = flow(noop, actions.cleanRows, dispatch)
 
   return (
     <div className="container">
@@ -41,7 +40,7 @@ function Skills({
     <div>
       <div>skills:</div>
       <div>{JSON.stringify(rows)}</div>
-      {rows.map((row, index) => (
+      {rows.map(row => (
         <SelectLeveledSkill key={row.id} row={row} updateRow={updateRow} cleanRows={cleanRows} allSkills={allSkills} />
       ))}
     </div>
