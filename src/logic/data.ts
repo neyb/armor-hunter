@@ -50,6 +50,7 @@ export interface Decoration extends SerialisableObject {
 
 export interface Skill extends SerialisableObject {
   readonly id: string
+  readonly maxLevel: number
 }
 
 export interface ArmorSet extends SerialisableObject {
@@ -75,7 +76,7 @@ export enum Size {
 
 export interface SetSkill extends SerialisableObject {
   readonly skill: Skill
-  readonly activationPartCount: number
+  readonly pieces: number
 }
 
 type SerialisablePrimitive = bigint | boolean | null | number | string | symbol | undefined

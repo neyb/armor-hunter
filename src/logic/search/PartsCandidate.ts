@@ -5,7 +5,7 @@ import {Skill} from "./Skill"
 import {SearchContext} from "./searchContext"
 import {Decoration} from "./Decoration"
 import {List, Map} from "immutable"
-import {Build, PartType, SearchRequest, Size} from "./data"
+import {Build, PartType, SearchRequest, Size} from "../data"
 import {SetSkill} from "./SetSkill"
 
 export class PartsCandidate {

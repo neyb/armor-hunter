@@ -10,7 +10,7 @@ import {
   Size,
   SetSkill as SetSkillData,
   Skill,
-} from "./data"
+} from "../data"
 import {reduce} from "rxjs/operators"
 import {search} from "./search"
 import {SearchContext} from "./searchContext"
@@ -100,7 +100,7 @@ describe("search", () => {
     test("a build with only a set row is ok", async () => {
       const builds = await searchAll({
         leveledSkills: [{skill: setSkill, level: 1}],
-        availableParts: [part({set: set({setSkills: [{skill: setSkill, activationPartCount: 1}]})})],
+        availableParts: [part({set: set({setSkills: [{skill: setSkill, pieces: 1}]})})],
         decorations: [],
       })
       expect(builds).toMatchObject([{head: {}}])
@@ -112,15 +112,15 @@ describe("search", () => {
         availableParts: [
           part({
             partType: PartType.head,
-            set: set({setSkills: [{skill: setSkill, activationPartCount: 2}]}),
+            set: set({setSkills: [{skill: setSkill, pieces: 2}]}),
           }),
           part({
             partType: PartType.chest,
-            set: set({setSkills: [{skill: setSkill, activationPartCount: 2}]}),
+            set: set({setSkills: [{skill: setSkill, pieces: 2}]}),
           }),
           part({
             partType: PartType.arm,
-            set: set({setSkills: [{skill: setSkill, activationPartCount: 2}]}),
+            set: set({setSkills: [{skill: setSkill, pieces: 2}]}),
           }),
         ],
         decorations: [],

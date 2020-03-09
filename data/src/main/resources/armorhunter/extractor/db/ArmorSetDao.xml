@@ -2,7 +2,7 @@
 <!--@formatter:off-->
 <mapper namespace="armorhunter.extractor.db.ArmorSetDao">
     <select id="all" resultMap="armorset">
-        select 'null' nnuull,
+        select
             <include refid="armorset">
                 <property name="nameTable" value="armorset_text_en"/>
             </include>,

@@ -1,18 +1,14 @@
 import React, {ChangeEventHandler} from "react"
 import {flow, isEqual, noop} from "lodash"
-import {actions, LeveledSkillRow, Skill} from "/logic/builder/store"
+import {actions, LeveledSkillRow} from "/logic/builder/store"
 import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "/logic/store"
-
-const allSkills: Skill[] = [
-  {id: "skill 1", max: 1},
-  {id: "skill 2", max: 2},
-  {id: "skill 3", max: 3},
-  {id: "skill 4", max: 4},
-  {id: "skill 5", max: 5},
-]
+import {Skill} from "/logic/data"
 
 export function Query() {
+  const allSkills = useSelector((state: RootState) => state.data.skills).sort((skill1, skill2) =>
+    skill1.id.localeCompare(skill2.id)
+  )
   const rows = useSelector((state: RootState) => state.builder.query.skills)
   const dispatch = useDispatch()
   const updateRow = flow(actions.updateRow, dispatch)
@@ -61,7 +57,7 @@ function SelectLeveledSkill({
   const selectedSkill = allSkills.find(s => s.id === row.skill?.id) || null
 
   const selectableSkills = [{label: "aucun", value: null}, ...allSkills.map(s => ({label: s.id, value: s}))]
-  const selectableLevels = [...new Array(selectedSkill?.max || 0).keys()]
+  const selectableLevels = [...new Array(selectedSkill?.maxLevel || 0).keys()]
     .map(nb => nb + 1)
     .map(level => ({label: level.toString(), value: level}))
 
@@ -75,7 +71,7 @@ function SelectLeveledSkill({
         }
         onBlur={cleanRows}
       />
-      {selectedSkill != null && selectedSkill.max > 1 && (
+      {selectedSkill != null && selectedSkill.maxLevel > 1 && (
         <Select
           selected={row.skill?.level || 1}
           options={selectableLevels}

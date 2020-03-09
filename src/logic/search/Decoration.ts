@@ -1,7 +1,7 @@
 import {hash, is, ValueObject} from "immutable"
 import {Skill} from "./Skill"
 import {LeveledSkill} from "./LeveledSkill"
-import {Decoration as Data, Size} from "./data"
+import {Decoration as Data, Size} from "../data"
 
 export class Decoration implements ValueObject {
   static ofData = ({size, leveledSkills}: Data) => new Decoration(size, leveledSkills.map(LeveledSkill.ofData))

@@ -1,5 +1,5 @@
 import {Subscription} from "rxjs"
-import {SearchRequest, SearchContext as SearchContextData} from "./data"
+import {SearchRequest, SearchContext as SearchContextData} from "../data"
 import {search} from "./search"
 import {BuildFoundMessage, endMessage} from "."
 import {SearchContext} from "./searchContext"

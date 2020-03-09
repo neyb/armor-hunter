@@ -1,7 +1,7 @@
 import {List, Map, Seq} from "immutable"
 import {Skill} from "./Skill"
 import {Decoration} from "./Decoration"
-import {SearchRequest, Size, Decoration as DecorationData} from "./data"
+import {SearchRequest, Size, Decoration as DecorationData} from "../data"
 
 export class Decorations {
   static ofData = (data: [DecorationData, number][]) =>

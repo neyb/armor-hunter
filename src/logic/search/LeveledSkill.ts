@@ -1,5 +1,5 @@
 import {Skill} from "/logic/search/Skill"
-import {LeveledSkill as Data} from "./data"
+import {LeveledSkill as Data} from "../data"
 
 export class LeveledSkill {
   static from = ({level, skill}: {level: number; skill: Skill}) => new LeveledSkill(level, skill)

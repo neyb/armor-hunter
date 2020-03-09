@@ -1,6 +1,5 @@
 package armorhunter.extractor
 
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.internal.HashMapSerializer
 import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.json.Json

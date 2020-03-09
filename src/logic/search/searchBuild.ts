@@ -1,4 +1,4 @@
-import {Build, SearchRequest, Size} from "./data"
+import {Build, SearchRequest, Size} from "../data"
 import {LeveledSkill} from "/logic/search/LeveledSkill"
 import {PartsCandidate} from "/logic/search/PartsCandidate"
 import {SearchContext} from "/logic/search/searchContext"
