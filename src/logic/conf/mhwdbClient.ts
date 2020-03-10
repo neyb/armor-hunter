@@ -1,4 +1,4 @@
-import {ArmorPart, PartType, Skill} from "../data"
+import {ArmorPart, Decoration, PartType, Skill} from "../data"
 
 const mhwdbUri = "https://mhw-db.com/"
 
@@ -32,11 +32,6 @@ type ArmorMhwdb = {
   resistances: {fire: number; water: number; ice: number; thunder: number; dragon: number}
   slots: {rank: number}[]
   skills: {level: number; skillName: string}[]
-}
-
-const defined = <T>(t: T | undefined | null): T => {
-  if (t === undefined || t === null) throw new Error("")
-  return t
 }
 
 const getSkill = (skills: Skill[], id: string) => {
@@ -86,4 +81,26 @@ export const fetchArmors = (skills: Skill[]): Promise<ArmorPart[]> =>
       armorsetsMhwdb.flatMap(armorsetMhwdb =>
         armorsetMhwdb.pieces.map(armorMhwdb => toArmor(skills, armorsetMhwdb, armorMhwdb))
       )
+    )
+
+type DecorationMhwdb = {
+  id: number
+  name: string
+  slot: number
+  skills: {id: number; level: number; skillName: string}[]
+}
+
+export const fetchDecorations = (skills: Skill[]): Promise<Decoration[]> =>
+  get("/decorations", {
+    p: JSON.stringify({slot: true, name: true, "skills.id": true, "skills.level": true, "skills.skillName": true}),
+  })
+    .then(r => r.json() as Promise<DecorationMhwdb[]>)
+    .then(decorations =>
+      decorations.map(decoration => ({
+        size: decoration.slot,
+        leveledSkills: decoration.skills.map(skill => ({
+          skill: getSkill(skills, skill.skillName),
+          level: skill.level,
+        })),
+      }))
     )

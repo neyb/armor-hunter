@@ -1,46 +1,44 @@
-interface WorldInventory {
-  parts: ArmorPart[]
+import {ArmorPart, Decoration, Skill} from "../data"
+import {fetchArmors, fetchDecorations, fetchSkills} from "./mhwdbClient"
+import {actions} from "../data/store"
+import {RootState} from "../store"
+import {Store} from "redux"
+
+export async function reloadData(store: Store<RootState>) {
+  const skills = await loadSkills(store)
+  loadArmors(store, skills)
+  loadDecorations(store, skills)
 }
 
-interface ArmorPart {
-  readonly set: ArmorSet
-  readonly partType: PartType
-  readonly skills: LeveledSkill[]
+async function loadSkills(store: Store<RootState>): Promise<Skill[]> {
+  const skills = store.getState().data.skills
+  return skills.length
+    ? skills
+    : await (async () => {
+        const skills = await fetchSkills()
+        store.dispatch(actions.updateSkills(skills))
+        return skills
+      })()
 }
 
-export enum PartType {
-  head,
-  chest,
-  arm,
-  waist,
-  legs,
+async function loadArmors(store: Store<RootState>, skills: Skill[]): Promise<ArmorPart[]> {
+  const armors = store.getState().data.armors
+  return armors.length
+    ? armors
+    : await (async () => {
+        const armors = await fetchArmors(skills)
+        store.dispatch(actions.updateArmors(armors))
+        return armors
+      })()
 }
 
-export interface ArmorSet {
-  readonly id: string
-}
-
-export const three = {v: 3}
-
-export interface Skill {
-  readonly id: string
-}
-
-interface SetSkill {
-  skill: Skill
-  ActivationPartCount: number
-}
-
-interface Decoration {
-  size: number
-  skills: Skill[]
-}
-
-export interface LeveledSkill {
-  readonly level: number
-  readonly skill: Skill
-}
-
-export interface SearchRequest {
-  leveledSkills: LeveledSkill[]
+async function loadDecorations(store: Store<RootState>, skills: Skill[]): Promise<Decoration[]> {
+  const decorations = store.getState().data.decorations
+  return decorations.length
+    ? decorations
+    : await (async () => {
+        const decorations = await fetchDecorations(skills)
+        store.dispatch(actions.updateDecorations(decorations))
+        return decorations
+      })()
 }

@@ -15,8 +15,8 @@ import {reduce} from "rxjs/operators"
 import {search} from "./search"
 import {SearchContext} from "./searchContext"
 
-const skill = (nb?: number) => ({id: `skill${nb || ""}`})
-const setSkill = {id: "set row"}
+const skill = (nb?: number) => ({id: `skill${nb || ""}`, maxLevel: 5})
+const setSkill = {id: "set row", maxLevel: 5}
 const level = (level: number) => (skill: Skill) => ({level, skill})
 const level1 = level(1)
 
