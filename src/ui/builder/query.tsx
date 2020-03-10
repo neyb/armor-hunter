@@ -6,9 +6,7 @@ import {RootState} from "/logic/store"
 import {Skill} from "/logic/data"
 
 export function Query() {
-  const allSkills = useSelector((state: RootState) => state.data.skills).sort((skill1, skill2) =>
-    skill1.id.localeCompare(skill2.id)
-  )
+  const allSkills = useSelector((state: RootState) => state.data.skills)
   const rows = useSelector((state: RootState) => state.builder.query.skills)
   const dispatch = useDispatch()
   const updateRow = flow(actions.updateRow, dispatch)
@@ -21,6 +19,8 @@ export function Query() {
   )
 }
 
+const sortSkills = (skills: Skill[]) => skills.sort((skill1, skill2) => skill1.id.localeCompare(skill2.id))
+
 function Skills({
   rows,
   updateRow,
@@ -32,13 +32,27 @@ function Skills({
   cleanRows: () => void
   allSkills: Skill[]
 }) {
+  const unusedSkills = sortSkills(allSkills.filter(skill => !rows.map(row => row.skill?.id).includes(skill.id)))
+  const usableSkillsOf = (row: LeveledSkillRow) => {
+    const selectedSkill = allSkills.find(skill => skill.id === row.skill?.id)
+    return selectedSkill !== undefined ? sortSkills([...unusedSkills, selectedSkill]) : unusedSkills
+  }
+
   return (
     <div>
       <div>skills:</div>
       <div>{JSON.stringify(rows)}</div>
-      {rows.map(row => (
-        <SelectLeveledSkill key={row.id} row={row} updateRow={updateRow} cleanRows={cleanRows} allSkills={allSkills} />
-      ))}
+      {rows.map(row => {
+        return (
+          <SelectLeveledSkill
+            key={row.id}
+            row={row}
+            updateRow={updateRow}
+            cleanRows={cleanRows}
+            skills={usableSkillsOf(row)}
+          />
+        )
+      })}
     </div>
   )
 }
@@ -46,20 +60,23 @@ function Skills({
 function SelectLeveledSkill({
   row,
   updateRow,
-  allSkills,
+  skills,
   cleanRows,
 }: {
   row: LeveledSkillRow
   updateRow: (skill: LeveledSkillRow) => void
   cleanRows: () => void
-  allSkills: Skill[]
+  skills: Skill[]
 }) {
-  const selectedSkill = allSkills.find(s => s.id === row.skill?.id) || null
+  const selectedSkill = skills.find(s => s.id === row.skill?.id) || null
 
-  const selectableSkills = [{label: "aucun", value: null}, ...allSkills.map(s => ({label: s.id, value: s}))]
+  const selectableSkills = [
+    {key: -1, label: "aucun", value: null},
+    ...skills.map(s => ({key: s.id, label: s.id, value: s})),
+  ]
   const selectableLevels = [...new Array(selectedSkill?.maxLevel || 0).keys()]
     .map(nb => nb + 1)
-    .map(level => ({label: level.toString(), value: level}))
+    .map(level => ({key: level, label: level.toString(), value: level}))
 
   return (
     <div className="row">
@@ -90,7 +107,7 @@ function Select<Value>({
   onBlur = () => undefined,
 }: {
   selected: Value
-  options: {value: Value; label: string}[]
+  options: {key: string | number; value: Value; label: string}[]
   enable?: boolean
   onChange?: (value: Value) => void
   onBlur?: () => void
@@ -104,8 +121,8 @@ function Select<Value>({
 
   return (
     <select onChange={handleChange} disabled={!enable} defaultValue={selectedIndex} onBlur={onBlur}>
-      {options.map(({label, value}, index) => (
-        <option key={index} value={index}>
+      {options.map(({key, label, value}, index) => (
+        <option key={key} value={index}>
           {label}
         </option>
       ))}
