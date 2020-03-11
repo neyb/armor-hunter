@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler} from "react"
+import React, {ChangeEvent, ChangeEventHandler} from "react"
 import {flow, isEqual, noop} from "lodash"
 import {actions, LeveledSkillRow} from "/logic/builder/store"
 import {useDispatch, useSelector} from "react-redux"
@@ -74,25 +74,20 @@ function SelectLeveledSkill({
     {key: -1, label: "aucun", value: null},
     ...skills.map(s => ({key: s.id, label: s.id, value: s})),
   ]
-  const selectableLevels = [...new Array(selectedSkill?.maxLevel || 0).keys()]
-    .map(nb => nb + 1)
-    .map(level => ({key: level, label: level.toString(), value: level}))
+  const handleChangeSkill = (newSelectedSkill: Skill | null) =>
+    updateRow({id: row.id, skill: newSelectedSkill && {id: newSelectedSkill.id, level: 1}})
+
+  const handleChangeLevel = (level: number) => updateRow({id: row.id, skill: row.skill && {id: row.skill.id, level}})
 
   return (
     <div className="row">
-      <Select
-        selected={selectedSkill}
-        options={selectableSkills}
-        onChange={(newSelectedSkill: Skill | null) =>
-          updateRow({id: row.id, skill: newSelectedSkill && {id: newSelectedSkill.id, level: 1}})
-        }
-        onBlur={cleanRows}
-      />
+      <Select selected={selectedSkill} options={selectableSkills} onChange={handleChangeSkill} onBlur={cleanRows} />
       {selectedSkill != null && selectedSkill.maxLevel > 1 && (
-        <Select
-          selected={row.skill?.level || 1}
-          options={selectableLevels}
-          onChange={level => updateRow({id: row.id, skill: row.skill && {id: row.skill.id, level}})}
+        <Range
+          value={row.skill?.level || 1}
+          start={1}
+          end={selectedSkill?.maxLevel || 0}
+          onChange={handleChangeLevel}
         />
       )}
     </div>
@@ -128,4 +123,19 @@ function Select<Value>({
       ))}
     </select>
   )
+}
+
+function Range({
+  value,
+  start,
+  end,
+  onChange = () => undefined,
+}: {
+  value: number
+  start: number
+  end: number
+  onChange?: (value: number) => void
+}) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => onChange(Number(e.target.value))
+  return <input type="range" onChange={handleChange} min={start} max={end} value={value} />
 }
