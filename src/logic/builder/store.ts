@@ -1,18 +1,19 @@
 import uid from "uniqid"
 import {dux} from "/lib/dux"
 import {merge} from "/lib/merge"
+import {Build} from "../data"
 
-export type State = {readonly query: Query}
-type Query = {readonly skills: LeveledSkillRow[]}
+export type State = {readonly query: Query; results: BuildRow[]}
+export type Query = {readonly skills: LeveledSkillRow[]}
 export type LeveledSkillRow = {id: string; skill: LeveledSkill | null}
-type LeveledSkill = {id: string; level: number}
+export type LeveledSkill = {id: string; level: number}
+type BuildRow = {id: string; build: Build}
 
 const createEmptySkill = () => ({id: uid(), skill: null})
 
 const initialState: State = {
-  query: {
-    skills: [createEmptySkill()],
-  },
+  query: {skills: [createEmptySkill()]},
+  results: [],
 }
 
 const updateRow = (state: State, newRow: LeveledSkillRow) => {
@@ -26,4 +27,8 @@ const cleanRows = (state: State) => {
   return merge(state, {query: {skills: rows.filter((row, index) => row.skill !== null || index === rows.length - 1)}})
 }
 
-export const {actions, reducer} = dux({updateRow, cleanRows}, initialState)
+const clearBuilds = (state: State) => ({...state, results: []})
+
+const addBuild = (state: State, build: BuildRow) => ({...state, results: [...state.results, build]})
+
+export const {actions, reducer} = dux({updateRow, cleanRows, clearBuilds, addBuild}, initialState)

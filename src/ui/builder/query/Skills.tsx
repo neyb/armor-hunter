@@ -1,27 +1,11 @@
 import React, {ChangeEvent, ChangeEventHandler} from "react"
-import {flow, isEqual, noop} from "lodash"
-import {actions, LeveledSkillRow} from "/logic/builder/store"
-import {useDispatch, useSelector} from "react-redux"
-import {RootState} from "/logic/store"
+import {isEqual} from "lodash"
 import {Skill} from "/logic/data"
-
-export function Query() {
-  const allSkills = useSelector((state: RootState) => state.data.skills)
-  const rows = useSelector((state: RootState) => state.builder.query.skills)
-  const dispatch = useDispatch()
-  const updateRow = flow(actions.updateRow, dispatch)
-  const cleanRows = flow(noop, actions.cleanRows, dispatch)
-
-  return (
-    <div className="container">
-      <Skills rows={rows} updateRow={updateRow} cleanRows={cleanRows} allSkills={allSkills} />
-    </div>
-  )
-}
+import {LeveledSkillRow} from "/logic/builder/store"
 
 const sortSkills = (skills: Skill[]) => skills.sort((skill1, skill2) => skill1.id.localeCompare(skill2.id))
 
-function Skills({
+export function Skills({
   rows,
   updateRow,
   cleanRows,
@@ -41,7 +25,6 @@ function Skills({
   return (
     <div>
       <div>skills:</div>
-      <div>{JSON.stringify(rows)}</div>
       {rows.map(row => {
         return (
           <SelectLeveledSkill

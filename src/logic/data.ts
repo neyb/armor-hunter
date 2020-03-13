@@ -1,3 +1,5 @@
+import {SerialisableObject} from "../lib/serialisable"
+
 export interface SearchRequest extends SerialisableObject {
   leveledSkills: LeveledSkill[]
 }
@@ -77,10 +79,4 @@ export enum Size {
 export interface SetSkill extends SerialisableObject {
   readonly skill: Skill
   readonly pieces: number
-}
-
-type SerialisablePrimitive = bigint | boolean | null | number | string | symbol | undefined
-type SerialisableValue = SerialisablePrimitive | SerialisableObject | Array<SerialisableValue>
-interface SerialisableObject {
-  [key: string]: SerialisableValue
 }
