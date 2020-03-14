@@ -26,13 +26,15 @@ type ArmorSetMhwdb = {
 
 type ArmorMhwdb = {
   name: string
-  type: string
+  type: PartTypeMhwdb
   rarity: string
   defense: {base: number; max: number; augmented: number}
   resistances: {fire: number; water: number; ice: number; thunder: number; dragon: number}
   slots: {rank: number}[]
   skills: {level: number; skillName: string}[]
 }
+
+type PartTypeMhwdb = "head" | "chest" | "gloves" | "waist" | "legs"
 
 const getSkill = (skills: Skill[], id: string) => {
   const found = skills.find(skill => skill.id === id)
@@ -41,7 +43,7 @@ const getSkill = (skills: Skill[], id: string) => {
 }
 
 const toArmor = (skills: Skill[], armorsetMhwdb: ArmorSetMhwdb, armorMhwdb: ArmorMhwdb): ArmorPart => ({
-  partType: PartType.head,
+  partType: toPartType(armorMhwdb.type),
   slots: armorMhwdb.slots.map(({rank}) => rank),
   set: {
     id: armorsetMhwdb.name,
@@ -57,6 +59,21 @@ const toArmor = (skills: Skill[], armorsetMhwdb: ArmorSetMhwdb, armorMhwdb: Armo
     skill: getSkill(skills, skill.skillName),
   })),
 })
+
+const toPartType = (partType: PartTypeMhwdb): PartType => {
+  switch (partType) {
+    case "head":
+      return PartType.head
+    case "chest":
+      return PartType.chest
+    case "gloves":
+      return PartType.arm
+    case "waist":
+      return PartType.waist
+    case "legs":
+      return PartType.legs
+  }
+}
 
 export const fetchArmors = (skills: Skill[]): Promise<ArmorPart[]> =>
   get("/armor/sets", {
