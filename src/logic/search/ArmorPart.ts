@@ -24,12 +24,14 @@ export class ArmorPart {
   }
 
   private hasBetterSkills(other: ArmorPart, request: SearchRequest) {
-    return other.skills.reduce<boolean>(
-      (acc, otherSkill) =>
-        acc &&
-        (!request.leveledSkills.some(skill => skill.skill.id === otherSkill.skill.id) ||
-          this.skills.some(lskill => lskill.isBetterOrSameLevelThan(otherSkill))),
-      true
+    return other
+      .interestingSkills(request)
+      .every(otherSkill => this.interestingSkills(request).some(skill => skill.isBetterOrSameLevelThan(otherSkill)))
+  }
+
+  private interestingSkills(request: SearchRequest) {
+    return [...this.skills, ...this.set.setSkills.map(setSkill => new LeveledSkill(1, setSkill.skill))].filter(skill =>
+      request.leveledSkills.some(LeveledSkill => LeveledSkill.skill.id === skill.skill.id)
     )
   }
 
