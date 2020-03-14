@@ -34,7 +34,7 @@ export const startSearchAction = (
         })),
     },
     {
-      availableParts: state.data.armors, // FIXME do not activate all parts !
+      availableParts: state.data.armors, // .filter(armor => armor.set.rarity > 9), // FIXME do not activate all parts !
       decorations: stock.decorations,
     }
   )

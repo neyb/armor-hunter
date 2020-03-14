@@ -30,7 +30,7 @@ export class ArmorPart {
   }
 
   private interestingSkills(request: SearchRequest) {
-    return [...this.skills, ...this.set.setSkills.map(setSkill => new LeveledSkill(1, setSkill.skill))].filter(skill =>
+    return [...this.skills, ...this.set.setSkills().map(setSkill => new LeveledSkill(1, setSkill))].filter(skill =>
       request.leveledSkills.some(LeveledSkill => LeveledSkill.skill.id === skill.skill.id)
     )
   }

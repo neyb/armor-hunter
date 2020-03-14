@@ -41,10 +41,12 @@ export const dualDecoration = (skill1: Skill, skill2: Skill): Decoration => ({
     {level: 1, skill: skill2},
   ],
 })
+
 export const pureDecoration = (skill: Skill, level: number): Decoration => ({
   size: Size.lvl4,
   leveledSkills: [{level, skill}],
 })
+
 export interface Decoration extends SerialisableObject {
   readonly size: Size
   readonly leveledSkills: LeveledSkill[]
@@ -58,7 +60,17 @@ export interface Skill extends SerialisableObject {
 export interface ArmorSet extends SerialisableObject {
   readonly id: string
   readonly rarity: number
-  readonly setSkills: SetSkill[]
+  readonly bonus: Bonus | null
+}
+
+export interface Bonus extends SerialisableObject {
+  readonly id: string
+  readonly ranks: BonusRank[]
+}
+
+export interface BonusRank extends SerialisableObject {
+  readonly pieces: number
+  readonly skill: Skill
 }
 
 export enum PartType {
@@ -74,9 +86,4 @@ export enum Size {
   lvl2,
   lvl3,
   lvl4,
-}
-
-export interface SetSkill extends SerialisableObject {
-  readonly skill: Skill
-  readonly pieces: number
 }

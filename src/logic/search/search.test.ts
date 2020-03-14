@@ -7,18 +7,24 @@ import {
   LeveledSkill as LeveledSkillData,
   PartType,
   simpleDecoration,
-  Size,
-  SetSkill as SetSkillData,
   Skill,
 } from "../data"
 import {reduce} from "rxjs/operators"
 import {search} from "./search"
 import {SearchContext} from "./searchContext"
+import {merge, RecursivePartial} from "../../lib/merge"
 
 const skill = (nb?: number) => ({id: `skill${nb || ""}`, maxLevel: 5})
 const setSkill = {id: "set row", maxLevel: 5}
 const level = (level: number) => (skill: Skill) => ({level, skill})
 const level1 = level(1)
+const defaultSet: ArmorSet = {id: "set", rarity: 1, bonus: null}
+const defaultPart: ArmorPart = {set: defaultSet, partType: PartType.head, skills: [], slots: []}
+
+// @ts-ignore
+const set = (set: RecursivePartial<ArmorSet>): ArmorSet => merge(defaultSet, set)
+// @ts-ignore
+const part = (part: RecursivePartial<ArmorPart>): ArmorPart => merge(defaultPart, part)
 
 describe("search", () => {
   const postMessage = jest.fn()
@@ -100,28 +106,20 @@ describe("search", () => {
     test("a build with only a set row is ok", async () => {
       const builds = await searchAll({
         leveledSkills: [{skill: setSkill, level: 1}],
-        availableParts: [part({set: set({setSkills: [{skill: setSkill, pieces: 1}]})})],
+        availableParts: [part({set: set({bonus: {id: "bonus", ranks: [{pieces: 1, skill: setSkill}]}})})],
         decorations: [],
       })
       expect(builds).toMatchObject([{head: {}}])
     })
 
     test("3 parts available of 2-parts set row should make 4 builds (3x(2 of them)+1xall)", async () => {
+      const set1: ArmorSet = set({bonus: {id: "bonus", ranks: [{skill: setSkill, pieces: 2}]}})
       const builds = await searchAll({
         leveledSkills: [level(1)(setSkill)],
         availableParts: [
-          part({
-            partType: PartType.head,
-            set: set({setSkills: [{skill: setSkill, pieces: 2}]}),
-          }),
-          part({
-            partType: PartType.chest,
-            set: set({setSkills: [{skill: setSkill, pieces: 2}]}),
-          }),
-          part({
-            partType: PartType.arm,
-            set: set({setSkills: [{skill: setSkill, pieces: 2}]}),
-          }),
+          part({partType: PartType.head, set: set1}),
+          part({partType: PartType.chest, set: set1}),
+          part({partType: PartType.arm, set: set1}),
         ],
         decorations: [],
       })
@@ -213,31 +211,3 @@ describe("context filtering", () => {
     })
   })
 })
-
-function set({
-  id = "set",
-  rarity = 1,
-  setSkills = [],
-}: {
-  id?: string
-  rarity?: number
-  setSkills?: SetSkillData[]
-} = {}): ArmorSet {
-  return {id, rarity, setSkills}
-}
-
-const defaultSet = set()
-
-function part({
-  set = defaultSet,
-  partType = PartType.head,
-  skills = [],
-  slots = [],
-}: {
-  set?: ArmorSet
-  partType?: PartType
-  skills?: LeveledSkillData[]
-  slots?: Size[]
-}): ArmorPart {
-  return {set, partType, skills, slots}
-}

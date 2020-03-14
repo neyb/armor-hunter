@@ -6,7 +6,7 @@ import {SearchContext} from "./searchContext"
 import {Decoration} from "./Decoration"
 import {List, Map} from "immutable"
 import {Build, PartType, SearchRequest, Size} from "../data"
-import {SetSkill} from "./SetSkill"
+import {Bonus} from "./Bonus"
 
 export class PartsCandidate {
   constructor(readonly parts: ArmorPart[]) {}
@@ -53,11 +53,11 @@ export class PartsCandidate {
   }
 
   private activatedSetSkills(): Skill[] {
-    return List(this.parts.flatMap(part => part.set).flatMap(set => set.setSkills))
+    return List(this.parts.map(part => part.set.bonus).filter((bonus): bonus is Bonus => bonus !== null))
       .countBy(v => v)
-      .filter((nb, setSkills: SetSkill) => setSkills.activationPartCount <= nb)
-      .keySeq()
-      .map(setSkill => setSkill.skill)
+      .entrySeq()
       .toArray()
+      .flatMap(([bonus, nb]) => bonus.ranks.filter(rank => rank.pieces <= nb))
+      .map(setSkill => setSkill.skill)
   }
 }

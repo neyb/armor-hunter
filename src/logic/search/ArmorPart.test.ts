@@ -4,7 +4,7 @@ import {PartType} from "../data"
 import {merge, RecursivePartial} from "/lib/merge"
 
 const defaultPart: ArmorPartData = {
-  set: {id: "set", rarity: 1, setSkills: []},
+  set: {id: "set", rarity: 1, bonus: null},
   skills: [],
   partType: PartType.head,
   slots: [],
@@ -63,15 +63,18 @@ describe("hasBetterSkills", () => {
 
   test("a worst part having a searched setskill, is not worst", () => {
     const skill = {id: "skill", maxLevel: 1}
-    const setskill = {activationPartCount: 3, skill: {id: "setskill", maxLevel: 1}}
+    const setSkill = {id: "setskill", maxLevel: 1}
 
-    const part1 = part({skills: [{level: 1, skill}], set: {setSkills: [setskill]}})
+    const part1 = part({
+      skills: [{level: 1, skill}],
+      set: {bonus: {id: "bonus", ranks: [{pieces: 3, skill: setSkill}]}},
+    })
     const part2 = part({skills: [{level: 2, skill}]})
 
     const request = {
       leveledSkills: [
         {level: 3, skill},
-        {level: 1, skill: setskill.skill},
+        {level: 1, skill: setSkill},
       ],
     }
 

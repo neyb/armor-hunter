@@ -21,7 +21,7 @@ type ArmorSetMhwdb = {
   rank: string
   name: string
   pieces: ArmorMhwdb[]
-  bonus: {ranks: {pieces: number; skill: {skillName: string}}[]} | null
+  bonus: {name: string; ranks: {pieces: number; skill: {skillName: string}}[]} | null
 }
 
 type ArmorMhwdb = {
@@ -48,11 +48,16 @@ const toArmor = (skills: Skill[], armorsetMhwdb: ArmorSetMhwdb, armorMhwdb: Armo
   set: {
     id: armorsetMhwdb.name,
     rarity: armorMhwdb.rarity,
-    setSkills:
-      armorsetMhwdb.bonus?.ranks?.map(rank => ({
-        skill: getSkill(skills, rank.skill.skillName),
-        pieces: rank.pieces,
-      })) || [],
+    bonus:
+      armorsetMhwdb.bonus === null
+        ? null
+        : {
+            id: armorsetMhwdb.bonus.name,
+            ranks: armorsetMhwdb.bonus.ranks.map(rank => ({
+              pieces: rank.pieces,
+              skill: getSkill(skills, rank.skill.skillName),
+            })),
+          },
   },
   skills: armorMhwdb.skills.map(skill => ({
     level: skill.level,
@@ -89,6 +94,7 @@ export const fetchArmors = (skills: Skill[]): Promise<ArmorPart[]> =>
       "pieces.skills.level": true,
       "pieces.skills.skillName": true,
       bonus: true,
+      "bonus.name": true,
       "bonus.ranks.pieces": true,
       "bonus.ranks.skill.skillName": true,
     }),
