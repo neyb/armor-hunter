@@ -62,11 +62,11 @@ export interface ArmorSet extends SerialisableObject {
 }
 
 export enum PartType {
-  head,
-  chest,
-  arm,
-  waist,
-  legs,
+  head = "head",
+  chest = "chest",
+  arm = "arm",
+  waist = "waist",
+  legs = "legs",
 }
 
 export enum Size {
