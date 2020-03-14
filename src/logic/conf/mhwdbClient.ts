@@ -27,7 +27,7 @@ type ArmorSetMhwdb = {
 type ArmorMhwdb = {
   name: string
   type: PartTypeMhwdb
-  rarity: string
+  rarity: number
   defense: {base: number; max: number; augmented: number}
   resistances: {fire: number; water: number; ice: number; thunder: number; dragon: number}
   slots: {rank: number}[]
@@ -47,7 +47,7 @@ const toArmor = (skills: Skill[], armorsetMhwdb: ArmorSetMhwdb, armorMhwdb: Armo
   slots: armorMhwdb.slots.map(({rank}) => rank),
   set: {
     id: armorsetMhwdb.name,
-    rarity: 1,
+    rarity: armorMhwdb.rarity,
     setSkills:
       armorsetMhwdb.bonus?.ranks?.map(rank => ({
         skill: getSkill(skills, rank.skill.skillName),
