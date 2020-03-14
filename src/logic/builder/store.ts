@@ -7,7 +7,7 @@ export type State = {readonly query: Query; results: BuildRow[]}
 export type Query = {readonly skills: LeveledSkillRow[]}
 export type LeveledSkillRow = {id: string; skill: LeveledSkill | null}
 export type LeveledSkill = {id: string; level: number}
-type BuildRow = {id: string; build: Build}
+export type BuildRow = {id: string; build: Build}
 
 const createEmptySkill = () => ({id: uid(), skill: null})
 

@@ -34,7 +34,7 @@ export const startSearchAction = (
         })),
     },
     {
-      availableParts: state.data.armors,
+      availableParts: state.data.armors, // FIXME do not activate all parts !
       decorations: stock.decorations,
     }
   )
