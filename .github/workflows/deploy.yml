@@ -7,7 +7,7 @@ env:
   CI: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,4 +16,4 @@ jobs:
       with:
         node-version: 12.x
     - run: npm install
-    - run: npm deploy
+    - run: npm run deploy
