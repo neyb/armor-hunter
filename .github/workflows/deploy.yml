@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
       with:
         ssh-key: ${{ secrets.deploykey }}
     - uses: actions/setup-node@v1
@@ -19,8 +19,26 @@ jobs:
         node-version: 12.x
     - name: install
       run: npm install
+    - name: test
+      run: npm test
+    - name: build
+      run: npm run build
+    - name: changing switching to gh-pages
+      run: |
+        git fetch --depth=1 origin refs/heads/gh-pages:refs/remotes/origin/gh-pages
+        git checkout gh-pages
+    - name: clean gh-pages
+      run: find . -maxdepth 1 -type f -not -name '.*' -delete
+    - name: move build files
+      run: |
+        mv build/* .
+        rm -r build
     - name: configure git user
       run: |
-        git config user.email "actions@github.com"
-        git config user.name actions
-    - run: npm run deploy
+        git config user.email "deploy.actions@github.com"
+        git config user.name deploy.actions
+    - name: add, commit and push
+      run: |
+        git add .
+        git commit -m'update gh-pages for commit: ${{ github.sha }}'
+        git push
