@@ -8,7 +8,7 @@ import {
   PartType,
   simpleDecoration,
   Skill,
-} from "../data"
+} from "../data/data"
 import {reduce} from "rxjs/operators"
 import {search} from "./search"
 import {SearchContext} from "./searchContext"

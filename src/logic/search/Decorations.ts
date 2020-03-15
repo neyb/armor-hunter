@@ -1,12 +1,14 @@
 import {List, Map, Seq} from "immutable"
 import {Skill} from "./Skill"
 import {Decoration} from "./Decoration"
-import {SearchRequest, Size, Decoration as DecorationData} from "../data"
+import {SearchRequest, Size, Decoration as DecorationData} from "../data/data"
+import {LeveledSkill, mergeSkills} from "/logic/search/LeveledSkill"
 
 export class Decorations {
   static ofData = (data: [DecorationData, number][]) =>
     new Decorations(Map(data.map(([dec, nb]) => [Decoration.ofData(dec), nb])))
   static of = (decorations: Decoration[]) => new Decorations(List(decorations).countBy(dec => dec))
+
   constructor(readonly decorations: Map<Decoration, number>) {}
 
   filterFor(request: SearchRequest): Decorations {
@@ -28,6 +30,13 @@ export class Decorations {
       .min()
 
   mutableCopy = () => new MutableDecorations(this.decorations.asMutable())
+
+  skills = (): LeveledSkill[] =>
+    mergeSkills(
+      this.decorations
+        .entrySeq()
+        .flatMap(([decoration], nb) => decoration.leveledSkills.map(LeveledSkill => LeveledSkill.times(nb)))
+    )
 }
 
 class MutableDecorations extends Decorations {

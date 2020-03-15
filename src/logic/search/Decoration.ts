@@ -1,7 +1,7 @@
 import {ValueObject} from "immutable"
 import {Skill} from "./Skill"
 import {LeveledSkill} from "./LeveledSkill"
-import {Decoration as Data, Size} from "../data"
+import {Decoration as Data, Size} from "../data/data"
 import {comparing, hashes} from "/lib/values"
 
 export class Decoration implements ValueObject {

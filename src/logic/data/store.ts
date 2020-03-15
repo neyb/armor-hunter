@@ -1,6 +1,6 @@
 import {dux} from "../../lib/dux"
-import {Skill} from "/logic/data"
-import {ArmorPart, Decoration} from "../data"
+import {Skill} from "/logic/data/data"
+import {ArmorPart, Decoration} from "./data"
 
 export type State = {
   skills: Skill[]

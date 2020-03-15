@@ -1,4 +1,4 @@
-import {ArmorPart, Decoration, PartType, Skill} from "../data"
+import {ArmorPart, Decoration, PartType, Skill} from "../data/data"
 
 const mhwdbUri = "https://mhw-db.com/"
 

@@ -1,4 +1,4 @@
-import {SerialisableObject} from "../lib/serialisable"
+import {SerialisableObject} from "../../lib/serialisable"
 
 export interface SearchRequest extends SerialisableObject {
   leveledSkills: LeveledSkill[]

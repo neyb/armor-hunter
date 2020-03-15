@@ -1,7 +1,8 @@
 import React, {ChangeEvent, ChangeEventHandler} from "react"
 import {isEqual} from "lodash"
-import {Skill} from "/logic/data"
+import {Skill} from "/logic/data/data"
 import {LeveledSkillRow} from "/logic/builder/store"
+import {LeveledSkill} from "/logic/search/LeveledSkill"
 
 const sortSkills = (skills: Skill[]) => skills.sort((skill1, skill2) => skill1.id.localeCompare(skill2.id))
 
@@ -16,9 +17,9 @@ export function Skills({
   cleanRows: () => void
   allSkills: Skill[]
 }) {
-  const unusedSkills = sortSkills(allSkills.filter(skill => !rows.map(row => row.skill?.id).includes(skill.id)))
+  const unusedSkills = sortSkills(allSkills.filter(skill => !rows.map(row => row.skill?.skill?.id).includes(skill.id)))
   const usableSkillsOf = (row: LeveledSkillRow) => {
-    const selectedSkill = allSkills.find(skill => skill.id === row.skill?.id)
+    const selectedSkill = allSkills.find(skill => skill.id === row.skill?.skill?.id)
     return selectedSkill !== undefined ? sortSkills([...unusedSkills, selectedSkill]) : unusedSkills
   }
 
@@ -51,16 +52,16 @@ function SelectLeveledSkill({
   cleanRows: () => void
   skills: Skill[]
 }) {
-  const selectedSkill = skills.find(s => s.id === row.skill?.id) || null
+  const selectedSkill = skills.find(s => s.id === row.skill?.skill?.id) || null
 
   const selectableSkills = [
     {key: -1, label: "aucun", value: null},
     ...skills.map(s => ({key: s.id, label: s.id, value: s})),
   ]
   const handleChangeSkill = (newSelectedSkill: Skill | null) =>
-    updateRow({id: row.id, skill: newSelectedSkill && {id: newSelectedSkill.id, level: 1}})
+    updateRow({id: row.id, skill: newSelectedSkill && LeveledSkill.ofData({skill: newSelectedSkill, level: 1})})
 
-  const handleChangeLevel = (level: number) => updateRow({id: row.id, skill: row.skill && {id: row.skill.id, level}})
+  const handleChangeLevel = (level: number) => updateRow({id: row.id, skill: row.skill?.atLevel(level) || null})
 
   return (
     <div className="row">

@@ -1,5 +1,5 @@
 import {ValueObject} from "immutable"
-import {BonusRank as Data} from "../data"
+import {BonusRank as Data} from "../data/data"
 import {Skill} from "./Skill"
 import {comparing, hashes} from "../../lib/values"
 

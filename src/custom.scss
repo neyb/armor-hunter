@@ -15,3 +15,13 @@ body {
 .container {
   margin: 1rem;
 }
+
+.results{
+  .build {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: lightgray;
+    border: solid grey ;
+    border-radius: 0.5rem;
+  }
+}

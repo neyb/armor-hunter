@@ -1,12 +1,12 @@
 import uid from "uniqid"
 import {dux} from "/lib/dux"
 import {merge} from "/lib/merge"
-import {Build} from "../data"
+import {Build} from "/logic/search/Build"
+import {LeveledSkill} from "/logic/search/LeveledSkill"
 
 export type State = {readonly query: Query; results: BuildRow[]}
 export type Query = {readonly skills: LeveledSkillRow[]}
 export type LeveledSkillRow = {id: string; skill: LeveledSkill | null}
-export type LeveledSkill = {id: string; level: number}
 export type BuildRow = {id: string; build: Build}
 
 const createEmptySkill = () => ({id: uid(), skill: null})
@@ -29,6 +29,6 @@ const cleanRows = (state: State) => {
 
 const clearBuilds = (state: State) => ({...state, results: []})
 
-const addBuild = (state: State, build: BuildRow) => ({...state, results: [...state.results, build]})
+const addBuild = (state: State, build: Build) => ({...state, results: [...state.results, {id: uid(), build}]})
 
 export const {actions, reducer} = dux({updateRow, cleanRows, clearBuilds, addBuild}, initialState)

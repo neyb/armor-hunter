@@ -1,5 +1,5 @@
 import {hash, is, ValueObject} from "immutable"
-import {Skill as Data} from "../data"
+import {Skill as Data} from "../data/data"
 
 export class Skill implements ValueObject {
   static ofData = ({id, maxLevel}: Data) => new Skill(id, maxLevel)

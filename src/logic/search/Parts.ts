@@ -1,3 +1,4 @@
+import {ArmorPart as ArmorPartData} from "/logic/data/data"
 import {ArmorPart} from "./ArmorPart"
 import {searchBuild} from "./searchBuild"
 import {LeveledSkill} from "./LeveledSkill"
@@ -5,10 +6,12 @@ import {Skill} from "./Skill"
 import {SearchContext} from "./searchContext"
 import {Decoration} from "./Decoration"
 import {List, Map} from "immutable"
-import {Build, PartType, SearchRequest, Size} from "../data"
+import {Build, PartType, SearchRequest, Size} from "../data/data"
 import {Bonus} from "./Bonus"
 
-export class PartsCandidate {
+export class Parts {
+  static ofData = (parts: ArmorPartData[]) => new Parts(parts.map(ArmorPart.ofData))
+
   constructor(readonly parts: ArmorPart[]) {}
 
   searchBuild(request: SearchRequest, context: SearchContext): Build | undefined {
@@ -45,7 +48,7 @@ export class PartsCandidate {
     return this.parts.find(part => part.partType === partType)
   }
 
-  private skills(): LeveledSkill[] {
+  skills(): LeveledSkill[] {
     return [
       ...this.parts.flatMap(part => part.skills),
       ...this.activatedSetSkills().map(skill => new LeveledSkill(1, skill)),

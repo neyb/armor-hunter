@@ -1,9 +1,9 @@
 import {ArmorPart} from "logic/search/ArmorPart"
 import {Observable} from "rxjs"
 import {filter, map, take} from "rxjs/operators"
-import {PartsCandidate} from "./PartsCandidate"
+import {Parts} from "./Parts"
 import {SearchContext} from "./searchContext"
-import {Build, PartType, SearchRequest} from "../data"
+import {Build, PartType, SearchRequest} from "../data/data"
 
 export function search(request: SearchRequest, context: SearchContext): Observable<Build> {
   context = context.filter(request)
@@ -14,7 +14,7 @@ export function search(request: SearchRequest, context: SearchContext): Observab
     take(100)
   )
 
-  function allCandidates(): Observable<PartsCandidate> {
+  function allCandidates(): Observable<Parts> {
     const heads = all(PartType.head)
     const chests = all(PartType.chest)
     const arms = all(PartType.arm)
@@ -28,7 +28,7 @@ export function search(request: SearchRequest, context: SearchContext): Observab
             for (const waistPart of waists) {
               for (const legsPart of legs) {
                 subscriber.next(
-                  new PartsCandidate(
+                  new Parts(
                     [headPart, chestPart, armsPart, waistPart, legsPart]
                       .filter(part => part !== null)
                       .map(part => part as ArmorPart)

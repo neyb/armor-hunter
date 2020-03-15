@@ -1,6 +1,6 @@
 import {BuildFoundMessage, endMessage, startSearch} from "."
 import {reduce} from "rxjs/operators"
-import {Build} from "../data"
+import {Build} from "../data/data"
 
 describe("startSearch", () => {
   const worker = {

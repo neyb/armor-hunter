@@ -1,19 +1,13 @@
-import {actions, LeveledSkill as LeveledSkillOfRow, LeveledSkillRow} from "./store"
+import {actions, LeveledSkillRow} from "./store"
 import {startSearch} from "/logic/search"
-import {Skill} from "../data"
+import {SearchRequest, Skill} from "../data/data"
 import {Unsubscribable} from "rxjs"
 import {Dispatch} from "redux"
 import {RootState} from "../store"
-import uniqid from "uniqid"
+import {Build} from "/logic/search/Build"
+import {LeveledSkill} from "/logic/search/LeveledSkill"
 
-export const startSearchAction = (
-  dispatch: Dispatch,
-  getState: () => RootState
-): {cancel: () => void; promise: Promise<undefined>} => {
-  dispatch(actions.clearBuilds(undefined))
-  const state = getState()
-
-  const stock = state.stock
+export const searchRequest = (state: RootState): SearchRequest => {
   const allSkills: Skill[] = state.data.skills
   const skills: LeveledSkillRow[] = state.builder.query.skills
 
@@ -23,27 +17,35 @@ export const startSearchAction = (
       throw new Error(`no skill with id ${id} found`)
     })()
 
-  const search = startSearch(
-    {
-      leveledSkills: skills
-        .map(row => row.skill)
-        .filter((skill): skill is LeveledSkillOfRow => skill !== null)
-        .map(skill => ({
-          level: skill.level,
-          skill: skillOf(skill.id),
-        })),
-    },
-    {
-      availableParts: state.data.armors, // .filter(armor => armor.set.rarity > 9), // FIXME do not activate all parts !
-      decorations: stock.decorations,
-    }
-  )
+  return {
+    leveledSkills: skills
+      .map(row => row.skill)
+      .filter((skill): skill is LeveledSkill => skill !== null)
+      .map(skill => ({
+        level: skill.level,
+        skill: skillOf(skill.skill.id),
+      })),
+  }
+}
+
+export const startSearchAction = (
+  dispatch: Dispatch,
+  getState: () => RootState
+): {cancel: () => void; promise: Promise<undefined>} => {
+  dispatch(actions.clearBuilds(undefined))
+  const state = getState()
+
+  const stock = state.stock
+  const search = startSearch(searchRequest(state), {
+    availableParts: state.data.armors, // .filter(armor => armor.set.rarity > 9), // FIXME do not activate all parts !
+    decorations: stock.decorations,
+  })
 
   let unsubscribable!: Unsubscribable
   const promise = new Promise<undefined>(
     (resolve, reject) =>
       (unsubscribable = search.subscribe({
-        next: build => dispatch(actions.addBuild({id: uniqid(), build})),
+        next: build => dispatch(actions.addBuild(Build.ofData(build))),
         error: reject,
         complete: resolve,
       }))

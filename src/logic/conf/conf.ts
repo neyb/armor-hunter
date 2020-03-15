@@ -1,4 +1,4 @@
-import {ArmorPart, Decoration, Skill} from "../data"
+import {ArmorPart, Decoration, Skill} from "../data/data"
 import {fetchArmors, fetchDecorations, fetchSkills} from "./mhwdbClient"
 import {actions} from "../data/store"
 import {RootState} from "../store"

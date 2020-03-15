@@ -1,16 +1,12 @@
-import {Build, SearchRequest, Size} from "../data"
+import {Build, SearchRequest, Size} from "../data/data"
 import {LeveledSkill} from "/logic/search/LeveledSkill"
-import {PartsCandidate} from "/logic/search/PartsCandidate"
+import {Parts} from "/logic/search/Parts"
 import {SearchContext} from "/logic/search/searchContext"
 import {Decoration} from "/logic/search/Decoration"
 import {Map} from "immutable"
 import {Skill} from "/logic/search/Skill"
 
-export function searchBuild(
-  partsCandidate: PartsCandidate,
-  request: SearchRequest,
-  context: SearchContext
-): Build | undefined {
+export function searchBuild(partsCandidate: Parts, request: SearchRequest, context: SearchContext): Build | undefined {
   return satisfy() ? fillDecorations() : undefined
 
   function satisfy(): boolean {

@@ -1,4 +1,4 @@
-import {ArmorPart, Decoration} from "../data"
+import {ArmorPart, Decoration} from "../data/data"
 import {dux} from "../../lib/dux"
 
 export type Stock = {parts: ArmorPart[]; decorations: [Decoration, number][]}
