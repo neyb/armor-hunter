@@ -15,11 +15,7 @@ export const store: Store<RootState> = createStore(
     builder,
     stock,
   }),
-  compose(
-    applyMiddleware(thunk),
-    // @ts-ignore
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  compose(applyMiddleware(thunk), ((window as any).__REDUX_DEVTOOLS_EXTENSION__ || compose)())
 )
 
 export const persistor = persistStore(store, {}, () => reloadData(store))
