@@ -1,1 +1,0 @@
-{"version":3,"sources":["custom.scss"],"names":[],"mappings":"AAAA,KACE,iBAGF,KAEE,mBAGF,UAJE,aAIF,KAEE,sBAGF,WACE","file":"app.fe39ff67.css","sourceRoot":"../src","sourcesContent":["body {\n  padding-top: 10px;\n}\n\n.row {\n  display: flex;\n  flex-direction: row;\n}\n\n.col {\n  display:flex;\n  flex-direction: column;\n}\n\n.container {\n  margin: 1rem;\n}"]}
