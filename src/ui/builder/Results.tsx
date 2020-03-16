@@ -1,9 +1,9 @@
 import React from "react"
 import {useSelector} from "react-redux"
 import {RootState} from "/logic/store"
-import {Build} from "/logic/search/Build"
-import {ArmorPart} from "/logic/search/ArmorPart"
-import {LeveledSkill} from "/logic/search/LeveledSkill"
+import {Build} from "/logic/builder/search/Build"
+import {ArmorPart} from "/logic/builder/search/ArmorPart"
+import {LeveledSkill} from "/logic/builder/search/LeveledSkill"
 import {searchRequest} from "/logic/builder/search"
 
 export default function Results({}) {

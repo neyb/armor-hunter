@@ -1,6 +1,6 @@
 import {Observable} from "rxjs"
 import {finalize} from "rxjs/operators"
-import {Build, SearchContext, SearchRequest} from "../data/data"
+import {Build, SearchContext, SearchRequest} from "./data"
 
 export interface Message {
   readonly type: string

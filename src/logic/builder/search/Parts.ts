@@ -1,4 +1,4 @@
-import {ArmorPart as ArmorPartData} from "/logic/data/data"
+import {ArmorPart as ArmorPartData} from "/logic/builder/search/data"
 import {ArmorPart} from "./ArmorPart"
 import {searchBuild} from "./searchBuild"
 import {LeveledSkill} from "./LeveledSkill"
@@ -6,7 +6,7 @@ import {Skill} from "./Skill"
 import {SearchContext} from "./searchContext"
 import {Decoration} from "./Decoration"
 import {List, Map} from "immutable"
-import {Build, PartType, SearchRequest, Size} from "../data/data"
+import {Build, PartType, SearchRequest, Size} from "./data"
 import {Bonus} from "./Bonus"
 
 export class Parts {

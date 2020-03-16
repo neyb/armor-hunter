@@ -1,10 +1,10 @@
-import {Build, SearchRequest, Size} from "../data/data"
-import {LeveledSkill} from "/logic/search/LeveledSkill"
-import {Parts} from "/logic/search/Parts"
-import {SearchContext} from "/logic/search/searchContext"
-import {Decoration} from "/logic/search/Decoration"
+import {Build, SearchRequest, Size} from "./data"
+import {LeveledSkill} from "/logic/builder/search/LeveledSkill"
+import {Parts} from "/logic/builder/search/Parts"
+import {SearchContext} from "/logic/builder/search/searchContext"
+import {Decoration} from "/logic/builder/search/Decoration"
 import {Map} from "immutable"
-import {Skill} from "/logic/search/Skill"
+import {Skill} from "/logic/builder/search/Skill"
 
 export function searchBuild(partsCandidate: Parts, request: SearchRequest, context: SearchContext): Build | undefined {
   return satisfy() ? fillDecorations() : undefined

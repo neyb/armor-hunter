@@ -1,6 +1,6 @@
 import {ArmorPart} from "./ArmorPart"
-import {ArmorPart as ArmorPartData} from "/logic/data/data"
-import {PartType} from "../data/data"
+import {ArmorPart as ArmorPartData} from "/logic/builder/search/data"
+import {PartType} from "./data"
 import {merge, RecursivePartial} from "/lib/merge"
 
 const defaultPart: ArmorPartData = {

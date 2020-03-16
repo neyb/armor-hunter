@@ -1,5 +1,5 @@
-import {Skill} from "/logic/search/Skill"
-import {LeveledSkill as Data} from "../data/data"
+import {Skill} from "/logic/builder/search/Skill"
+import {LeveledSkill as Data} from "./data"
 import {List} from "immutable"
 
 export const mergeSkills = (leveledSkills: Iterable<LeveledSkill>): Array<LeveledSkill> =>

@@ -1,7 +1,7 @@
+import {comparing, hashes} from "/lib/values"
 import {ValueObject} from "immutable"
-import {Bonus as Data} from "../data/data"
 import {BonusRank} from "./BonusRank"
-import {comparing, hashes} from "../../lib/values"
+import {Bonus as Data} from "./data"
 
 export class Bonus implements ValueObject {
   static ofData = (bonus: Data) => new Bonus(bonus.id, bonus.ranks.map(BonusRank.ofData))

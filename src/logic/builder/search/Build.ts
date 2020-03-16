@@ -1,9 +1,7 @@
-import {Build as Data, ArmorPart as PartData, SearchRequest} from "/logic/data/data"
-import {ArmorPart} from "/logic/search/ArmorPart"
-import {Decorations} from "/logic/search/Decorations"
-import {Parts} from "/logic/search/Parts"
-import {LeveledSkill, mergeSkills} from "/logic/search/LeveledSkill"
-import {searchRequest} from "/logic/builder/search"
+import {ArmorPart as PartData, Build as Data, SearchRequest} from "/logic/builder/search/data"
+import {Decorations} from "/logic/builder/search/Decorations"
+import {LeveledSkill, mergeSkills} from "/logic/builder/search/LeveledSkill"
+import {Parts} from "/logic/builder/search/Parts"
 
 export class Build {
   static ofData = (build: Data) =>

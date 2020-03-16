@@ -1,4 +1,4 @@
-import {ArmorPart, Decoration, PartType, Skill} from "../data/data"
+import {ArmorPart, Decoration, PartType, Skill} from "../builder/search/data"
 
 const mhwdbUri = "https://mhw-db.com/"
 

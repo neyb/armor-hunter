@@ -1,11 +1,11 @@
 import {actions, LeveledSkillRow} from "./store"
-import {startSearch} from "/logic/search"
-import {SearchRequest, Skill} from "../data/data"
+import {startSearch} from "/logic/builder/search/index"
+import {SearchRequest, Skill} from "./search/data"
 import {Unsubscribable} from "rxjs"
 import {Dispatch} from "redux"
 import {RootState} from "../store"
-import {Build} from "/logic/search/Build"
-import {LeveledSkill} from "/logic/search/LeveledSkill"
+import {Build} from "/logic/builder/search/Build"
+import {LeveledSkill} from "/logic/builder/search/LeveledSkill"
 
 export const searchRequest = (state: RootState): SearchRequest => {
   const allSkills: Skill[] = state.data.skills

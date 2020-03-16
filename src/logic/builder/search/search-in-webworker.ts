@@ -1,7 +1,7 @@
 import {Subscription} from "rxjs"
-import {SearchRequest, SearchContext as SearchContextData} from "../data/data"
+import {SearchRequest, SearchContext as SearchContextData} from "./data"
 import {search} from "./search"
-import {BuildFoundMessage, endMessage} from "."
+import {BuildFoundMessage, endMessage} from "./index"
 import {SearchContext} from "./searchContext"
 
 let messagePosterBuildSubscription: Subscription

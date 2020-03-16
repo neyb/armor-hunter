@@ -1,8 +1,8 @@
 import {List, Map, Seq} from "immutable"
 import {Skill} from "./Skill"
 import {Decoration} from "./Decoration"
-import {SearchRequest, Size, Decoration as DecorationData} from "../data/data"
-import {LeveledSkill, mergeSkills} from "/logic/search/LeveledSkill"
+import {SearchRequest, Size, Decoration as DecorationData} from "./data"
+import {LeveledSkill, mergeSkills} from "/logic/builder/search/LeveledSkill"
 
 export class Decorations {
   static ofData = (data: [DecorationData, number][]) =>

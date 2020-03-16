@@ -1,5 +1,5 @@
-import {ArmorPart, Decoration} from "../data/data"
-import {dux} from "../../lib/dux"
+import {dux} from "/lib/dux"
+import {ArmorPart, Decoration} from "/logic/builder/search/data"
 
 export type Stock = {parts: ArmorPart[]; decorations: [Decoration, number][]}
 

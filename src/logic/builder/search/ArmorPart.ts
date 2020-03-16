@@ -1,5 +1,5 @@
 import {LeveledSkill} from "./LeveledSkill"
-import {ArmorPart as Data, PartType, SearchRequest, Size} from "../data/data"
+import {ArmorPart as Data, PartType, SearchRequest, Size} from "./data"
 import {ArmorSet} from "./ArmorSet"
 
 export class ArmorPart {

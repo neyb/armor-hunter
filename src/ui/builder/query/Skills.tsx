@@ -1,8 +1,8 @@
 import React, {ChangeEvent, ChangeEventHandler} from "react"
 import {isEqual} from "lodash"
-import {Skill} from "/logic/data/data"
+import {Skill} from "/logic/builder/search/data"
 import {LeveledSkillRow} from "/logic/builder/store"
-import {LeveledSkill} from "/logic/search/LeveledSkill"
+import {LeveledSkill} from "/logic/builder/search/LeveledSkill"
 
 const sortSkills = (skills: Skill[]) => skills.sort((skill1, skill2) => skill1.id.localeCompare(skill2.id))
 

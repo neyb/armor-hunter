@@ -1,7 +1,7 @@
+import {comparing, hashes} from "/lib/values"
 import {ValueObject} from "immutable"
-import {BonusRank as Data} from "../data/data"
+import {BonusRank as Data} from "./data"
 import {Skill} from "./Skill"
-import {comparing, hashes} from "../../lib/values"
 
 export class BonusRank implements ValueObject {
   static ofData = ({pieces, skill}: Data) => new BonusRank(pieces, Skill.ofData(skill))

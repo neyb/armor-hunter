@@ -1,6 +1,6 @@
-import {ArmorPart, Decoration, Skill} from "../data/data"
+import {ArmorPart, Decoration, Skill} from "../builder/search/data"
 import {fetchArmors, fetchDecorations, fetchSkills} from "./mhwdbClient"
-import {actions} from "../data/store"
+import {actions} from "./store"
 import {RootState} from "../store"
 import {Store} from "redux"
 

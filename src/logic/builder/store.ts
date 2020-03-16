@@ -1,8 +1,8 @@
 import uid from "uniqid"
 import {dux} from "/lib/dux"
 import {merge} from "/lib/merge"
-import {Build} from "/logic/search/Build"
-import {LeveledSkill} from "/logic/search/LeveledSkill"
+import {Build} from "/logic/builder/search/Build"
+import {LeveledSkill} from "/logic/builder/search/LeveledSkill"
 
 export type State = {readonly query: Query; results: BuildRow[]}
 export type Query = {readonly skills: LeveledSkillRow[]}

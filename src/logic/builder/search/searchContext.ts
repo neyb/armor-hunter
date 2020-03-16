@@ -1,4 +1,4 @@
-import {SearchContext as Data, SearchRequest} from "../data/data"
+import {SearchContext as Data, SearchRequest} from "./data"
 import {ArmorPart} from "./ArmorPart"
 import {Decorations} from "./Decorations"
 

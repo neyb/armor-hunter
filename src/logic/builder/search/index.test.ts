@@ -1,6 +1,6 @@
-import {BuildFoundMessage, endMessage, startSearch} from "."
+import {BuildFoundMessage, endMessage, startSearch} from "./index"
 import {reduce} from "rxjs/operators"
-import {Build} from "../data/data"
+import {Build} from "./data"
 
 describe("startSearch", () => {
   const worker = {

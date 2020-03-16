@@ -1,4 +1,4 @@
-import {ArmorSet as Data} from "../data/data"
+import {ArmorSet as Data} from "./data"
 import {Bonus} from "./Bonus"
 import {Skill} from "./Skill"
 

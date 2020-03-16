@@ -1,3 +1,5 @@
+import {merge, RecursivePartial} from "/lib/merge"
+import {reduce} from "rxjs/operators"
 import {
   ArmorPart,
   ArmorSet,
@@ -8,11 +10,9 @@ import {
   PartType,
   simpleDecoration,
   Skill,
-} from "../data/data"
-import {reduce} from "rxjs/operators"
+} from "./data"
 import {search} from "./search"
 import {SearchContext} from "./searchContext"
-import {merge, RecursivePartial} from "../../lib/merge"
 
 const skill = (nb?: number) => ({id: `skill${nb || ""}`, maxLevel: 5})
 const setSkill = {id: "set row", maxLevel: 5}
