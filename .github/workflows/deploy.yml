@@ -29,6 +29,7 @@ jobs:
 
     - name: switching to gh-pages
       run: |
+        git reset --hard
         git fetch --depth=1 origin refs/heads/gh-pages:refs/remotes/origin/gh-pages
         git checkout gh-pages
 
