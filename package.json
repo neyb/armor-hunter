@@ -11,7 +11,7 @@
     "check": "tsc --noEmit --skipLibCheck",
     "test": "jest",
     "start": "BROWSER=none parcel -p 3000 src/index.html --no-autoinstall --out-dir build",
-    "build": "parcel build src/index.html --no-content-hash --out-dir build --public-url ./"
+    "build": "parcel build src/index.html --out-dir build --public-url ./"
   },
   "repository": {
     "type": "git",
