@@ -1,3 +1,4 @@
+import {SearchRequest} from "/logic/builder/search/SearchRequest"
 import {ArmorPart} from "./ArmorPart"
 import {ArmorPart as ArmorPartData} from "/logic/builder/search/data"
 import {PartType} from "./data"
@@ -18,7 +19,7 @@ describe("hasBetterSkills", () => {
     const skill = {id: "skill1", maxLevel: 1}
     const part1 = part({skills: [{level: 2, skill}]})
     const part2 = part({skills: [{level: 1, skill}]})
-    const request = {leveledSkills: [{level: 3, skill}]}
+    const request = SearchRequest.ofData({leveledSkills: [{level: 3, skill}]})
 
     expect(part1.isABetterPart(part2, request)).toBe(true)
     expect(part2.isABetterPart(part1, request)).toBe(false)
@@ -34,7 +35,7 @@ describe("hasBetterSkills", () => {
         {level: 1, skill: skill2},
       ],
     })
-    const request = {leveledSkills: [{level: 3, skill: skill1}]}
+    const request = SearchRequest.ofData({leveledSkills: [{level: 3, skill: skill1}]})
 
     expect(part1.isABetterPart(part2, request)).toBe(true)
     expect(part2.isABetterPart(part1, request)).toBe(false)
@@ -50,12 +51,12 @@ describe("hasBetterSkills", () => {
       ],
     })
     const part2 = part({skills: [{level: 2, skill: skill1}]})
-    const request = {
+    const request = SearchRequest.ofData({
       leveledSkills: [
         {level: 3, skill: skill1},
         {level: 3, skill: skill2},
       ],
-    }
+    })
 
     expect(part2.isABetterPart(part1, request)).toBe(false)
     expect(part1.isABetterPart(part2, request)).toBe(false)
@@ -71,12 +72,12 @@ describe("hasBetterSkills", () => {
     })
     const part2 = part({skills: [{level: 2, skill}]})
 
-    const request = {
+    const request = SearchRequest.ofData({
       leveledSkills: [
         {level: 3, skill},
         {level: 1, skill: setSkill},
       ],
-    }
+    })
 
     expect(part1.isABetterPart(part2, request)).toBe(false)
     expect(part2.isABetterPart(part1, request)).toBe(false)

@@ -1,5 +1,6 @@
-import {Build, SearchRequest, Size} from "./data"
-import {LeveledSkill} from "/logic/builder/search/LeveledSkill"
+import {SearchRequest} from "./SearchRequest"
+import {Build, Size} from "./data"
+import {LeveledSkill} from "./LeveledSkill"
 import {Parts} from "/logic/builder/search/Parts"
 import {SearchContext} from "/logic/builder/search/searchContext"
 import {Decoration} from "/logic/builder/search/Decoration"
@@ -43,7 +44,6 @@ export function searchBuild(partsCandidate: Parts, request: SearchRequest, conte
 
   function skillsNotInParts(): LeveledSkill[] {
     return request.leveledSkills
-      .map(LeveledSkill.ofData)
       .map(leveledSkill => leveledSkill.minus(partsCandidate.skillFor(leveledSkill.skill)))
       .filter(skill => skill.level > 0)
   }

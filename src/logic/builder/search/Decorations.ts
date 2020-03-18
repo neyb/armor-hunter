@@ -1,8 +1,9 @@
+import {SearchRequest} from "/logic/builder/search/SearchRequest"
 import {List, Map, Seq} from "immutable"
 import {Skill} from "./Skill"
 import {Decoration} from "./Decoration"
-import {SearchRequest, Size, Decoration as DecorationData} from "./data"
-import {LeveledSkill, mergeSkills} from "/logic/builder/search/LeveledSkill"
+import {Size, Decoration as DecorationData} from "./data"
+import {LeveledSkill, mergeSkills} from "./LeveledSkill"
 
 export class Decorations {
   static ofData = (data: [DecorationData, number][]) =>
@@ -15,7 +16,7 @@ export class Decorations {
     return new Decorations(
       Map(
         this.decorations.filter((_, decoration) =>
-          request.leveledSkills.some(leveledSkill => decoration.hasSkill(Skill.ofData(leveledSkill.skill)))
+          request.leveledSkills.some(leveledSkill => decoration.hasSkill(leveledSkill.skill))
         )
       )
     )

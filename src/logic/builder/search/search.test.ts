@@ -1,4 +1,5 @@
 import {merge, RecursivePartial} from "/lib/merge"
+import {SearchRequest} from "/logic/builder/search/SearchRequest"
 import {reduce} from "rxjs/operators"
 import {
   ArmorPart,
@@ -149,7 +150,7 @@ describe("search", () => {
     availableParts?: ArmorPart[]
     decorations?: [Decoration, number][]
   }): Promise<Build[]> {
-    return search({leveledSkills}, SearchContext.ofData({availableParts, decorations}))
+    return search(SearchRequest.ofData({leveledSkills}), SearchContext.ofData({availableParts, decorations}))
       .pipe(reduce((builds: Build[], build: Build) => [...builds, build], []))
       .toPromise()
   }
@@ -163,10 +164,7 @@ describe("context filtering", () => {
         part({set: set({id: "set2"}), partType: PartType.chest, skills: [level(2)(skill(1))]}),
       ],
       decorations: [],
-    }).filter({
-      leveledSkills: [level(3)(skill(1))],
-    })
-
+    }).filter(SearchRequest.ofData({leveledSkills: [level(3)(skill(1))]}))
     expect(filteredContext.availableParts).toMatchObject([{set: {id: "set1"}}, {set: {id: "set2"}}])
   })
 
@@ -178,9 +176,7 @@ describe("context filtering", () => {
           part({set: set({id: "set2"}), skills: [level(2)(skill(1))]}),
         ],
         decorations: [],
-      }).filter({
-        leveledSkills: [level(3)(skill(1))],
-      })
+      }).filter(SearchRequest.ofData({leveledSkills: [level(3)(skill(1))]}))
 
       expect(filteredContext.availableParts).toMatchObject([{set: {id: "set1"}}])
     })
@@ -196,7 +192,7 @@ describe("context filtering", () => {
           part({set: set({id: "set4"}), slots: [1, 1, 1, 3]}),
         ],
         decorations: [],
-      }).filter({leveledSkills: []})
+      }).filter(SearchRequest.ofData({leveledSkills: []}))
       expect(filteredContext.availableParts).toMatchObject([{set: {id: "set3"}}, {set: {id: "set4"}}])
     })
   })
@@ -206,7 +202,7 @@ describe("context filtering", () => {
       const filteredContext = SearchContext.ofData({
         availableParts: [part({set: set({id: "set1", rarity: 1})}), part({set: set({id: "set2", rarity: 2})})],
         decorations: [],
-      }).filter({leveledSkills: []})
+      }).filter(SearchRequest.ofData({leveledSkills: []}))
       expect(filteredContext.availableParts).toMatchObject([{set: {id: "set2"}}])
     })
   })

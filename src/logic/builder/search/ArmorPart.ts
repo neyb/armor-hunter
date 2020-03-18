@@ -1,5 +1,6 @@
+import {SearchRequest} from "./SearchRequest"
 import {LeveledSkill} from "./LeveledSkill"
-import {ArmorPart as Data, PartType, SearchRequest, Size} from "./data"
+import {ArmorPart as Data, PartType, Size} from "./data"
 import {ArmorSet} from "./ArmorSet"
 
 export class ArmorPart {
@@ -19,6 +20,7 @@ export class ArmorPart {
     skills: this.skills.map(s => s.data()),
     slots: this.slots,
   })
+
   isABetterPart(other: ArmorPart, request: SearchRequest): boolean {
     return this.hasBetterSkills(other, request) && this.hasBetterSlots(other) && this.set.rarity >= other.set.rarity
   }

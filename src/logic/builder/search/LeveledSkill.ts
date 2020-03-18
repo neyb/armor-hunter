@@ -1,6 +1,6 @@
 import {Skill} from "/logic/builder/search/Skill"
 import {LeveledSkill as Data} from "./data"
-import {List} from "immutable"
+import {is, List} from "immutable"
 
 export const mergeSkills = (leveledSkills: Iterable<LeveledSkill>): Array<LeveledSkill> =>
   List(leveledSkills)
@@ -9,6 +9,16 @@ export const mergeSkills = (leveledSkills: Iterable<LeveledSkill>): Array<Levele
     .entrySeq()
     .map(([skill, level]) => new LeveledSkill(level, skill))
     .toArray()
+
+export const deduce = (from: LeveledSkill[], toDeduce: LeveledSkill[]) =>
+  from.map(leveledSkill =>
+    toDeduce
+      .filter(deduceLeveledSkill => is(deduceLeveledSkill.skill, leveledSkill.skill))
+      .reduce(
+        (resultingLeveledSkill, deduceLeveledSkill) => resultingLeveledSkill.minus(deduceLeveledSkill),
+        leveledSkill
+      )
+  )
 
 export class LeveledSkill {
   static from = ({level, skill}: {level: number; skill: Skill}) => new LeveledSkill(level, skill)
